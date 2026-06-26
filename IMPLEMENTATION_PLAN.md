@@ -265,6 +265,8 @@ For search and filtering, Dataverse views should be prepared for:
 
 ## Phase 5: Load Data Into Dataverse
 
+**Status: ✅ Implemented** — `scripts/phase5_load_data.py`. 300 records upserted into `is_rag_multieurlex_document` (alternate key `is_celex_id`, idempotent re-run). Verified: count = 300, celex_id unique, text + metadata populated. Run: `python scripts/phase5_load_data.py --execute` (dry-run default; `--limit N` for smoke test).
+
 Use `microsoft/Dataverse-skills` for this part.
 
 Planned flow:
@@ -296,6 +298,25 @@ Use bulk import/upsert rather than manual record creation. The Dataverse Skills 
 ---
 
 ## Phase 6: Create The Copilot Studio Agent
+
+**Status: 🟡 Authored — verify + publish pending** — agent `MultiEURLEX Search Agent/` (template `cliagent-1.0.0`, env `https://mto-training-management.crm.dynamics.com/`).
+
+Retrieval approach: the agent uses the **Microsoft Dataverse MCP Server** tool (added manually in the portal; pulled into `capabilities/tools/` + `infrastructure/connections/`). No knowledge source — the MCP `read_query` tool runs Dataverse SQL, giving precise metadata filtering (exact-match `WHERE`), which the Phase 7 evaluation requires and semantic knowledge search cannot guarantee.
+
+`settings.mcs.yml` instructions (authored via the `copilot-studio` skills) tell the agent to:
+
+- query `is_rag_multieurlex_document` via `read_query` only — no outside knowledge;
+- respect the Dataverse-SQL dialect limits (explicit column list, `TOP` not `OFFSET`, `WHERE`/`ORDER BY`/`GROUP BY`/`JOIN`/`CASE`; no subqueries, `DISTINCT`, `HAVING`, `UNION`, `WITH`, `CAST`, `CONVERT`, `ROUND`);
+- avoid selecting the large `is_document_text` in list queries — read it per-document by `is_celex_id`;
+- build precise `WHERE` clauses for exact metadata filters; use `is_year` ranges for arbitrary year ranges;
+- cite `is_celex_id` + `is_title`, summarize only from `is_document_text`, label `is_legal_actor_type`/`is_applicable_role` as inferred metadata, reply `No matching document found` on zero rows;
+- plus 4 conversation starters matching the test queries.
+
+### Remaining steps
+
+1. **Enable generative orchestration** in the portal — Agent → Settings → Generative AI → Orchestration → Yes. Required for the MCP tool to be invoked (current recognizer is classic `CLICopilotRecognizer`). If greyed out, enable Generative AI features for the environment in PPAC.
+2. **Push** the instruction changes (VS Code Copilot Studio extension → Source Control → Push) and **publish** the agent.
+3. **Test** in the agent's test chat against the Phase 6 query types, then run Phase 7 evals.
 
 Create a Copilot Studio agent whose purpose is to search and answer questions over the 300 legal/policy documents.
 
