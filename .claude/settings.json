@@ -1,5 +1,6 @@
 {
   "enabledPlugins": {
-    "dataverse@claude-plugins-official": true
+    "dataverse@claude-plugins-official": true,
+    "copilot-studio@skills-for-copilot-studio": true
   }
 }
