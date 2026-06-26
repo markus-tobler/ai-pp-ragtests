@@ -215,36 +215,39 @@ Acceptance criteria for the selected data:
 
 ## Phase 4: Prepare The Dataverse Table
 
-Create one main Dataverse table for all texts.
+**Status: ✅ Implemented** — `scripts/phase4_create_table.py`
 
-Suggested table name:
+Table created in solution `dataverseragtest`, environment `https://mto-training-management.crm.dynamics.com/`, publisher prefix `is`.
+
+Table logical name:
 
 ```text
-rag_multieurlex_document
+is_rag_multieurlex_document
 ```
 
-Suggested columns:
+Implemented columns:
 
-| Column | Type | Max Length | Notes |
+| Logical Name | Type | Max Length | Notes |
 |---|---|---|---|
-| `celex_id` | Single Line of Text | 50 | Alternate key / unique identifier; typical CELEX IDs are 10-20 chars |
-| `title` | Single Line of Text | 500 | EU legal titles can exceed 200 chars |
-| `language` | Single Line of Text | 10 | ISO 639-1 code, e.g. `en` |
-| `document_text` | Multiple Lines of Text | 100,000 | ~3,000 words × ~5 chars/word + markup overhead |
-| `word_count` | Whole number | — | For filtering/evaluation |
-| `page_estimate` | Decimal | — | For filtering/evaluation |
-| `length_level` | Single Line of Text | 20 | Values: short, medium, long |
-| `policy_domain` | Single Line of Text | 100 | Longest controlled value ~25 chars (e.g. `Consumer protection`) |
-| `document_type` | Single Line of Text | 100 | Longest controlled value ~15 chars (e.g. `Recommendation`) |
-| `year` | Whole number | — | Parsed from CELEX |
-| `year_band` | Single Line of Text | 20 | Format `YYYY-YYYY`, 9 chars |
-| `legal_actor_type` | Single Line of Text | 100 | Longest controlled value ~28 chars (e.g. `International organization`) |
-| `applicable_role` | Single Line of Text | 100 | Longest controlled value ~24 chars (e.g. `Financial intermediary`) |
-| `location_scope` | Single Line of Text | 100 | Longest controlled value ~20 chars (e.g. `Other member state`) |
-| `metadata_json` | Multiple Lines of Text | 10,000 | Raw/enriched metadata JSON for audit |
-| `source_dataset` | Single Line of Text | 100 | e.g. `MultiEURLEX` |
-| `source_split` | Single Line of Text | 50 | e.g. `test`, `train`, `validation` |
-| `selection_batch` | Single Line of Text | 50 | e.g. `ragtest-001` |
+| `is_celex_id` | Single Line of Text | 50 | Primary name attribute + alternate key `is_rag_multieurlex_celex_key` |
+| `is_title` | Single Line of Text | 500 | Required; EU legal titles can exceed 200 chars |
+| `is_language` | Single Line of Text | 10 | ISO 639-1 code, e.g. `en` |
+| `is_document_text` | Multiple Lines of Text | 100,000 | ~3,000 words × ~5 chars/word + markup overhead |
+| `is_word_count` | Whole number | — | For filtering/evaluation |
+| `is_page_estimate` | Decimal | — | For filtering/evaluation |
+| `is_length_level` | Single Line of Text | 20 | Values: short, medium, long |
+| `is_policy_domain` | Single Line of Text | 100 | Longest controlled value ~25 chars (e.g. `Consumer protection`) |
+| `is_document_type` | Single Line of Text | 100 | Longest controlled value ~15 chars (e.g. `Recommendation`) |
+| `is_year` | Whole number | — | Parsed from CELEX |
+| `is_year_band` | Single Line of Text | 20 | Format `YYYY-YYYY`, 9 chars |
+| `is_legal_actor_type` | Single Line of Text | 100 | Longest controlled value ~28 chars (e.g. `International organization`) |
+| `is_applicable_role` | Single Line of Text | 100 | Longest controlled value ~24 chars (e.g. `Financial intermediary`) |
+| `is_location_scope` | Single Line of Text | 100 | Longest controlled value ~20 chars (e.g. `Other member state`) |
+| `is_metadata_json` | Multiple Lines of Text | 10,000 | Raw/enriched metadata JSON for audit |
+| `is_source_dataset` | Single Line of Text | 100 | e.g. `MultiEURLEX` |
+| `is_source_split` | Single Line of Text | 50 | e.g. `test`, `train`, `validation` |
+| `is_selection_batch` | Single Line of Text | 50 | e.g. `ragtest-001` |
+| `is_metadata_source` | Single Line of Text | 50 | `celex`, `eurovoc`, `rule_based`, `llm_enriched` |
 
 > **Note on column type choice**: Metadata dimensions use `Single Line of Text` rather than `Choice`/Option Set. Both types are indexed by Dataverse Search (full-text index), but `Choice` stores integer option codes — OData filter expressions via MCP would require numeric values (`policy_domain eq 100000003`) instead of readable strings (`policy_domain eq 'Environment'`). Plain text columns keep MCP queries simple and vocabulary-agnostic. Controlled vocabulary enforcement is handled in the data pipeline (Phase 3).
 
