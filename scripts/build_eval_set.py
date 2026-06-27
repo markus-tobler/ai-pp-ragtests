@@ -8,16 +8,23 @@ Two artifacts are produced from one source-of-truth table so they never drift:
    the difficulty tier, and (for tricky cases) the distractor doc ids that also
    look like candidate answers but are ruled out by metadata.
 
-2. multieurlex_eval_set_copilot_import.csv - exactly two columns
-   (question, expectedResponse) as required by the Copilot Studio Evaluate tab
-   CSV import. expectedResponse carries the precise answer.
+2. multieurlex_eval_set_copilot_import.csv - conforms to the Copilot Studio
+   "Import conversations" template (data/eval/EvalConversationTemplate.csv):
+   a leading block of '#' comment lines, then the columns
+   conversationNumber, question, response. Each of the 20 questions is its own
+   conversation (one Q&A pair) so the tricky cases never share context. The
+   precise answer goes in the optional 'response' column (reference only; the
+   agent reply is not compared against it).
 
 Every answer is grounded in data/processed/multieurlex_selected_300.csv. For the
 "tricky" tier, more than one document in the corpus plausibly answers the topical
 question; the metadata stated in the question wording (year, document type,
-domain, country, subject) rules out all but one. Copilot Studio Evaluate passes
-ONLY the question string to the agent, so the disambiguating metadata is woven
-into the question text itself.
+domain, country, subject) rules out all but one. Copilot Studio passes ONLY the
+question string to the agent, so the disambiguating metadata is woven into the
+question text itself.
+
+Template limits enforced here: <=500 characters per question, <=8 Q&A pairs per
+conversation, <=50 conversations.
 """
 
 import csv
@@ -392,16 +399,49 @@ def main():
             row["source_title"] = titles[r["source_celex_id"]]
             w.writerow(row)
 
-    # 2) Copilot Studio Evaluate import file (exactly two columns)
+    # 2) Copilot Studio "Import conversations" file. Matches the layout of
+    #    data/eval/EvalConversationTemplate.csv: a block of '#' comment lines,
+    #    then conversationNumber, question, response. One conversation per
+    #    question keeps the tricky cases context-independent.
     import_path = OUT_DIR / "multieurlex_eval_set_copilot_import.csv"
+    header_comments = [
+        "# Import conversations to test your agent.",
+        "#",
+        "# Limitations",
+        "# - 8 question-and-answer pairs max per conversation.",
+        "# - 50 conversations max.",
+        "# - 500 characters max per question, including spaces.",
+        "#",
+        "# Imported columns",
+        "# conversationNumber - Identifies each conversation. All questions and "
+        "responses with the same conversation number will run as a single test "
+        "case against the agent.",
+        "# question - The user prompt that the agent will respond to.",
+        "# response - The reference agent reply. This field is optional. The agent "
+        "response isn't compared to this reference answer.",
+        "#",
+        "# Test methods",
+        "# - Test methods are not included in this template. You can select them "
+        "after importing the test cases.",
+        "# - By default, the 'General quality' test method is added to the "
+        "imported test set.",
+        "#",
+        "# For more details, refer to the documentation: "
+        "https://go.microsoft.com/fwlink/?linkid=2335991",
+        "#",
+    ]
+    if len(RECORDS) > 50:
+        raise SystemExit(f"Too many conversations: {len(RECORDS)} (max 50)")
     with import_path.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f, quoting=csv.QUOTE_ALL)
-        w.writerow(["question", "expectedResponse"])
-        for r in RECORDS:
+        for line in header_comments:
+            w.writerow([line])
+        w.writerow(["conversationNumber", "question", "response"])
+        for i, r in enumerate(RECORDS, start=1):
             q = r["question"]
-            if len(q) > 1000:
-                raise SystemExit(f"{r['id']} question exceeds 1000 chars ({len(q)})")
-            w.writerow([q, r["expected_answer"]])
+            if len(q) > 500:
+                raise SystemExit(f"{r['id']} question exceeds 500 chars ({len(q)})")
+            w.writerow([str(i), q, r["expected_answer"]])
 
     print(f"Wrote {source_path} ({len(RECORDS)} rows)")
     print(f"Wrote {import_path} ({len(RECORDS)} rows)")
