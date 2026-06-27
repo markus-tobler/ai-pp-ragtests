@@ -299,11 +299,13 @@ Use bulk import/upsert rather than manual record creation. The Dataverse Skills 
 
 ## Phase 6: Create The Copilot Studio Agent
 
-**Status: 🟡 Authored — verify + publish pending** — agent `MultiEURLEX Search Agent/` (template `cliagent-1.0.0`, env `https://your-env.crm.dynamics.com/`).
+**Status: 🟡 Authored — verify + publish pending** — agent `MultiEURLEX Search Agent`, env `https://your-env.crm.dynamics.com/`.
 
-Retrieval approach: the agent uses the **Microsoft Dataverse MCP Server** tool (added manually in the portal; pulled into `capabilities/tools/` + `infrastructure/connections/`). No knowledge source — the MCP `read_query` tool runs Dataverse SQL, giving precise metadata filtering (exact-match `WHERE`), which the Phase 7 evaluation requires and semantic knowledge search cannot guarantee.
+**The agent is managed online in Copilot Studio**, not synced as a local YAML workspace (local sync proved unreliable). The repo's source of truth is `agent-instructions/` — one paste-ready file per agent. Current: [`agent-instructions/multieurlex-search-agent.md`](agent-instructions/multieurlex-search-agent.md). Edit there, commit, then paste into the portal.
 
-`settings.mcs.yml` instructions (authored via the `copilot-studio` skills) tell the agent to:
+Retrieval approach: the agent uses the **Microsoft Dataverse MCP Server** tool (added in the portal). No knowledge source — the MCP `read_query` tool runs Dataverse SQL, giving precise metadata filtering (exact-match `WHERE`), which the Phase 7 evaluation requires and semantic knowledge search cannot guarantee.
+
+The instructions tell the agent to:
 
 - query `is_rag_multieurlex_document` via `read_query` only — no outside knowledge;
 - respect the Dataverse-SQL dialect limits (explicit column list, `TOP` not `OFFSET`, `WHERE`/`ORDER BY`/`GROUP BY`/`JOIN`/`CASE`; no subqueries, `DISTINCT`, `HAVING`, `UNION`, `WITH`, `CAST`, `CONVERT`, `ROUND`);
@@ -314,8 +316,8 @@ Retrieval approach: the agent uses the **Microsoft Dataverse MCP Server** tool (
 
 ### Remaining steps
 
-1. **Enable generative orchestration** in the portal — Agent → Settings → Generative AI → Orchestration → Yes. Required for the MCP tool to be invoked (current recognizer is classic `CLICopilotRecognizer`). If greyed out, enable Generative AI features for the environment in PPAC.
-2. **Push** the instruction changes (VS Code Copilot Studio extension → Source Control → Push) and **publish** the agent.
+1. **Enable generative orchestration** in the portal — Agent → Settings → Generative AI → Orchestration → Yes. Required for the MCP tool to be invoked. If greyed out, enable Generative AI features for the environment in PPAC.
+2. **Paste** the `## Instructions` from `agent-instructions/multieurlex-search-agent.md` into the agent's instructions box, set the conversation starters, and **publish**.
 3. **Test** in the agent's test chat against the Phase 6 query types, then run Phase 7 evals.
 
 Create a Copilot Studio agent whose purpose is to search and answer questions over the 300 legal/policy documents.
