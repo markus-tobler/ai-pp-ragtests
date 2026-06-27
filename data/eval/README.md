@@ -9,7 +9,8 @@ in a real document in that corpus (traceable by `celex_id`).
 | File | Purpose |
 |------|---------|
 | `multieurlex_eval_set_source.csv` | **Source of truth** for humans. Full record: question, precise expected answer, behavioral rubric, grounding doc (`celex_id` + title), the metadata dimensions used, the difficulty tier, and (for tricky cases) the distractor doc ids that look like answers but are ruled out. |
-| `multieurlex_eval_set_copilot_import.csv` | **Import file** for Copilot Studio's *Evaluate* tab. Exactly two columns (`question`, `expectedResponse`) — the only format the import accepts. |
+| `multieurlex_eval_set_copilot_import.csv` | **Import file** for Copilot Studio's *Evaluate* tab. Conforms to the *Import conversations* template (`EvalConversationTemplate.csv`): a block of `#` comment lines, then columns `conversationNumber`, `question`, `response`. Each of the 20 questions is its own conversation (one Q&A pair) so the tricky cases never share context. |
+| `EvalConversationTemplate.csv` | The official Copilot Studio template the import file is modelled on (reference). |
 | `../../scripts/build_eval_set.py` | Generator. Both CSVs are produced from one table in this script, so they never drift. Re-run after editing. |
 
 Regenerate:
@@ -51,23 +52,26 @@ distractors in the source CSV:
 
 1. Open the agent in Copilot Studio.
 2. Go to the **Evaluate** tab.
-3. **New evaluation** → **Single response**.
+3. **New evaluation** → import conversations.
 4. Drag or browse for `multieurlex_eval_set_copilot_import.csv`.
-5. Review the imported cases. All import with the default **General quality**
-   grader.
+5. Review the imported cases — 20 conversations, one Q&A pair each. All import
+   with the default **General quality** grader.
 6. For the precise/tricky cases, switch the test method in the UI to **Compare
-   meaning** (semantic match against the expected answer) or **Keyword match**
-   (e.g. the regulation number, "Article 486", "10 basis points", "90 ... 2019").
-   The `expectedResponse` text is written to support both.
+   meaning** or **Keyword match** (e.g. the regulation number, "Article 486",
+   "10 basis points", "90 ... 2019"), entering the expected text in the UI. The
+   `response` column is a reference answer and is **not** auto-compared on
+   import.
 7. **Evaluate** to run, or **Save** to run later.
 
-### Notes / limits (Copilot Studio CSV import)
+### Notes / limits (Import conversations template)
 
-- Max **100** questions per test set; max **1,000** characters per question.
-- The *Testing method* cannot be set via CSV — it is configured in the UI after
-  import (pass thresholds, keywords, capabilities are UI-only).
-- Leave `expectedResponse` empty if you only want General-quality grading; here
-  it is filled with the precise answer so stricter graders work too.
+- Max **8** Q&A pairs per conversation; max **50** conversations; max **500**
+  characters per question (incl. spaces). The generator enforces these.
+- The `response` column is optional and is **not** compared to the agent reply;
+  it is a human reference. Set test methods (and their expected text /
+  thresholds / keywords) in the UI after import.
+- Each question here is a standalone conversation so the tricky cases cannot
+  leak context to one another.
 
 ## Grounding
 
