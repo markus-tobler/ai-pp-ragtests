@@ -7,6 +7,7 @@ orchestration: generative   # required for the Dataverse MCP tool to fire
 tools:
   - Microsoft Dataverse MCP Server (read_query, search, describe)
 table: is_rag_multieurlex_document
+variant: structured   # read_query metadata-filter led (see -semantic and -hybrid variants)
 updated: 2026-06-27
 ---
 
