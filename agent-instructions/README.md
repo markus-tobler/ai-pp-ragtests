@@ -22,8 +22,13 @@ pasted into the portal.
 
 ## Agents
 
-| File | Agent | Variant | Environment |
+All four files share one identical instruction body (identity, available fields,
+relevance check, answer rules, conversation starters) and **differ only in the
+`RETRIEVAL STRATEGY` section** — the variable under test.
+
+| File | Agent | Variant (retrieval strategy) | Environment |
 |---|---|---|---|
-| [multieurlex-search-agent.md](multieurlex-search-agent.md) | MultiEURLEX Search Agent | structured — `read_query` metadata-filter led (AND, wildcards, relax if empty) | mto-training-management |
-| [multieurlex-search-agent-semantic.md](multieurlex-search-agent-semantic.md) | MultiEURLEX Search Agent | semantic — `search`/`describe`-grounded, content-first `LIKE` retrieval | mto-training-management |
-| [multieurlex-search-agent-hybrid.md](multieurlex-search-agent-hybrid.md) | MultiEURLEX Search Agent | hybrid — metadata filter + content match, reconciled then relaxed | mto-training-management |
+| [multieurlex-search-agent.md](multieurlex-search-agent.md) | MultiEURLEX Search Agent | mcp — `read_query`: metadata filters (AND) + keyword/synonym OR text match over title/text/domain, relax if empty | mto-training-management |
+| [multieurlex-search-agent-semantic.md](multieurlex-search-agent-semantic.md) | MultiEURLEX Search Agent | semantic — Semantic Search with a natural-language semantic query, broaden if empty | mto-training-management |
+| [multieurlex-search-agent-hybrid.md](multieurlex-search-agent-hybrid.md) | MultiEURLEX Search Agent | hybrid — always runs BOTH the mcp and semantic paths, then consolidates | mto-training-management |
+| [multieurlex-search-agent-knowledge.md](multieurlex-search-agent-knowledge.md) | MultiEURLEX Search Agent | knowledge — grounded on the agent's attached knowledge source (no tools) | mto-training-management |
