@@ -372,6 +372,53 @@ RECORDS = [
     ),
 ]
 
+# Human-readable metadata filter block per question. Only the metadata that the
+# question text actually constrains is listed; each label/value uses the exact
+# corpus value so it maps straight onto a Dataverse WHERE clause. Tier A carries
+# no filters (few metadata cues). For Tier D the listed filters deliberately
+# match MORE than one document - the non-metadata disambiguator (country, date,
+# subject) stays in the prose, which is what makes those cases tricky.
+FILTERS = {
+    # Tier A - none (broad topical)
+    "Q01": [], "Q02": [], "Q03": [], "Q04": [], "Q05": [],
+    # Tier B
+    "Q06": [("Year", "2015"), ("Document type", "Decision")],
+    "Q07": [("Year", "2013"), ("Document type", "Directive"), ("Policy domain", "Trade")],
+    "Q08": [("Year", "2015"), ("Document type", "Directive"), ("Policy domain", "Transport")],
+    "Q09": [("Year", "2014"), ("Document type", "Regulation")],
+    "Q10": [("Year", "2014"), ("Document type", "Regulation")],
+    # Tier C
+    "Q11": [("Year", "2014"), ("Document type", "Regulation"), ("Policy domain", "Finance")],
+    "Q12": [("Year", "2013"), ("Document type", "Regulation"),
+            ("Policy domain", "Employment and working conditions")],
+    "Q13": [("Year", "2014"), ("Document type", "Regulation"), ("Policy domain", "Energy")],
+    "Q14": [("Year", "2015"), ("Document type", "Directive"), ("Policy domain", "Trade")],
+    "Q15": [("Year", "2013"), ("Document type", "Directive"), ("Policy domain", "Law")],
+    # Tier D - filters match several candidates; prose disambiguates
+    "Q16": [("Year", "2015"), ("Document type", "Decision"), ("Policy domain", "Politics")],
+    "Q17": [("Year", "2015"), ("Document type", "Decision"), ("Policy domain", "Politics")],
+    "Q18": [("Year", "2015"), ("Document type", "Decision"), ("Policy domain", "Finance"),
+            ("Legal actor type", "Financial institution")],
+    "Q19": [("Year", "2015"), ("Document type", "Decision"), ("Policy domain", "Finance"),
+            ("Legal actor type", "Financial institution")],
+    "Q20": [("Year", "2015"), ("Document type", "Directive")],
+}
+
+
+def render_question(record):
+    """Question prose followed by a human-readable metadata filter block."""
+    q = record["question"]
+    filters = FILTERS.get(record["id"], [])
+    if not filters:
+        return q
+    block = "\n".join(f"- {label}: {value}" for label, value in filters)
+    return f"{q}\n\nMetadata filters (apply with AND):\n{block}"
+
+
+def render_answer(record):
+    """Expected answer prefixed with the CELEX id (the agent outputs the id)."""
+    return f"CELEX {record['source_celex_id']} - {record['expected_answer']}"
+
 
 def load_titles():
     titles = {}
@@ -393,7 +440,7 @@ def main():
     # 1) rich source-of-truth file
     source_path = OUT_DIR / "multieurlex_eval_set_source.csv"
     fieldnames = [
-        "id", "tier", "question", "expected_answer", "rubric",
+        "id", "tier", "question", "filters", "expected_answer", "rubric",
         "source_celex_id", "source_title", "metadata_used",
         "distractor_celex_ids", "notes",
     ]
@@ -403,12 +450,18 @@ def main():
         for r in RECORDS:
             row = dict(r)
             row["source_title"] = titles[r["source_celex_id"]]
+            # question column carries the full prompt sent to the agent
+            # (prose + filter block); 'filters' lists the block separately
+            row["question"] = render_question(r)
+            row["filters"] = "; ".join(f"{lbl}={val}" for lbl, val in FILTERS.get(r["id"], []))
+            row["expected_answer"] = render_answer(r)
             w.writerow(row)
 
-    # all questions must respect the 500-char limit shared by both templates
+    # all rendered questions must respect the 500-char limit shared by both templates
     for r in RECORDS:
-        if len(r["question"]) > 500:
-            raise SystemExit(f"{r['id']} question exceeds 500 chars ({len(r['question'])})")
+        rq = render_question(r)
+        if len(rq) > 500:
+            raise SystemExit(f"{r['id']} question exceeds 500 chars ({len(rq)})")
 
     # 2a) Copilot Studio "Import conversations" file. Matches the layout of
     #     data/eval/EvalConversationTemplate.csv: a block of '#' comment lines,
@@ -449,7 +502,7 @@ def main():
             w.writerow([line])
         w.writerow(["conversationNumber", "question", "response"])
         for i, r in enumerate(RECORDS, start=1):
-            w.writerow([str(i), r["question"], r["expected_answer"]])
+            w.writerow([str(i), render_question(r), render_answer(r)])
 
     # 2b) Copilot Studio "classic" single-response file. Matches the layout of
     #     data/eval/EvaluationTemplate_classic.csv: '#' comment lines, then
@@ -486,7 +539,7 @@ def main():
             w.writerow([line])
         w.writerow(["question", "expectedResponse"])
         for r in RECORDS:
-            w.writerow([r["question"], r["expected_answer"]])
+            w.writerow([render_question(r), render_answer(r)])
 
     print(f"Wrote {source_path} ({len(RECORDS)} rows)")
     print(f"Wrote {conv_path} ({len(RECORDS)} conversations)")
