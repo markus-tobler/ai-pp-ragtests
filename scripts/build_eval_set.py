@@ -8,13 +8,19 @@ Two artifacts are produced from one source-of-truth table so they never drift:
    the difficulty tier, and (for tricky cases) the distractor doc ids that also
    look like candidate answers but are ruled out by metadata.
 
-2. multieurlex_eval_set_copilot_import.csv - conforms to the Copilot Studio
-   "Import conversations" template (data/eval/EvalConversationTemplate.csv):
-   a leading block of '#' comment lines, then the columns
-   conversationNumber, question, response. Each of the 20 questions is its own
-   conversation (one Q&A pair) so the tricky cases never share context. The
-   precise answer goes in the optional 'response' column (reference only; the
-   agent reply is not compared against it).
+2. multieurlex_eval_set_copilot_import_conversation.csv - conforms to the
+   Copilot Studio "Import conversations" template
+   (data/eval/EvalConversationTemplate.csv): a leading block of '#' comment
+   lines, then columns conversationNumber, question, response. Each of the 20
+   questions is its own conversation (one Q&A pair) so the tricky cases never
+   share context. The precise answer goes in the optional 'response' column
+   (reference only; the agent reply is not compared against it).
+
+3. multieurlex_eval_set_copilot_import_classic.csv - conforms to the Copilot
+   Studio "classic" single-response template
+   (data/eval/EvaluationTemplate_classic.csv): '#' comment lines, then columns
+   question, expectedResponse. Here expectedResponse IS used by the match /
+   similarity / compare-meaning test methods, so the precise answer goes there.
 
 Every answer is grounded in data/processed/multieurlex_selected_300.csv. For the
 "tricky" tier, more than one document in the corpus plausibly answers the topical
@@ -399,12 +405,17 @@ def main():
             row["source_title"] = titles[r["source_celex_id"]]
             w.writerow(row)
 
-    # 2) Copilot Studio "Import conversations" file. Matches the layout of
-    #    data/eval/EvalConversationTemplate.csv: a block of '#' comment lines,
-    #    then conversationNumber, question, response. One conversation per
-    #    question keeps the tricky cases context-independent.
-    import_path = OUT_DIR / "multieurlex_eval_set_copilot_import.csv"
-    header_comments = [
+    # all questions must respect the 500-char limit shared by both templates
+    for r in RECORDS:
+        if len(r["question"]) > 500:
+            raise SystemExit(f"{r['id']} question exceeds 500 chars ({len(r['question'])})")
+
+    # 2a) Copilot Studio "Import conversations" file. Matches the layout of
+    #     data/eval/EvalConversationTemplate.csv: a block of '#' comment lines,
+    #     then conversationNumber, question, response. One conversation per
+    #     question keeps the tricky cases context-independent.
+    conv_path = OUT_DIR / "multieurlex_eval_set_copilot_import_conversation.csv"
+    conv_comments = [
         "# Import conversations to test your agent.",
         "#",
         "# Limitations",
@@ -432,19 +443,54 @@ def main():
     ]
     if len(RECORDS) > 50:
         raise SystemExit(f"Too many conversations: {len(RECORDS)} (max 50)")
-    with import_path.open("w", newline="", encoding="utf-8") as f:
+    with conv_path.open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f, quoting=csv.QUOTE_ALL)
-        for line in header_comments:
+        for line in conv_comments:
             w.writerow([line])
         w.writerow(["conversationNumber", "question", "response"])
         for i, r in enumerate(RECORDS, start=1):
-            q = r["question"]
-            if len(q) > 500:
-                raise SystemExit(f"{r['id']} question exceeds 500 chars ({len(q)})")
-            w.writerow([str(i), q, r["expected_answer"]])
+            w.writerow([str(i), r["question"], r["expected_answer"]])
+
+    # 2b) Copilot Studio "classic" single-response file. Matches the layout of
+    #     data/eval/EvaluationTemplate_classic.csv: '#' comment lines, then
+    #     question, expectedResponse. Unlike the conversation template,
+    #     expectedResponse IS used by the match / similarity / compare-meaning
+    #     test methods, so the precise answer goes there.
+    classic_path = OUT_DIR / "multieurlex_eval_set_copilot_import_classic.csv"
+    classic_comments = [
+        "# Import the test cases you want to use to test your agent",
+        "#",
+        "# Limitations",
+        "# - maximum of 100 questions",
+        "# - maximum 500 characters per question including spaces",
+        "#",
+        "# Imported columns",
+        "# question - User question that the agent will answer.",
+        "# expectedResponse - Expected responses to run match, similarity and "
+        "compare meaning test cases.",
+        "#",
+        "# Test methods",
+        "# - Test methods are not included in this template. You can configure "
+        "test methods after importing the test cases.",
+        "# - Initially, the default test method will be added to the imported "
+        "test set.",
+        "#",
+        "# For more information, see the documentation.",
+        "#",
+    ]
+    if len(RECORDS) > 100:
+        raise SystemExit(f"Too many questions: {len(RECORDS)} (max 100)")
+    with classic_path.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, quoting=csv.QUOTE_ALL)
+        for line in classic_comments:
+            w.writerow([line])
+        w.writerow(["question", "expectedResponse"])
+        for r in RECORDS:
+            w.writerow([r["question"], r["expected_answer"]])
 
     print(f"Wrote {source_path} ({len(RECORDS)} rows)")
-    print(f"Wrote {import_path} ({len(RECORDS)} rows)")
+    print(f"Wrote {conv_path} ({len(RECORDS)} conversations)")
+    print(f"Wrote {classic_path} ({len(RECORDS)} questions)")
     # tier summary
     from collections import Counter
     tiers = Counter(r["tier"] for r in RECORDS)

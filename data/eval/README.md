@@ -9,9 +9,15 @@ in a real document in that corpus (traceable by `celex_id`).
 | File | Purpose |
 |------|---------|
 | `multieurlex_eval_set_source.csv` | **Source of truth** for humans. Full record: question, precise expected answer, behavioral rubric, grounding doc (`celex_id` + title), the metadata dimensions used, the difficulty tier, and (for tricky cases) the distractor doc ids that look like answers but are ruled out. |
-| `multieurlex_eval_set_copilot_import.csv` | **Import file** for Copilot Studio's *Evaluate* tab. Conforms to the *Import conversations* template (`EvalConversationTemplate.csv`): a block of `#` comment lines, then columns `conversationNumber`, `question`, `response`. Each of the 20 questions is its own conversation (one Q&A pair) so the tricky cases never share context. |
-| `EvalConversationTemplate.csv` | The official Copilot Studio template the import file is modelled on (reference). |
-| `../../scripts/build_eval_set.py` | Generator. Both CSVs are produced from one table in this script, so they never drift. Re-run after editing. |
+| `multieurlex_eval_set_copilot_import_conversation.csv` | **Import file** — *Import conversations* template (`EvalConversationTemplate.csv`). `#` comment block, then `conversationNumber`, `question`, `response`. Each of the 20 questions is its own conversation (one Q&A pair) so the tricky cases never share context. `response` is reference-only (not compared). |
+| `multieurlex_eval_set_copilot_import_classic.csv` | **Import file** — *classic* single-response template (`EvaluationTemplate_classic.csv`). `#` comment block, then `question`, `expectedResponse`. Here `expectedResponse` **is** used by the match / similarity / compare-meaning test methods. |
+| `EvalConversationTemplate.csv` / `EvaluationTemplate_classic.csv` | The two official Copilot Studio templates the import files are modelled on (reference). |
+| `../../scripts/build_eval_set.py` | Generator. All CSVs are produced from one table in this script, so they never drift. Re-run after editing. |
+
+Pick the import file that matches the evaluation type you start in Copilot
+Studio: the **conversation** file for multi-turn / *Import conversations*, or the
+**classic** file for single-response evaluation where the expected answer is
+graded.
 
 Regenerate:
 
@@ -52,26 +58,28 @@ distractors in the source CSV:
 
 1. Open the agent in Copilot Studio.
 2. Go to the **Evaluate** tab.
-3. **New evaluation** → import conversations.
-4. Drag or browse for `multieurlex_eval_set_copilot_import.csv`.
-5. Review the imported cases — 20 conversations, one Q&A pair each. All import
-   with the default **General quality** grader.
-6. For the precise/tricky cases, switch the test method in the UI to **Compare
+3. **New evaluation** → choose the type, then drag/browse the matching file:
+   - *Import conversations* → `multieurlex_eval_set_copilot_import_conversation.csv`
+   - single-response / classic → `multieurlex_eval_set_copilot_import_classic.csv`
+4. Review the imported cases — 20 in either file. All import with the default
+   **General quality** grader.
+5. For the precise/tricky cases, switch the test method in the UI to **Compare
    meaning** or **Keyword match** (e.g. the regulation number, "Article 486",
-   "10 basis points", "90 ... 2019"), entering the expected text in the UI. The
-   `response` column is a reference answer and is **not** auto-compared on
-   import.
-7. **Evaluate** to run, or **Save** to run later.
+   "10 basis points", "90 ... 2019"). In the **classic** file the
+   `expectedResponse` column already feeds these graders; in the
+   **conversation** file the `response` column is reference-only (not compared),
+   so enter the expected text in the UI.
+6. **Evaluate** to run, or **Save** to run later.
 
-### Notes / limits (Import conversations template)
+### Notes / limits
 
-- Max **8** Q&A pairs per conversation; max **50** conversations; max **500**
-  characters per question (incl. spaces). The generator enforces these.
-- The `response` column is optional and is **not** compared to the agent reply;
-  it is a human reference. Set test methods (and their expected text /
+- **Conversation** template: max **8** Q&A pairs per conversation, max **50**
+  conversations, max **500** chars per question. Each question is a standalone
+  conversation so the tricky cases cannot leak context to one another.
+- **Classic** template: max **100** questions, max **500** chars per question.
+  `expectedResponse` is used by match / similarity / compare-meaning methods.
+- The generator enforces all of the above. Set test methods (and their
   thresholds / keywords) in the UI after import.
-- Each question here is a standalone conversation so the tricky cases cannot
-  leak context to one another.
 
 ## Grounding
 
