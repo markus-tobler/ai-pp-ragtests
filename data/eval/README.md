@@ -4,11 +4,19 @@ Question/answer evaluation set derived from the actual corpus
 `data/processed/multieurlex_selected_300.csv`. Every expected answer is grounded
 in a real document in that corpus (traceable by `celex_id`).
 
+Each question carries a human-readable **metadata filter block** listing only the
+metadata the question actually constrains (e.g. `Year: 2014`, `Document type:
+Regulation`, `Policy domain: Finance`), so the agent can turn it straight into an
+AND'd WHERE clause. Each expected answer **leads with the CELEX id** (`CELEX
+<id> - ...`), matching the agent's required output. Tier A questions carry no
+filter block (few metadata cues); Tier D filter blocks deliberately match more
+than one document, so the disambiguator stays in the prose.
+
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `multieurlex_eval_set_source.csv` | **Source of truth** for humans. Full record: question, precise expected answer, behavioral rubric, grounding doc (`celex_id` + title), the metadata dimensions used, the difficulty tier, and (for tricky cases) the distractor doc ids that look like answers but are ruled out. |
+| `multieurlex_eval_set_source.csv` | **Source of truth** for humans. Full record: question (with filter block), the `filters` applied, precise expected answer (CELEX-prefixed), behavioral rubric, grounding doc (`celex_id` + title), the metadata dimensions used, the difficulty tier, and (for tricky cases) the distractor doc ids that look like answers but are ruled out. |
 | `multieurlex_eval_set_copilot_import_conversation.csv` | **Import file** — *Import conversations* template (`EvalConversationTemplate.csv`). `#` comment block, then `conversationNumber`, `question`, `response`. Each of the 20 questions is its own conversation (one Q&A pair) so the tricky cases never share context. `response` is reference-only (not compared). |
 | `multieurlex_eval_set_copilot_import_classic.csv` | **Import file** — *classic* single-response template (`EvaluationTemplate_classic.csv`). `#` comment block, then `question`, `expectedResponse`. Here `expectedResponse` **is** used by the match / similarity / compare-meaning test methods. |
 | `EvalConversationTemplate.csv` / `EvaluationTemplate_classic.csv` | The two official Copilot Studio templates the import files are modelled on (reference). |
