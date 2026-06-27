@@ -7,7 +7,11 @@ pasted into the portal.
 
 ## Convention
 
-- One file per agent: `<agent-slug>.md`.
+- One file per agent: `<agent-slug>.md`. A single agent may have several
+  instruction **variants** (e.g. different retrieval strategies) as
+  `<agent-slug>-<variant>.md`, distinguished by the `variant:` frontmatter key.
+  Variants share the same `agent`/`schemaName`/environment and are swapped into
+  the same Copilot Studio agent for A/B evaluation.
 - Each file has YAML frontmatter (identity/config) + an `## Instructions`
   section (the system prompt, verbatim, paste-ready) + a
   `## Conversation starters` section.
@@ -18,6 +22,8 @@ pasted into the portal.
 
 ## Agents
 
-| File | Agent | Environment |
-|---|---|---|
-| [multieurlex-search-agent.md](multieurlex-search-agent.md) | MultiEURLEX Search Agent | mto-training-management |
+| File | Agent | Variant | Environment |
+|---|---|---|---|
+| [multieurlex-search-agent.md](multieurlex-search-agent.md) | MultiEURLEX Search Agent | structured — `read_query` metadata-filter led (AND, wildcards, relax if empty) | mto-training-management |
+| [multieurlex-search-agent-semantic.md](multieurlex-search-agent-semantic.md) | MultiEURLEX Search Agent | semantic — `search`/`describe`-grounded, content-first `LIKE` retrieval | mto-training-management |
+| [multieurlex-search-agent-hybrid.md](multieurlex-search-agent-hybrid.md) | MultiEURLEX Search Agent | hybrid — metadata filter + content match, reconciled then relaxed | mto-training-management |
