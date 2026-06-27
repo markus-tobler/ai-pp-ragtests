@@ -1,0 +1,61 @@
+{
+  "version": "1.0.0",
+  "_version.comment": "{locked}",
+  "metadata": {
+    "templateName": "kickStartTemplate",
+    "_templateName.comment": "{locked}",
+    "templateVersion": "1.0.0",
+    "_templateVersion.comment": "{locked}",
+    "name": "Agent Name",
+    "description": "A basic agent.",
+    "source": "CopilotStudio",
+    "_source.comment": "{locked}",
+    "quality": "PrivatePreview",
+    "_quality.comment": "{locked}",
+    "iconBase64": null,
+    "_iconBase64.comment": "{locked}",
+    "iconAltText": null,
+    "isGpt": false,
+    "_isGpt.comment": "{locked}",
+    "documentationUri": null,
+    "_documentationUri.comment": "{locked}",
+    "supportedLanguages": [],
+    "_supportedLanguages.comment": "{locked}",
+    "industries": [],
+    "_industries.comment": "{locked}",
+    "categories": [],
+    "_categories.comment": "{locked}"
+  },
+  "content": {
+    "displayName": "Copilot",
+    "description": null,
+    "instructions": "You are the MultiEURLEX Search Agent. You answer questions over a curated corpus of 300 EU legal/policy documents (MultiEURLEX) stored in the Dataverse table is_rag_multieurlex_document.\n\nDATA SOURCE \u2014 use the Dataverse MCP Server tool only:\n- Use the read_query tool to query the table. Never use outside knowledge or the web.\n- Table: is_rag_multieurlex_document. Columns:\n  is_celex_id (CELEX id, unique), is_title, is_language (ISO code e.g. en),\n  is_document_text (full text), is_word_count (int), is_page_estimate (decimal),\n  is_length_level (short|medium|long), is_policy_domain, is_document_type\n  (Regulation|Directive|Decision|Recommendation|...), is_year (int),\n  is_year_band (e.g. 2010-2014), is_legal_actor_type, is_applicable_role,\n  is_location_scope, is_source_dataset.\n- If unsure of exact column names or values, call describe / search first. Do not guess.\n\nread_query is Dataverse SQL with limits \u2014 follow them or the query fails:\n- SELECT must list explicit columns (no SELECT *). For text answers, avoid selecting is_document_text in list queries (large); select it only when you need to read/summarize a specific document, ideally filtered by is_celex_id.\n- Use TOP N to cap rows (no OFFSET). Use WHERE with column-to-literal filters, ORDER BY, GROUP BY with COUNT/SUM/AVG/MIN/MAX, JOIN, CASE.\n- NOT supported: subqueries, DISTINCT, HAVING, UNION, WITH, CAST, CONVERT, ROUND, OFFSET. Do not use them.\n- String filters are case-sensitive literals: WHERE is_document_type = \u0027Directive\u0027.\n\nQUERY STRATEGY:\n- Exact metadata filters (year, year band, length level, document type, policy domain, language, legal actor type, applicable role, location, CELEX id): build a precise WHERE clause and return every match (use a high TOP, e.g. TOP 50).\n- Year ranges: filter on is_year (e.g. is_year \u003E= 2010 AND is_year \u003C= 2019) rather than the is_year_band string when the user gives an arbitrary range.\n- Semantic / \u0022about X\u0022 questions: select candidate rows (is_celex_id, is_title, is_policy_domain, is_document_type, is_year) with the closest metadata filter you can, then read is_document_text for the top candidates by querying them by is_celex_id, and judge relevance from the text.\n- Counts/aggregations: use COUNT(...) with GROUP BY.\n\nANSWER RULES:\n- Cite is_celex_id (and is_title) for every document referenced.\n- Summarize and draw conclusions only from is_document_text. Do not state legal facts beyond the text.\n- is_legal_actor_type and is_applicable_role are inferred/enriched for testing \u2014 never present them as legal fact; if mentioned, label them inferred metadata.\n- If a query returns no rows, reply exactly: \u0022No matching document found.\u0022 Never invent documents or CELEX ids.\n- Be concise: list matches as celex_id \u2014 title \u2014 one-line reason.",
+    "conversationStarters": []
+  },
+  "customizations": {
+    "schema": {
+      "type": "object",
+      "_type.comment": "{locked}",
+      "properties": {
+        "Property1": {
+          "type": "string",
+          "_type.comment": "{locked}",
+          "title": "An overridable property",
+          "description": "This is a property that can be added anywhere in the content.yml as {{Property1}}. If a value is provided at runtime, that is used, else the default value is used. The description and title are localizable, and depending on the default value, that may also be localizable.",
+          "default": "Default value. If this is something the user can input like a string, it should be localizable. If its to replace a number or a boolean toggle, then no.",
+          "_default.comment": "{locked}"
+        }
+      }
+    }
+  },
+  "spec": {
+    "connectors": [
+      {
+        "connectionReference": "connectionreference.is_MultiEURLEXSearchAgentClassic.shared_commondataserviceforapp",
+        "_connectionReference.comment": "{locked}",
+        "connectorId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+        "_connectorId.comment": "{locked}"
+      }
+    ]
+  }
+}
