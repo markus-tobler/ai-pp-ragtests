@@ -1,0 +1,314 @@
+{
+  "Error": null,
+  "Value": [
+    {
+      "Id": "45454887-5471-f111-ab0d-000d3a340a6f",
+      "EntityName": "is_rag_multieurlex_document",
+      "ObjectTypeCode": 0,
+      "Attributes": {
+        "@search.objecttypecode": 10721,
+        "ownerid": "db4cee01-2a13-f111-8342-000d3a5c2c70",
+        "owneridname": "Markus Tobler",
+        "@search.ownerid.logicalname": "systemuser",
+        "is_celex_id": "32015L2203",
+        "createdon": "2026-06-26T11:45:29+00:00",
+        "modifiedon": "2026-06-26T11:45:29+00:00",
+        "createdon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM",
+        "modifiedon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM"
+      },
+      "Highlights": {
+        "is_title": [
+          "DIRECTIVE ({crmhit}EU{/crmhit}) 2015/2203 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL"
+        ],
+        "is_document_text": [
+          "As a consequence of the entry into force of the Lisbon Treaty, those powers need to be aligned to Article 290 of the Treaty on the Functioning of the European Union (‘TFEU’). (3) For the sake of clarity, Directive 83/417/EEC should therefore be repealed and replaced with a new Directive. (4) {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 178/2002 of the European Parliament and of the Council (4) contains general, horizontal and uniform Union rules {crmhit}concerning{/crmhit} the adoption of emergency measures for {crmhit}food{/crmhit} and feed."
+        ]
+      },
+      "Score": -26.31695556640625,
+      "SemanticSearchResult": {
+        "RerankerScore": 1.4924001693725586,
+        "Captions": []
+      }
+    },
+    {
+      "Id": "52454887-5471-f111-ab0d-000d3a340a6f",
+      "EntityName": "is_rag_multieurlex_document",
+      "ObjectTypeCode": 0,
+      "Attributes": {
+        "@search.objecttypecode": 10721,
+        "ownerid": "db4cee01-2a13-f111-8342-000d3a5c2c70",
+        "owneridname": "Markus Tobler",
+        "@search.ownerid.logicalname": "systemuser",
+        "is_celex_id": "32014L0063",
+        "createdon": "2026-06-26T11:45:29+00:00",
+        "modifiedon": "2026-06-26T11:45:29+00:00",
+        "createdon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM",
+        "modifiedon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM"
+      },
+      "Highlights": {
+        "is_title": [
+          "DIRECTIVE2014/63/{crmhit}EU{/crmhit} OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL"
+        ],
+        "is_document_text": [
+          "In particular, Directive 2001/110/EC prohibits the addition of any {crmhit}food{/crmhit} ingredient to honey, including {crmhit}food{/crmhit} {crmhit}additives{/crmhit}, and any other addition other than honey."
+        ]
+      },
+      "Score": -26.31695556640625,
+      "SemanticSearchResult": {
+        "RerankerScore": 1.412290096282959,
+        "Captions": []
+      }
+    },
+    {
+      "Id": "9d21b87f-5471-f111-ab0d-000d3a340a6f",
+      "EntityName": "is_rag_multieurlex_document",
+      "ObjectTypeCode": 0,
+      "Attributes": {
+        "@search.objecttypecode": 10721,
+        "ownerid": "db4cee01-2a13-f111-8342-000d3a5c2c70",
+        "owneridname": "Markus Tobler",
+        "@search.ownerid.logicalname": "systemuser",
+        "is_celex_id": "32015R0327",
+        "createdon": "2026-06-26T11:45:21+00:00",
+        "modifiedon": "2026-06-26T11:45:21+00:00",
+        "createdon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM",
+        "modifiedon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM"
+      },
+      "Highlights": {
+        "is_document_type": ["{crmhit}Regulation{/crmhit}"],
+        "is_title": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) 2015/327"
+        ],
+        "is_document_text": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) 2015/327 of 2 March 2015 amending {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 1831/2003 of the European Parliament and of the Council as regards requirements for the placing on the market and conditions of use of {crmhit}additives{/crmhit} consisting of preparations (Text with EEA relevance) THE EUROPEAN COMMISSION, Having regard to the Treaty on the Functioning of the European Union, Having regard to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 1831/2003 of the European Parliament and of the Council of 22 September 2003 on {crmhit}additives{/crmhit} for use in animal nutrition (1), and in particular Articles 3(5) and 16(6) thereof, Whereas: (1) In some preparations, authorised as {crmhit}additives{/crmhit} in accordance with {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 1831/2003, technological {crmhit}additives{/crmhit} and other substances or products are incorporated to exert a function on the active substance contained in the preparation, such as stabilising or standardising it, facilitating its handling or its incorporation into feed."
+        ]
+      },
+      "Score": -23.7623348236084,
+      "SemanticSearchResult": {
+        "RerankerScore": 2.00248122215271,
+        "Captions": []
+      }
+    },
+    {
+      "Id": "bbd9ba85-5471-f111-ab0d-000d3a340640",
+      "EntityName": "is_rag_multieurlex_document",
+      "ObjectTypeCode": 0,
+      "Attributes": {
+        "@search.objecttypecode": 10721,
+        "ownerid": "db4cee01-2a13-f111-8342-000d3a5c2c70",
+        "owneridname": "Markus Tobler",
+        "@search.ownerid.logicalname": "systemuser",
+        "is_celex_id": "32015R0399",
+        "createdon": "2026-06-26T11:45:27+00:00",
+        "modifiedon": "2026-06-26T11:45:27+00:00",
+        "createdon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM",
+        "modifiedon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM"
+      },
+      "Highlights": {
+        "is_document_type": ["{crmhit}Regulation{/crmhit}"],
+        "is_title": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) 2015/399"
+        ],
+        "is_document_text": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) 2015/399 of 25 February 2015 amending Annexes II, III and V to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005 of the European Parliament and of the Council as regards maximum residue levels for 1,4-dimethylnaphthalene, benfuracarb, carbofuran, carbosulfan, ethephon, fenamidone, fenvalerate, fenhexamid, furathiocarb, imazapyr, malathion, picoxystrobin, spirotetramat, tepraloxydim and trifloxystrobin in or on certain products (Text with EEA relevance) THE EUROPEAN COMMISSION, Having regard to the Treaty on the Functioning of the European Union, Having regard to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005 of the European Parliament and of the Council of 23 February 2005 on maximum residue levels of pesticides in or on {crmhit}food{/crmhit} and feed of plant and animal origin and amending Council Directive 91/414/EEC (1), and in particular Article 14(1)(a) and Article 49(2) thereof, Whereas: (1) For ethephon, fenvalerate, picoxystrobin and tepraloxydim maximum residue levels (MRLs) were set in Annex II to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005."
+        ]
+      },
+      "Score": -23.81553840637207,
+      "SemanticSearchResult": {
+        "RerankerScore": 1.9269793033599854,
+        "Captions": []
+      }
+    },
+    {
+      "Id": "8321b87f-5471-f111-ab0d-000d3a340a6f",
+      "EntityName": "is_rag_multieurlex_document",
+      "ObjectTypeCode": 0,
+      "Attributes": {
+        "@search.objecttypecode": 10721,
+        "ownerid": "db4cee01-2a13-f111-8342-000d3a5c2c70",
+        "owneridname": "Markus Tobler",
+        "@search.ownerid.logicalname": "systemuser",
+        "is_celex_id": "32015R0537",
+        "createdon": "2026-06-26T11:45:21+00:00",
+        "modifiedon": "2026-06-26T11:45:21+00:00",
+        "createdon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM",
+        "modifiedon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM"
+      },
+      "Highlights": {
+        "is_document_type": ["{crmhit}Regulation{/crmhit}"],
+        "is_title": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) 2015/537"
+        ],
+        "is_document_text": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) 2015/537 of 31 March 2015 amending Annex II to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 1333/2008 of the European Parliament and of the Council as regards the use of aluminium lakes of cochineal, carminic acid, carmines (E 120) in dietary {crmhit}foods{/crmhit} for special medical purposes (Text with EEA relevance) THE EUROPEAN COMMISSION, Having regard to the Treaty on the Functioning of the European Union, Having regard to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 1333/2008 of the European Parliament and of the Council of 16 December 2008 on {crmhit}food{/crmhit} {crmhit}additives{/crmhit} (1), and in particular Article 10(3), Whereas: (1) Annex II to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 1333/2008 lays down a Union list of {crmhit}food{/crmhit} {crmhit}additives{/crmhit} approved for use in {crmhit}foods{/crmhit} and their conditions of use. (2) The Union list of {crmhit}food{/crmhit} {crmhit}additives{/crmhit} may be updated in accordance with the common procedure referred to in Article 3(1) of {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 1331/2008 of the European Parliament and of the Council (2) either on the initiative of the Commission or following an application. (3) The European {crmhit}Food{/crmhit} Safety Authority (‘the Authority’), in its opinion of 22 May 2008 (3) recommended lowering the tolerable weekly intake (TWI) for aluminium to 1 mg/kg body weight/week."
+        ]
+      },
+      "Score": -23.81553840637207,
+      "SemanticSearchResult": {
+        "RerankerScore": 1.9129778146743774,
+        "Captions": []
+      }
+    },
+    {
+      "Id": "4e47657f-5471-f111-ab0d-000d3a340640",
+      "EntityName": "is_rag_multieurlex_document",
+      "ObjectTypeCode": 0,
+      "Attributes": {
+        "@search.objecttypecode": 10721,
+        "ownerid": "db4cee01-2a13-f111-8342-000d3a5c2c70",
+        "owneridname": "Markus Tobler",
+        "@search.ownerid.logicalname": "systemuser",
+        "is_celex_id": "32015R0552",
+        "createdon": "2026-06-26T11:45:24+00:00",
+        "modifiedon": "2026-06-26T11:45:24+00:00",
+        "createdon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM",
+        "modifiedon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM"
+      },
+      "Highlights": {
+        "is_document_type": ["{crmhit}Regulation{/crmhit}"],
+        "is_title": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) 2015/552"
+        ],
+        "is_document_text": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) 2015/552 of 7 April 2015 amending Annexes II, III and V to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005 of the European Parliament and of the Council as regards maximum residue levels for 1,3-dichloropropene, bifenox, dimethenamid-P, prohexadione, tolylfluanid and trifluralin in or on certain products (Text with EEA relevance) THE EUROPEAN COMMISSION, Having regard to the Treaty on the Functioning of the European Union, Having regard to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005 of the European Parliament and of the Council of 23 February 2005 on maximum residue levels of pesticides in or on {crmhit}food{/crmhit} and feed of plant and animal origin and amending Council Directive 91/414/EEC (1), and in particular Article 14(1)(a), Article 18(1)(b) and Article 49(2) thereof, Whereas: (1) For dimethenamid-P and prohexadione, maximum residue levels (MRLs) were set in Annex II and Part B of Annex III to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005."
+        ]
+      },
+      "Score": -23.81553840637207,
+      "SemanticSearchResult": {
+        "RerankerScore": 1.91067373752594,
+        "Captions": []
+      }
+    },
+    {
+      "Id": "7f454887-5471-f111-ab0d-000d3a340a6f",
+      "EntityName": "is_rag_multieurlex_document",
+      "ObjectTypeCode": 0,
+      "Attributes": {
+        "@search.objecttypecode": 10721,
+        "ownerid": "db4cee01-2a13-f111-8342-000d3a5c2c70",
+        "owneridname": "Markus Tobler",
+        "@search.ownerid.logicalname": "systemuser",
+        "is_celex_id": "32014R0061",
+        "createdon": "2026-06-26T11:45:31+00:00",
+        "modifiedon": "2026-06-26T11:45:31+00:00",
+        "createdon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM",
+        "modifiedon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM"
+      },
+      "Highlights": {
+        "is_document_type": ["{crmhit}Regulation{/crmhit}"],
+        "is_title": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) {crmhit}No{/crmhit} 61/2014"
+        ],
+        "is_document_text": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) {crmhit}No{/crmhit} 61/2014 of 24 January 2014 amending Annexes II and III to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005 of the European Parliament and of the Council as regards maximum residue levels for cyromazine, fenpropidin, formetanate, oxamyl and tebuconazole in or on certain products (Text with EEA relevance) THE EUROPEAN COMMISSION, Having regard to the Treaty on the Functioning of the European Union, Having regard to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005 of the European Parliament and of the Council of 23 February 2005 on maximum residue levels of pesticides in or on {crmhit}food{/crmhit} and feed of plant and animal origin and amending Council Directive 91/414/EEC (1), and in particular Article 14(1)(a) and Article 49(2) thereof, Whereas: (1) For cyromazine and oxamyl, maximum residue levels (MRLs) were set in Annex II and Part B of Annex III to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005."
+        ]
+      },
+      "Score": -23.81553840637207,
+      "SemanticSearchResult": {
+        "RerankerScore": 1.9103193283081055,
+        "Captions": []
+      }
+    },
+    {
+      "Id": "6721b87f-5471-f111-ab0d-000d3a340a6f",
+      "EntityName": "is_rag_multieurlex_document",
+      "ObjectTypeCode": 0,
+      "Attributes": {
+        "@search.objecttypecode": 10721,
+        "ownerid": "db4cee01-2a13-f111-8342-000d3a5c2c70",
+        "owneridname": "Markus Tobler",
+        "@search.ownerid.logicalname": "systemuser",
+        "is_celex_id": "32014R0364",
+        "createdon": "2026-06-26T11:45:17+00:00",
+        "modifiedon": "2026-06-26T11:45:17+00:00",
+        "createdon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM",
+        "modifiedon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM"
+      },
+      "Highlights": {
+        "is_document_type": ["{crmhit}Regulation{/crmhit}"],
+        "is_title": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) {crmhit}No{/crmhit} 364/2014"
+        ],
+        "is_document_text": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) {crmhit}No{/crmhit} 364/2014 of 4 April 2014 amending Annexes II and III to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005 of the European Parliament and of the Council as regards maximum residue levels for fenpyroximate, flubendiamide, isopyrazam, kresoxim-methyl, spirotetramat and thiacloprid in or on certain products (Text with EEA relevance) THE EUROPEAN COMMISSION, Having regard to the Treaty on the Functioning of the European Union, Having regard to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005 of the European Parliament and of the Council of 23 February 2005 on maximum residue levels of pesticides in or on {crmhit}food{/crmhit} and feed of plant and animal origin and amending Council Directive 91/414/EEC (1), and in particular Article 14(1)(a) thereof, Whereas: (1) For kresoxim-methyl and thiacloprid maximum residue levels (MRLs) were set in Annex II and Part B of Annex III to {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005."
+        ]
+      },
+      "Score": -23.81553840637207,
+      "SemanticSearchResult": {
+        "RerankerScore": 1.9002169370651245,
+        "Captions": []
+      }
+    },
+    {
+      "Id": "4b454887-5471-f111-ab0d-000d3a340a6f",
+      "EntityName": "is_rag_multieurlex_document",
+      "ObjectTypeCode": 0,
+      "Attributes": {
+        "@search.objecttypecode": 10721,
+        "ownerid": "db4cee01-2a13-f111-8342-000d3a5c2c70",
+        "owneridname": "Markus Tobler",
+        "@search.ownerid.logicalname": "systemuser",
+        "is_celex_id": "32015R0174",
+        "createdon": "2026-06-26T11:45:29+00:00",
+        "modifiedon": "2026-06-26T11:45:29+00:00",
+        "createdon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM",
+        "modifiedon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM"
+      },
+      "Highlights": {
+        "is_document_type": ["{crmhit}Regulation{/crmhit}"],
+        "is_title": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) 2015/174"
+        ],
+        "is_document_text": [
+          "Phenol (FCM {crmhit}No{/crmhit} 241) is included as a starting substance in Table 1 of Annex I to {crmhit}Regulation{/crmhit} ({crmhit}EU{/crmhit}) {crmhit}No{/crmhit} 10/2011."
+        ]
+      },
+      "Score": -23.71052360534668,
+      "SemanticSearchResult": {
+        "RerankerScore": 1.89649498462677,
+        "Captions": []
+      }
+    },
+    {
+      "Id": "3547657f-5471-f111-ab0d-000d3a340640",
+      "EntityName": "is_rag_multieurlex_document",
+      "ObjectTypeCode": 0,
+      "Attributes": {
+        "@search.objecttypecode": 10721,
+        "ownerid": "db4cee01-2a13-f111-8342-000d3a5c2c70",
+        "owneridname": "Markus Tobler",
+        "@search.ownerid.logicalname": "systemuser",
+        "is_celex_id": "32015R0603",
+        "createdon": "2026-06-26T11:45:24+00:00",
+        "modifiedon": "2026-06-26T11:45:24+00:00",
+        "createdon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM",
+        "modifiedon@OData.Community.Display.V1.FormattedValue": "6/26/2026 11:45 AM"
+      },
+      "Highlights": {
+        "is_document_type": ["{crmhit}Regulation{/crmhit}"],
+        "is_title": [
+          "COMMISSION {crmhit}REGULATION{/crmhit} ({crmhit}EU{/crmhit}) 2015/603"
+        ],
+        "is_document_text": [
+          "For 2-naphthyloxyacetic acid {crmhit}no{/crmhit} MRLs are set in {crmhit}Regulation{/crmhit} (EC) {crmhit}No{/crmhit} 396/2005, and as that active substance is not included in Annex IV to that {crmhit}Regulation{/crmhit}, the default value of 0,01 mg/kg laid down in Article 18(1)(b) of that {crmhit}Regulation{/crmhit} applies. (2) The non-inclusion of 2-naphthyloxyacetic acid in Annex I to Directive 91/414/EEC is provided for in Commission Implementing {crmhit}Regulation{/crmhit} ({crmhit}EU{/crmhit}) {crmhit}No{/crmhit} 1127/2011 (2)."
+        ]
+      },
+      "Score": -23.775966644287109,
+      "SemanticSearchResult": {
+        "RerankerScore": 1.8589212894439697,
+        "Captions": []
+      }
+    }
+  ],
+  "Facets": {},
+  "QueryContext": {
+    "OriginalQuery": "regulation eu no 32013r0816 concerning methacrylate copolymers as food additives in solid food supplements",
+    "AlteredQuery": null,
+    "Reason": null,
+    "SpellSuggestions": null
+  },
+  "Count": -1,
+  "WarningList": [],
+  "ErrorList": [],
+  "FullSyncIsInProgress": null
+}
