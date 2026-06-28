@@ -2,7 +2,7 @@
 
 ---
 
-## Phase 1: Define The Test Corpus
+**Phase 1: Define The Test Corpus**
 
 Start from MultiEURLEX and build a local selection pipeline around the current get_test_data.py script.
 
@@ -44,19 +44,19 @@ reports/selection_summary.md
 
 ---
 
-## Phase 2: Choose 5 Metadata Dimensions
+**Phase 2: Choose 5 Metadata Dimensions**
 
 Use controlled metadata fields with `5` to `20` possible values each. Some can be derived from MultiEURLEX/CELEX, while others may need deterministic extraction or enrichment.
 
 Recommended first version:
 
-| Dimension | Source | Target Values |
-|---|---|---|
-| `policy_domain` | EUROVOC level 1/domain or mapped topic group | 10-20 |
-| `document_type` | CELEX document type | 5-10 |
-| `year_band` | CELEX year | 5-8 |
-| `legal_actor_type` | extracted/enriched from text | 5-12 |
-| `applicable_role` | extracted/enriched from text | 5-15 |
+| Dimension          | Source                                       | Target Values |
+| ------------------ | -------------------------------------------- | ------------- |
+| `policy_domain`    | EUROVOC level 1/domain or mapped topic group | 10-20         |
+| `document_type`    | CELEX document type                          | 5-10          |
+| `year_band`        | CELEX year                                   | 5-8           |
+| `legal_actor_type` | extracted/enriched from text                 | 5-12          |
+| `applicable_role`  | extracted/enriched from text                 | 5-15          |
 
 Possible values:
 
@@ -170,7 +170,7 @@ This helps later when evaluating whether search quality is coming from real docu
 
 ---
 
-## Phase 3: Selection Strategy For 300 Texts
+**Phase 3: Selection Strategy For 300 Texts**
 
 Create a repeatable selection algorithm rather than hand-picking records.
 
@@ -213,41 +213,38 @@ Acceptance criteria for the selected data:
 
 ---
 
-## Phase 4: Prepare The Dataverse Table
+**Phase 4: Prepare The Dataverse Table**
 
-**Status: ✅ Implemented** — `scripts/phase4_create_table.py`
+Create one main Dataverse table for all texts.
 
-Table created in solution `dataverseragtest`, environment `https://your-env.crm.dynamics.com/`, publisher prefix `is`.
-
-Table logical name:
+Suggested table name:
 
 ```text
-is_rag_multieurlex_document
+rag_multieurlex_document
 ```
 
-Implemented columns:
+Suggested columns:
 
-| Logical Name | Type | Max Length | Notes |
-|---|---|---|---|
-| `is_celex_id` | Single Line of Text | 50 | Primary name attribute + alternate key `is_rag_multieurlex_celex_key` |
-| `is_title` | Single Line of Text | 500 | Required; EU legal titles can exceed 200 chars |
-| `is_language` | Single Line of Text | 10 | ISO 639-1 code, e.g. `en` |
-| `is_document_text` | Multiple Lines of Text | 100,000 | ~3,000 words × ~5 chars/word + markup overhead |
-| `is_word_count` | Whole number | — | For filtering/evaluation |
-| `is_page_estimate` | Decimal | — | For filtering/evaluation |
-| `is_length_level` | Single Line of Text | 20 | Values: short, medium, long |
-| `is_policy_domain` | Single Line of Text | 100 | Longest controlled value ~25 chars (e.g. `Consumer protection`) |
-| `is_document_type` | Single Line of Text | 100 | Longest controlled value ~15 chars (e.g. `Recommendation`) |
-| `is_year` | Whole number | — | Parsed from CELEX |
-| `is_year_band` | Single Line of Text | 20 | Format `YYYY-YYYY`, 9 chars |
-| `is_legal_actor_type` | Single Line of Text | 100 | Longest controlled value ~28 chars (e.g. `International organization`) |
-| `is_applicable_role` | Single Line of Text | 100 | Longest controlled value ~24 chars (e.g. `Financial intermediary`) |
-| `is_location_scope` | Single Line of Text | 100 | Longest controlled value ~20 chars (e.g. `Other member state`) |
-| `is_metadata_json` | Multiple Lines of Text | 10,000 | Raw/enriched metadata JSON for audit |
-| `is_source_dataset` | Single Line of Text | 100 | e.g. `MultiEURLEX` |
-| `is_source_split` | Single Line of Text | 50 | e.g. `test`, `train`, `validation` |
-| `is_selection_batch` | Single Line of Text | 50 | e.g. `ragtest-001` |
-| `is_metadata_source` | Single Line of Text | 50 | `celex`, `eurovoc`, `rule_based`, `llm_enriched` |
+| Column             | Type                   | Max Length | Notes                                                                  |
+| ------------------ | ---------------------- | ---------- | ---------------------------------------------------------------------- |
+| `celex_id`         | Single Line of Text    | 50         | Alternate key / unique identifier; typical CELEX IDs are 10-20 chars   |
+| `title`            | Single Line of Text    | 500        | EU legal titles can exceed 200 chars                                   |
+| `language`         | Single Line of Text    | 10         | ISO 639-1 code, e.g. `en`                                              |
+| `document_text`    | Multiple Lines of Text | 100,000    | ~3,000 words × ~5 chars/word + markup overhead                         |
+| `word_count`       | Whole number           | —          | For filtering/evaluation                                               |
+| `page_estimate`    | Decimal                | —          | For filtering/evaluation                                               |
+| `length_level`     | Single Line of Text    | 20         | Values: short, medium, long                                            |
+| `policy_domain`    | Single Line of Text    | 100        | Longest controlled value ~25 chars (e.g. `Consumer protection`)        |
+| `document_type`    | Single Line of Text    | 100        | Longest controlled value ~15 chars (e.g. `Recommendation`)             |
+| `year`             | Whole number           | —          | Parsed from CELEX                                                      |
+| `year_band`        | Single Line of Text    | 20         | Format `YYYY-YYYY`, 9 chars                                            |
+| `legal_actor_type` | Single Line of Text    | 100        | Longest controlled value ~28 chars (e.g. `International organization`) |
+| `applicable_role`  | Single Line of Text    | 100        | Longest controlled value ~24 chars (e.g. `Financial intermediary`)     |
+| `location_scope`   | Single Line of Text    | 100        | Longest controlled value ~20 chars (e.g. `Other member state`)         |
+| `metadata_json`    | Multiple Lines of Text | 10,000     | Raw/enriched metadata JSON for audit                                   |
+| `source_dataset`   | Single Line of Text    | 100        | e.g. `MultiEURLEX`                                                     |
+| `source_split`     | Single Line of Text    | 50         | e.g. `test`, `train`, `validation`                                     |
+| `selection_batch`  | Single Line of Text    | 50         | e.g. `ragtest-001`                                                     |
 
 > **Note on column type choice**: Metadata dimensions use `Single Line of Text` rather than `Choice`/Option Set. Both types are indexed by Dataverse Search (full-text index), but `Choice` stores integer option codes — OData filter expressions via MCP would require numeric values (`policy_domain eq 100000003`) instead of readable strings (`policy_domain eq 'Environment'`). Plain text columns keep MCP queries simple and vocabulary-agnostic. Controlled vocabulary enforcement is handled in the data pipeline (Phase 3).
 
@@ -263,9 +260,7 @@ For search and filtering, Dataverse views should be prepared for:
 
 ---
 
-## Phase 5: Load Data Into Dataverse
-
-**Status: ✅ Implemented** — `scripts/phase5_load_data.py`. 300 records upserted into `is_rag_multieurlex_document` (alternate key `is_celex_id`, idempotent re-run). Verified: count = 300, celex_id unique, text + metadata populated. Run: `python scripts/phase5_load_data.py --execute` (dry-run default; `--limit N` for smoke test).
+**Phase 5: Load Data Into Dataverse**
 
 Use `microsoft/Dataverse-skills` for this part.
 
@@ -297,28 +292,7 @@ Use bulk import/upsert rather than manual record creation. The Dataverse Skills 
 
 ---
 
-## Phase 6: Create The Copilot Studio Agent
-
-**Status: 🟡 Authored — verify + publish pending** — agent `MultiEURLEX Search Agent`, env `https://your-env.crm.dynamics.com/`.
-
-**The agent is managed online in Copilot Studio**, not synced as a local YAML workspace (local sync proved unreliable). The repo's source of truth is `agent-instructions/` — one paste-ready file per agent. Current: [`agent-instructions/multieurlex-search-agent.md`](agent-instructions/multieurlex-search-agent.md). Edit there, commit, then paste into the portal.
-
-Retrieval approach: the agent uses the **Microsoft Dataverse MCP Server** tool (added in the portal). No knowledge source — the MCP `read_query` tool runs Dataverse SQL, giving precise metadata filtering (exact-match `WHERE`), which the Phase 7 evaluation requires and semantic knowledge search cannot guarantee.
-
-The instructions tell the agent to:
-
-- query `is_rag_multieurlex_document` via `read_query` only — no outside knowledge;
-- respect the Dataverse-SQL dialect limits (explicit column list, `TOP` not `OFFSET`, `WHERE`/`ORDER BY`/`GROUP BY`/`JOIN`/`CASE`; no subqueries, `DISTINCT`, `HAVING`, `UNION`, `WITH`, `CAST`, `CONVERT`, `ROUND`);
-- avoid selecting the large `is_document_text` in list queries — read it per-document by `is_celex_id`;
-- build precise `WHERE` clauses for exact metadata filters; use `is_year` ranges for arbitrary year ranges;
-- cite `is_celex_id` + `is_title`, summarize only from `is_document_text`, label `is_legal_actor_type`/`is_applicable_role` as inferred metadata, reply `No matching document found` on zero rows;
-- plus 4 conversation starters matching the test queries.
-
-### Remaining steps
-
-1. **Enable generative orchestration** in the portal — Agent → Settings → Generative AI → Orchestration → Yes. Required for the MCP tool to be invoked. If greyed out, enable Generative AI features for the environment in PPAC.
-2. **Paste** the `## Instructions` from `agent-instructions/multieurlex-search-agent.md` into the agent's instructions box, set the conversation starters, and **publish**.
-3. **Test** in the agent's test chat against the Phase 6 query types, then run Phase 7 evals.
+**Phase 6: Create The Copilot Studio Agent**
 
 Create a Copilot Studio agent whose purpose is to search and answer questions over the 300 legal/policy documents.
 
@@ -352,7 +326,7 @@ Initial agent behavior should be constrained:
 
 ---
 
-## Phase 7: Evaluation Plan
+**Phase 7: Evaluation Plan**
 
 Prepare a small test suite before optimizing the agent.
 
@@ -385,7 +359,7 @@ Measure:
 
 ---
 
-## Phase 8: Development Milestones
+**Phase 8: Development Milestones**
 
 A practical sequence for future development:
 
@@ -403,5 +377,5 @@ A practical sequence for future development:
 12. Run the evaluation prompts.
 13. Iterate on table schema, metadata choices, and agent instructions.
 
-## Key Decision
+**Key Decision**
 For this test, treat `microsoft/Dataverse-skills` as the main implementation path. Bring in `microsoft/power-platform-skills` later only if you decide to build a Power Platform app or richer UI around the corpus.
