@@ -1,4 +1,4 @@
-"""Build the 20-question evaluation test set for the MultiEURLEX Search Agent.
+"""Build the 40-question evaluation test set for the MultiEURLEX Search Agent.
 
 Two artifacts are produced from one source-of-truth table so they never drift:
 
@@ -7,6 +7,11 @@ Two artifacts are produced from one source-of-truth table so they never drift:
    (celex_id + title), the metadata dimensions used to constrain/disambiguate,
    the difficulty tier, and (for tricky cases) the distractor doc ids that also
    look like candidate answers but are ruled out by metadata.
+
+   The set holds 40 questions: 35 are grounded in a single corpus document and
+   5 (tier E) are deliberately NOT answerable from the corpus - the expected
+   behaviour there is for the agent to state that the available documents do
+   not precisely answer the question (and to invent no CELEX id).
 
 2. multieurlex_eval_set_copilot_import_conversation.csv - conforms to the
    Copilot Studio "Import conversations" template
@@ -48,10 +53,14 @@ OUT_DIR = ROOT / "data" / "eval"
 #   B = medium metadata (typically 2 constraints, e.g. year + domain)
 #   C = precise (3+ metadata constraints pinpoint a single doc)
 #   D = tricky (several docs are candidate answers; metadata rules all but one out)
+#   E = unanswerable (no corpus doc answers; agent must say so, invent no CELEX)
 #
 # fields per record:
 #   id, tier, question, expected_answer, rubric,
 #   source_celex_id, metadata_used, distractor_celex_ids, notes
+#   unanswerable=True marks a tier-E record: source_celex_id is empty and the
+#   expected_answer is the stand-alone "documents do not precisely answer"
+#   statement (no CELEX prefix is added).
 RECORDS = [
     # ---------------- Tier A: few metadata cues ----------------
     dict(
@@ -370,6 +379,334 @@ RECORDS = [
         notes="Three 'substances' documents; RoHS/EEE subject + Delegated Directive type "
               "disambiguate.",
     ),
+
+    # ================= EXPANSION: Q21-Q40 =================
+
+    # ---------------- Tier A: few metadata cues ----------------
+    dict(
+        id="Q21", tier="A",
+        question="Which EU act amends the rules protecting groundwater against pollution "
+                 "and deterioration by updating the annex on threshold values for "
+                 "pollutants?",
+        expected_answer="Commission Directive 2014/80/EU of 20 June 2014, which amends "
+                        "Annex II to Directive 2006/118/EC on the protection of groundwater "
+                        "against pollution and deterioration.",
+        rubric="Should identify Directive 2014/80/EU and that it amends Annex II to the "
+               "groundwater Directive 2006/118/EC.",
+        source_celex_id="32014L0080",
+        metadata_used="topic=groundwater protection",
+        distractor_celex_ids="",
+        notes="Single topical match.",
+    ),
+    dict(
+        id="Q22", tier="A",
+        question="Which EU directive amends the Council Directive relating to honey, "
+                 "notably clarifying the status of pollen?",
+        expected_answer="Directive 2014/63/EU of the European Parliament and of the Council "
+                        "of 15 May 2014, amending Council Directive 2001/110/EC relating to "
+                        "honey.",
+        rubric="Should identify Directive 2014/63/EU and that it amends the honey Directive "
+               "2001/110/EC.",
+        source_celex_id="32014L0063",
+        metadata_used="topic=honey",
+        distractor_celex_ids="",
+        notes="Single topical match.",
+    ),
+    dict(
+        id="Q23", tier="A",
+        question="Which EU directive approximates Member States' laws on caseins and "
+                 "caseinates intended for human consumption and repeals an older 1983 "
+                 "directive?",
+        expected_answer="Directive (EU) 2015/2203 of the European Parliament and of the "
+                        "Council of 25 November 2015 on caseins and caseinates intended for "
+                        "human consumption, repealing Council Directive 83/417/EEC.",
+        rubric="Should identify Directive (EU) 2015/2203 and that it repeals Directive "
+               "83/417/EEC.",
+        source_celex_id="32015L2203",
+        metadata_used="topic=caseins and caseinates",
+        distractor_celex_ids="",
+        notes="Single topical match.",
+    ),
+    dict(
+        id="Q24", tier="A",
+        question="Which EU regulation codifies the common rules for exports of goods from "
+                 "the Union?",
+        expected_answer="Regulation (EU) 2015/479 of the European Parliament and of the "
+                        "Council of 11 March 2015 on common rules for exports (codification).",
+        rubric="Should identify Regulation (EU) 2015/479 on common rules for exports.",
+        source_celex_id="32015R0479",
+        metadata_used="topic=common rules for exports",
+        distractor_celex_ids="",
+        notes="Single topical match (codification).",
+    ),
+
+    # ---------------- Tier B: medium metadata (~2 constraints) ----------------
+    dict(
+        id="Q25", tier="B",
+        question="Which 2015 Council Directive in the Finance domain adds a common minimum "
+                 "anti-abuse rule to the parent-subsidiary taxation Directive 2011/96/EU?",
+        expected_answer="Council Directive (EU) 2015/121 of 27 January 2015, amending "
+                        "Directive 2011/96/EU on the common system of taxation applicable to "
+                        "parent companies and subsidiaries of different Member States by "
+                        "adding a common anti-abuse rule.",
+        rubric="Should identify Council Directive (EU) 2015/121 and that it adds an "
+               "anti-abuse rule to Directive 2011/96/EU.",
+        source_celex_id="32015L0121",
+        metadata_used="year=2015; document_type=Directive; domain=Finance",
+        distractor_celex_ids="",
+        notes="Year + type + domain pinpoint a single doc.",
+    ),
+    dict(
+        id="Q26", tier="B",
+        question="Which 2013 Directive in the Trade domain amends the batteries Directive "
+                 "2006/66/EC as regards placing on the market of portable batteries "
+                 "containing cadmium and button cells containing mercury?",
+        expected_answer="Directive 2013/56/EU of the European Parliament and of the Council "
+                        "of 20 November 2013, amending Directive 2006/66/EC on batteries and "
+                        "accumulators as regards the placing on the market of portable "
+                        "batteries containing cadmium (cordless power tools) and button cells "
+                        "with low mercury content.",
+        rubric="Should identify Directive 2013/56/EU and that it amends the batteries "
+               "Directive 2006/66/EC.",
+        source_celex_id="32013L0056",
+        metadata_used="year=2013; document_type=Directive; domain=Trade; topic=batteries",
+        distractor_celex_ids="32013L0007 (biocidal active substance); "
+                             "32013L0058 (Solvency II dates)",
+        notes="Year+type+domain match three Trade Directives; battery topic disambiguates.",
+    ),
+    dict(
+        id="Q27", tier="B",
+        question="Which 2014 Regulation in the Transport domain amends the EU Emissions "
+                 "Trading System Directive 2003/87/EC to limit aviation ETS coverage to "
+                 "flights within the European Economic Area (the 'stop the clock' approach)?",
+        expected_answer="Regulation (EU) No 421/2014 of the European Parliament and of the "
+                        "Council of 16 April 2014, amending Directive 2003/87/EC, in view of "
+                        "the implementation by 2020 of an international agreement and pending "
+                        "that, limiting the EU ETS to flights within the EEA.",
+        rubric="Should identify Regulation (EU) No 421/2014 and that it amends the EU ETS "
+               "Directive 2003/87/EC for aviation.",
+        source_celex_id="32014R0421",
+        metadata_used="year=2014; document_type=Regulation; domain=Transport; topic=aviation ETS",
+        distractor_celex_ids="32014R0716 (other 2014 Transport Regulation)",
+        notes="Year+type+domain; aviation-ETS topic narrows to one.",
+    ),
+    dict(
+        id="Q28", tier="B",
+        question="Which 2015 Council Directive lays down the calculation methods and "
+                 "reporting requirements for the greenhouse-gas intensity of petrol and "
+                 "diesel fuels under the fuel quality Directive 98/70/EC?",
+        expected_answer="Council Directive (EU) 2015/652 of 20 April 2015, laying down "
+                        "calculation methods and reporting requirements pursuant to Article "
+                        "7a of Directive 98/70/EC relating to the quality of petrol and "
+                        "diesel fuels.",
+        rubric="Should identify Council Directive (EU) 2015/652 and link it to the fuel "
+               "quality Directive 98/70/EC.",
+        source_celex_id="32015L0652",
+        metadata_used="year=2015; document_type=Directive; topic=fuel quality / GHG intensity",
+        distractor_celex_ids="",
+        notes="Year + type + topic.",
+    ),
+    dict(
+        id="Q29", tier="B",
+        question="Which 2014 Regulation amends Regulation (EC) No 539/2001 on the visa "
+                 "lists, and which third country does it move to the visa-exempt list?",
+        expected_answer="Regulation (EU) No 259/2014 of the European Parliament and of the "
+                        "Council of 3 April 2014, amending Regulation (EC) No 539/2001 by "
+                        "transferring the Republic of Moldova to the visa-exempt Annex II "
+                        "(for holders of biometric passports).",
+        rubric="Should identify Regulation (EU) No 259/2014 and name the Republic of "
+               "Moldova as moved to visa-free travel.",
+        source_celex_id="32014R0259",
+        metadata_used="year=2014; document_type=Regulation; domain=Geography; topic=visa lists",
+        distractor_celex_ids="",
+        notes="Year + type + domain pinpoint a single doc; answer carries a content fact.",
+    ),
+    dict(
+        id="Q30", tier="B",
+        question="Which 2015 Regulation (codification) in the Law domain sets out the "
+                 "measures the Union may take following a report adopted by the WTO Dispute "
+                 "Settlement Body on anti-dumping and anti-subsidy matters?",
+        expected_answer="Regulation (EU) 2015/476 of the European Parliament and of the "
+                        "Council of 11 March 2015 on the measures that the Union may take "
+                        "following a report adopted by the WTO Dispute Settlement Body "
+                        "concerning anti-dumping and anti-subsidy matters (codification).",
+        rubric="Should identify Regulation (EU) 2015/476 and the WTO-DSB anti-dumping / "
+               "anti-subsidy subject.",
+        source_celex_id="32015R0476",
+        metadata_used="year=2015; document_type=Regulation; domain=Law; topic=WTO DSB measures",
+        distractor_celex_ids="",
+        notes="Year + type + domain + topic.",
+    ),
+
+    # ---------------- Tier C: precise (3+ constraints) ----------------
+    dict(
+        id="Q31", tier="C",
+        question="Which 2013 Council Directive (Euratom) in the Science domain lays down "
+                 "requirements protecting the health of the general public regarding "
+                 "radioactive substances in water intended for human consumption, and which "
+                 "radionuclides does it bring into scope?",
+        expected_answer="Council Directive 2013/51/Euratom of 22 October 2013. It sets "
+                        "parametric values and monitoring for radioactive substances in "
+                        "drinking water, including radon, tritium and an indicative dose.",
+        rubric="Should identify Directive 2013/51/Euratom and mention radioactive substances "
+               "in drinking water (radon / tritium / indicative dose).",
+        source_celex_id="32013L0051",
+        metadata_used="year=2013; document_type=Directive; domain=Science; "
+                      "topic=radioactive substances in water",
+        distractor_celex_ids="",
+        notes="Multiple constraints + content fact; only Science Directive of 2013.",
+    ),
+    dict(
+        id="Q32", tier="C",
+        question="Which 2015 Commission Directive in the Trade domain adds a specific limit "
+                 "value for formamide to Appendix C of the toy safety Directive 2009/48/EC?",
+        expected_answer="Commission Directive (EU) 2015/2115 of 23 November 2015, amending "
+                        "Appendix C to Annex II to Directive 2009/48/EC on the safety of toys "
+                        "to adopt a specific limit value for formamide.",
+        rubric="Should identify Directive (EU) 2015/2115 and that it sets a formamide limit "
+               "value under the toy safety Directive 2009/48/EC.",
+        source_celex_id="32015L2115",
+        metadata_used="year=2015; document_type=Directive; domain=Trade; topic=toy safety / formamide",
+        distractor_celex_ids="32015L0863 (RoHS substances); 32015L0720 (plastic bags)",
+        notes="Several 2015 Trade Directives; formamide/toy-safety subject disambiguates.",
+    ),
+    dict(
+        id="Q33", tier="C",
+        question="Which 2015 CFSP Decision appoints the European Union Special "
+                 "Representative for Central Asia, who is appointed, and until when?",
+        expected_answer="Council Decision (CFSP) 2015/598 of 15 April 2015 appoints Mr Peter "
+                        "Burian as the EU Special Representative for Central Asia until "
+                        "30 April 2016.",
+        rubric="Should identify Decision (CFSP) 2015/598, name Peter Burian, and give the "
+               "end date 30 April 2016.",
+        source_celex_id="32015D0598",
+        metadata_used="year=2015; document_type=Decision; domain=Geography; "
+                      "topic=EUSR Central Asia",
+        distractor_celex_ids="",
+        notes="Many 2015 CFSP Geography decisions; EUSR-Central-Asia subject + name/date.",
+    ),
+
+    # ---------------- Tier D: tricky (metadata disambiguates among candidates) ----------------
+    dict(
+        id="Q34", tier="D",
+        question="Two 2014 Regulations adjust the remuneration and pensions of EU officials "
+                 "- one with effect from 1 July 2011 and one from 1 July 2012. Which applies "
+                 "from 1 July 2012, and what adjustment percentage does it set?",
+        expected_answer="Regulation (EU) No 423/2014 of 16 April 2014 adjusts remuneration "
+                        "and pensions with effect from 1 July 2012, setting an adjustment of "
+                        "0,8 %. (The 1 July 2011 adjustment, set at 0 %, is Regulation (EU) "
+                        "No 422/2014.)",
+        rubric="Should select Regulation (EU) No 423/2014 (1 July 2012, 0,8 %) - not "
+               "Regulation (EU) No 422/2014 (1 July 2011, 0 %).",
+        source_celex_id="32014R0423",
+        metadata_used="effective_date=1 July 2012 (disambiguator)",
+        distractor_celex_ids="32014R0422 (1 July 2011, 0 %)",
+        notes="Two near-identical staff-pay Regulations; effective date + percentage pick one.",
+    ),
+    dict(
+        id="Q35", tier="D",
+        question="Several 2013 Directives add active substances to the biocidal products "
+                 "Directive 98/8/EC. Which one includes Alkyl (C12-16) dimethylbenzyl "
+                 "ammonium chloride as a wood-preservative (product-type 8) active substance, "
+                 "and which Member State was Rapporteur?",
+        expected_answer="Commission Directive 2013/7/EU of 21 February 2013 adds Alkyl "
+                        "(C12-16) dimethylbenzyl ammonium chloride to Annex I of Directive "
+                        "98/8/EC for product-type 8 (wood preservatives). Italy was the "
+                        "Rapporteur Member State.",
+        rubric="Should select Directive 2013/7/EU (Alkyl (C12-16) dimethylbenzyl ammonium "
+               "chloride, PT8) and name Italy as Rapporteur - not the pyriproxyfen Directive.",
+        source_celex_id="32013L0007",
+        metadata_used="substance=Alkyl (C12-16) dimethylbenzyl ammonium chloride (disambiguator)",
+        distractor_celex_ids="32013L0005 (pyriproxyfen, NL); 32013L0044 (other 98/8 substance)",
+        notes="Several 98/8/EC active-substance Directives; substance name picks the right one.",
+    ),
+
+    # ---------------- Tier E: unanswerable (no corpus doc answers precisely) ----------------
+    dict(
+        id="Q36", tier="E", unanswerable=True,
+        question="Which act in the corpus sets out the data subject's right to erasure (the "
+                 "'right to be forgotten') of personal data?",
+        expected_answer="The corpus contains no data-protection instrument; no document "
+                        "establishes a right to erasure / 'right to be forgotten'. The agent "
+                        "should state that the available documents do not precisely answer "
+                        "this question and should not invent a CELEX id.",
+        rubric="Should recognise that no corpus document covers data-protection / right to "
+               "erasure and explicitly say the documents do not precisely answer; must not "
+               "fabricate a CELEX id.",
+        source_celex_id="",
+        metadata_used="topic=data protection (absent from corpus)",
+        distractor_celex_ids="",
+        notes="No GDPR / data-protection act in the corpus.",
+    ),
+    dict(
+        id="Q37", tier="E", unanswerable=True,
+        question="Which 2015 Regulation sets the CO2 emission performance standards for new "
+                 "passenger cars or light commercial vehicles?",
+        expected_answer="No Regulation in the corpus sets CO2 emission performance standards "
+                        "for cars or vans (the standard-setting Regulations 443/2009 and "
+                        "510/2011 are not present; only a few Decisions approve eco-innovations "
+                        "under that regime). The agent should state that the available "
+                        "documents do not precisely answer this question.",
+        rubric="Should recognise that no corpus Regulation sets car/van CO2 standards and say "
+               "the documents do not precisely answer; eco-innovation Decisions are not a "
+               "valid answer.",
+        source_celex_id="",
+        metadata_used="year=2015; document_type=Regulation (no matching topic in corpus)",
+        distractor_celex_ids="32015D0295; 32014D0770 (eco-innovation Decisions referencing "
+                             "the car-CO2 regime)",
+        notes="Tempting CO2/eco-innovation Decisions exist, but no standard-setting Regulation.",
+    ),
+    dict(
+        id="Q38", tier="E", unanswerable=True,
+        question="In Regulation (EU) No 421/2014 amending the EU Emissions Trading System "
+                 "for aviation, what per-tonne CO2 price applies to flights to and from third "
+                 "countries?",
+        expected_answer="Regulation (EU) No 421/2014 sets no per-tonne CO2 price; it limits "
+                        "the aviation ETS to flights within the EEA and exempts (defers) "
+                        "extra-EEA flights, rather than fixing a price. The agent should state "
+                        "that the document does not precisely answer this question.",
+        rubric="Should recognise that 421/2014 fixes no carbon price (it scopes the ETS to "
+               "intra-EEA flights) and say the document does not precisely answer; must not "
+               "invent a figure.",
+        source_celex_id="",
+        metadata_used="year=2014; document_type=Regulation; domain=Transport "
+                      "(doc present, asked fact absent)",
+        distractor_celex_ids="32014R0421 (the aviation-ETS Regulation, but it states no price)",
+        notes="Anchor doc is in corpus but contains no such price.",
+    ),
+    dict(
+        id="Q39", tier="E", unanswerable=True,
+        question="Among the Directives that add active substances to the biocidal products "
+                 "Directive 98/8/EC, which one adds glyphosate, and for which product-type?",
+        expected_answer="No corpus Directive adds glyphosate to Directive 98/8/EC; the "
+                        "98/8/EC amending Directives in the corpus add other substances "
+                        "(e.g. pyriproxyfen, Alkyl (C12-16) dimethylbenzyl ammonium "
+                        "chloride). The agent should state that the available documents do "
+                        "not precisely answer this question.",
+        rubric="Should recognise that no corpus biocidal Directive concerns glyphosate and "
+               "say the documents do not precisely answer; must not map it onto another "
+               "substance's Directive.",
+        source_celex_id="",
+        metadata_used="substance=glyphosate (absent from corpus)",
+        distractor_celex_ids="32013L0005 (pyriproxyfen); 32013L0007 (Alkyl ammonium chloride)",
+        notes="Plausible biocidal-substance pattern, but glyphosate is not in any corpus doc.",
+    ),
+    dict(
+        id="Q40", tier="E", unanswerable=True,
+        question="What total euro budget does Decision No 1386/2013/EU (the General Union "
+                 "Environment Action Programme to 2020) allocate to each Member State?",
+        expected_answer="Decision No 1386/2013/EU sets out priority objectives for the 7th "
+                        "Environment Action Programme; it allocates no euro budget to Member "
+                        "States. The agent should state that the document does not precisely "
+                        "answer this question.",
+        rubric="Should recognise that the 7th EAP is a priority-objectives programme with no "
+               "per-Member-State budget figure and say the document does not precisely answer.",
+        source_celex_id="",
+        metadata_used="year=2013; document_type=Decision; domain=Finance "
+                      "(doc present, asked fact absent)",
+        distractor_celex_ids="32013D1386 (the 7th EAP, but it states no such budget)",
+        notes="Anchor doc is in corpus but is non-budgetary.",
+    ),
 ]
 
 # Human-readable metadata filter block per question. Only the metadata that the
@@ -402,6 +739,30 @@ FILTERS = {
     "Q19": [("Year", "2015"), ("Document type", "Decision"), ("Policy domain", "Finance"),
             ("Legal actor type", "Financial institution")],
     "Q20": [("Year", "2015"), ("Document type", "Directive")],
+    # --- Expansion: Tier A (none) ---
+    "Q21": [], "Q22": [], "Q23": [], "Q24": [],
+    # --- Tier B ---
+    "Q25": [("Year", "2015"), ("Document type", "Directive"), ("Policy domain", "Finance")],
+    "Q26": [("Year", "2013"), ("Document type", "Directive"), ("Policy domain", "Trade")],
+    "Q27": [("Year", "2014"), ("Document type", "Regulation"), ("Policy domain", "Transport")],
+    "Q28": [("Year", "2015"), ("Document type", "Directive")],
+    "Q29": [("Year", "2014"), ("Document type", "Regulation"), ("Policy domain", "Geography")],
+    "Q30": [("Year", "2015"), ("Document type", "Regulation"), ("Policy domain", "Law")],
+    # --- Tier C ---
+    "Q31": [("Year", "2013"), ("Document type", "Directive"), ("Policy domain", "Science")],
+    "Q32": [("Year", "2015"), ("Document type", "Directive"), ("Policy domain", "Trade")],
+    "Q33": [("Year", "2015"), ("Document type", "Decision"), ("Policy domain", "Geography")],
+    # --- Tier D - filters match several candidates; prose disambiguates ---
+    "Q34": [("Year", "2014"), ("Document type", "Regulation"),
+            ("Policy domain", "Employment and working conditions")],
+    "Q35": [("Year", "2013"), ("Document type", "Directive")],
+    # --- Tier E - unanswerable. Filters narrow to candidate docs that look
+    #     relevant but do not actually answer (or to an empty set). ---
+    "Q36": [],
+    "Q37": [("Year", "2015"), ("Document type", "Regulation")],
+    "Q38": [("Year", "2014"), ("Document type", "Regulation"), ("Policy domain", "Transport")],
+    "Q39": [("Year", "2013"), ("Document type", "Directive")],
+    "Q40": [("Year", "2013"), ("Document type", "Decision"), ("Policy domain", "Finance")],
 }
 
 
@@ -416,7 +777,14 @@ def render_question(record):
 
 
 def render_answer(record):
-    """Expected answer prefixed with the CELEX id (the agent outputs the id)."""
+    """Expected answer prefixed with the CELEX id (the agent outputs the id).
+
+    Tier-E (unanswerable) records carry no grounding doc, so the expected_answer
+    - the stand-alone 'documents do not precisely answer' statement - is used
+    verbatim with no CELEX prefix.
+    """
+    if record.get("unanswerable"):
+        return record["expected_answer"]
     return f"CELEX {record['source_celex_id']} - {record['expected_answer']}"
 
 
@@ -430,8 +798,9 @@ def load_titles():
 
 def main():
     titles = load_titles()
-    # validate every grounding doc exists in the corpus
-    missing = [r["source_celex_id"] for r in RECORDS if r["source_celex_id"] not in titles]
+    # validate every grounding doc exists in the corpus (tier-E records have none)
+    missing = [r["source_celex_id"] for r in RECORDS
+               if not r.get("unanswerable") and r["source_celex_id"] not in titles]
     if missing:
         raise SystemExit(f"Grounding docs not found in corpus: {missing}")
 
@@ -449,7 +818,8 @@ def main():
         w.writeheader()
         for r in RECORDS:
             row = dict(r)
-            row["source_title"] = titles[r["source_celex_id"]]
+            row.pop("unanswerable", None)
+            row["source_title"] = titles.get(r["source_celex_id"], "")
             # question column carries the full prompt sent to the agent
             # (prose + filter block); 'filters' lists the block separately
             row["question"] = render_question(r)
