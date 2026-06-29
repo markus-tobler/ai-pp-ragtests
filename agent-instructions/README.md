@@ -45,3 +45,4 @@ Edit the instruction file, commit, then paste into the agent's instructions box 
 | MultiEURLEX Classic MCP plus Semantic | `8e544f18-eb71-f111-ab0d-000d3a340a6f` | [multieurlex-search-agent-hybrid.md](multieurlex-search-agent-hybrid.md) | mto-training-management |
 | MultiEURLEX Classic Knowledge | `1c6a788a-6a77-4586-b528-d8b3c1d272e8` | [multieurlex-search-agent-knowledge.md](multieurlex-search-agent-knowledge.md) | mto-training-management |
 | MultiEURLEX Classic DV Knowledge | `b6a6468d-632d-49df-93a1-aa1a9afbf4d6` | [multieurlex-search-agent-knowledge.md](multieurlex-search-agent-knowledge.md) | mto-training-management |
+| MultiEURLEX Classic DV Table | `aec67584-420c-4aea-8c12-abab5e372cbb` | [multieurlex-search-agent-knowledge.md](multieurlex-search-agent-knowledge.md) | mto-training-management |
