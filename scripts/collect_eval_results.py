@@ -79,6 +79,7 @@ def parse_csv(path: Path) -> dict:
         cases_total = 0
         cases_passed = 0
 
+        cases_error = 0
         for raw in reader:
             # skip the leading '#' comment/blank lines some exports carry
             q = (raw.get("question") or "").strip()
@@ -87,41 +88,56 @@ def parse_csv(path: Path) -> dict:
             cases_total += 1
             methods = []
             case_pass = True
-            saw_result = False
+            saw_verdict = False  # any method produced a non-empty Pass/Fail result
             for n in indices:
                 mtype = (raw.get(f"testMethodType_{n}") or "").strip()
                 result = (raw.get(f"result_{n}") or "").strip()
                 if not mtype and not result:
-                    continue
-                saw_result = True
+                    continue  # this method column is absent for the row
+                name = mtype or f"method_{n}"
                 methods.append({
-                    "type": mtype or f"method_{n}",
-                    "result": result,
+                    "type": name,
+                    "result": result,  # empty == no verdict (timeout / no answer)
                     "passingScore": (raw.get(f"passingScore_{n}") or "").strip(),
                     "explanation": (raw.get(f"explanation_{n}") or "").strip(),
                 })
-                tally = method_tally.setdefault(mtype or f"method_{n}", {})
-                key = result or "Unknown"
-                tally[key] = tally.get(key, 0) + 1
-                if result.lower() != PASS:
-                    case_pass = False
-            if saw_result and case_pass:
+                tally = method_tally.setdefault(name, {})
+                if result:
+                    saw_verdict = True
+                    tally[result] = tally.get(result, 0) + 1
+                    if result.lower() != PASS:
+                        case_pass = False
+                else:
+                    # empty result = the grader never ran (e.g. empty answer);
+                    # bucket as Error, kept out of the method's pass/fail denominator
+                    tally["Error"] = tally.get("Error", 0) + 1
+            # A case with no Pass/Fail verdict at all is an error/timeout, not a
+            # fail: the agent produced nothing to grade. Errors count in the total
+            # but are excluded from the pass-rate denominator.
+            case_error = not saw_verdict
+            if case_error:
+                cases_error += 1
+            elif case_pass:
                 cases_passed += 1
             rows.append({
                 "question": q,
                 "expectedResponse": (raw.get("expectedResponse") or "").strip(),
                 "actualResponse": (raw.get("actualResponse") or "").strip(),
                 "methods": methods,
-                "casePass": bool(saw_result and case_pass),
+                "casePass": bool(saw_verdict and case_pass),
+                "caseError": case_error,
             })
 
-    pass_rate = round(cases_passed / cases_total, 4) if cases_total else None
+    scored = cases_total - cases_error
+    pass_rate = round(cases_passed / scored, 4) if scored else None
     return {
         "rows": rows,
         "summary": {
             "totalCases": cases_total,
+            "scoredCases": scored,
             "passedCases": cases_passed,
-            "failedCases": cases_total - cases_passed,
+            "failedCases": scored - cases_passed,
+            "errorCases": cases_error,
             "passRate": pass_rate,
             "methods": method_tally,
         },
@@ -166,7 +182,8 @@ def write_summaries(collected: list[dict], agents: list[dict], out_dir: Path,
     # union of all method names for stable columns
     methods = sorted({m for r in collected for m in r["summary"]["methods"]})
 
-    fields = ["agent", "bot_id", "source_file", "total", "passed", "failed", "pass_rate"]
+    fields = ["agent", "bot_id", "source_file", "total", "scored", "passed",
+              "failed", "errors", "pass_rate"]
     fields += [f"{m}" for m in methods]
     with (out_dir / "summary.csv").open("w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fields)
@@ -178,8 +195,10 @@ def write_summaries(collected: list[dict], agents: list[dict], out_dir: Path,
                 "bot_id": r["bot_id"] or "",
                 "source_file": r["source_file"],
                 "total": s["totalCases"],
+                "scored": s.get("scoredCases", s["totalCases"]),
                 "passed": s["passedCases"],
                 "failed": s["failedCases"],
+                "errors": s.get("errorCases", 0),
                 "pass_rate": s["passRate"] if s["passRate"] is not None else "",
             }
             for m in methods:
