@@ -35,6 +35,7 @@ Usage:
     python scripts/load_knowledge_files.py --execute       # create + upload all files, then publish
     python scripts/load_knowledge_files.py --execute --limit 5      # smoke test (first 5)
     python scripts/load_knowledge_files.py --execute --overwrite    # replace existing files
+    python scripts/load_knowledge_files.py --execute --clean        # wipe all knowledge first, then load fresh
     python scripts/load_knowledge_files.py --execute --no-publish   # skip PvaPublish
 """
 import argparse
@@ -196,6 +197,21 @@ def delete_component(token, component_id):
     _request("DELETE", f"{_api_base()}/botcomponents({component_id})", token)
 
 
+def purge_all_files(token, existing):
+    """Delete every existing type-14 component on the bot in one sweep.
+
+    Used by --clean to wipe the agent's file knowledge before a fresh load,
+    instead of reconciling row-by-row. Returns the number deleted.
+    """
+    total = len(existing)
+    deleted = 0
+    for name, cid in existing.items():
+        delete_component(token, cid)
+        deleted += 1
+        print(f"  purged {deleted}/{total}: {name}", flush=True)
+    return deleted
+
+
 def publish_bot(token):
     """Run the PvaPublish bound action so the new knowledge goes live."""
     url = f"{_api_base()}/bots({BOT_ID})/Microsoft.Dynamics.CRM.PvaPublish"
@@ -268,6 +284,9 @@ def main():
     ap.add_argument("--limit", type=int, default=None, help="Process only the first N rows.")
     ap.add_argument("--overwrite", action="store_true",
                     help="Replace files that already exist on the agent (delete + recreate).")
+    ap.add_argument("--clean", action="store_true",
+                    help="Delete ALL existing file knowledge on the agent in one sweep first, "
+                         "then load fresh (instead of per-row overwrite).")
     ap.add_argument("--no-publish", action="store_true",
                     help="Skip the PvaPublish step at the end.")
     ap.add_argument("--sleep", type=float, default=0.0,
@@ -318,6 +337,12 @@ def main():
     token = get_token()
     existing = list_existing_files(token)
     print(f"\nAgent already has {len(existing)} file-attachment component(s).")
+
+    if args.clean and existing:
+        print(f"--clean: purging all {len(existing)} existing file(s) before load...", flush=True)
+        purged = purge_all_files(token, existing)
+        print(f"Purged {purged} file(s). Loading fresh.", flush=True)
+        existing = {}  # bot is now empty — every row is a clean create
 
     created = skipped = replaced = failed = 0
     for i, row in enumerate(rows, 1):
