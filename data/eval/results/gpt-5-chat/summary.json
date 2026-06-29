@@ -1,0 +1,145 @@
+{
+  "runLabel": "gpt-5-chat",
+  "generatedUtc": "2026-06-29T12:10:52.826080+00:00",
+  "agents": [
+    {
+      "agent": "MultiEURLEX Classic DV Knowledge",
+      "bot_id": "b6a6468d-632d-49df-93a1-aa1a9afbf4d6",
+      "source_file": "Evaluate MultiEURLEX Classic DV Knowledge 260629_0856 gpt-5.csv",
+      "summary": {
+        "totalCases": 40,
+        "scoredCases": 40,
+        "passedCases": 31,
+        "failedCases": 9,
+        "errorCases": 0,
+        "passRate": 0.775,
+        "methods": {
+          "GeneralQuality": {
+            "Pass": 32,
+            "Fail": 8
+          },
+          "CompareMeaning": {
+            "Pass": 35,
+            "Fail": 5
+          }
+        }
+      }
+    },
+    {
+      "agent": "MultiEURLEX Classic DV Table",
+      "bot_id": "aec67584-420c-4aea-8c12-abab5e372cbb",
+      "source_file": "Evaluate MultiEURLEX Classic DV Table 260629_0852 gpt-5.csv",
+      "summary": {
+        "totalCases": 40,
+        "scoredCases": 40,
+        "passedCases": 16,
+        "failedCases": 24,
+        "errorCases": 0,
+        "passRate": 0.4,
+        "methods": {
+          "GeneralQuality": {
+            "Fail": 23,
+            "Pass": 17
+          },
+          "CompareMeaning": {
+            "Fail": 20,
+            "Pass": 20
+          }
+        }
+      }
+    },
+    {
+      "agent": "MultiEURLEX Classic Knowledge",
+      "bot_id": "1c6a788a-6a77-4586-b528-d8b3c1d272e8",
+      "source_file": "Evaluate MultiEURLEX Classic Knowledge 260628_1822 gpt-5.csv",
+      "summary": {
+        "totalCases": 40,
+        "scoredCases": 40,
+        "passedCases": 23,
+        "failedCases": 17,
+        "errorCases": 0,
+        "passRate": 0.575,
+        "methods": {
+          "GeneralQuality": {
+            "Pass": 25,
+            "Fail": 15
+          },
+          "CompareMeaning": {
+            "Pass": 26,
+            "Fail": 14
+          }
+        }
+      }
+    },
+    {
+      "agent": "MultiEURLEX Classic MCP",
+      "bot_id": "3178427b-3b5b-48f5-ae8b-8815c8e009dd",
+      "source_file": "Evaluate MultiEURLEX Classic MCP 260629_0842 gpt-5.csv",
+      "summary": {
+        "totalCases": 40,
+        "scoredCases": 40,
+        "passedCases": 32,
+        "failedCases": 8,
+        "errorCases": 0,
+        "passRate": 0.8,
+        "methods": {
+          "GeneralQuality": {
+            "Fail": 8,
+            "Pass": 32
+          },
+          "CompareMeaning": {
+            "Pass": 38,
+            "Fail": 2
+          }
+        }
+      }
+    },
+    {
+      "agent": "MultiEURLEX Classic MCP plus Semantic",
+      "bot_id": "8e544f18-eb71-f111-ab0d-000d3a340a6f",
+      "source_file": "Evaluate MultiEURLEX Classic MCP plus Semantic 260627_1804 gpt-5.csv",
+      "summary": {
+        "totalCases": 40,
+        "scoredCases": 40,
+        "passedCases": 33,
+        "failedCases": 7,
+        "errorCases": 0,
+        "passRate": 0.825,
+        "methods": {
+          "GeneralQuality": {
+            "Fail": 7,
+            "Pass": 33
+          },
+          "CompareMeaning": {
+            "Fail": 2,
+            "Pass": 38
+          }
+        }
+      }
+    },
+    {
+      "agent": "MultiEURLEX Classic Semantic",
+      "bot_id": "7dc480d4-4c8a-433d-ad19-215599a24dc5",
+      "source_file": "Evaluate MultiEURLEX Classic Semantic 260629_0757 gpt-5.csv",
+      "summary": {
+        "totalCases": 40,
+        "scoredCases": 40,
+        "passedCases": 26,
+        "failedCases": 14,
+        "errorCases": 0,
+        "passRate": 0.65,
+        "methods": {
+          "GeneralQuality": {
+            "Fail": 14,
+            "Pass": 26
+          },
+          "CompareMeaning": {
+            "Pass": 32,
+            "Fail": 8
+          }
+        }
+      }
+    }
+  ],
+  "missingAgents": []
+}

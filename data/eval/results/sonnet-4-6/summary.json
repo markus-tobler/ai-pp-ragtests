@@ -1,0 +1,150 @@
+{
+  "runLabel": "sonnet-4-6",
+  "generatedUtc": "2026-06-29T12:10:52.842272+00:00",
+  "agents": [
+    {
+      "agent": "MultiEURLEX Classic DV Knowledge",
+      "bot_id": "b6a6468d-632d-49df-93a1-aa1a9afbf4d6",
+      "source_file": "Evaluate MultiEURLEX Classic DV Knowledge 260629_1130 sonet-4-6.csv",
+      "summary": {
+        "totalCases": 40,
+        "scoredCases": 40,
+        "passedCases": 35,
+        "failedCases": 5,
+        "errorCases": 0,
+        "passRate": 0.875,
+        "methods": {
+          "GeneralQuality": {
+            "Pass": 35,
+            "Fail": 5
+          },
+          "CompareMeaning": {
+            "Pass": 40
+          }
+        }
+      }
+    },
+    {
+      "agent": "MultiEURLEX Classic DV Table",
+      "bot_id": "aec67584-420c-4aea-8c12-abab5e372cbb",
+      "source_file": "Evaluate MultiEURLEX Classic DV Table 260629_1324 sonet-4-6.csv",
+      "summary": {
+        "totalCases": 40,
+        "scoredCases": 37,
+        "passedCases": 26,
+        "failedCases": 11,
+        "errorCases": 3,
+        "passRate": 0.7027,
+        "methods": {
+          "GeneralQuality": {
+            "Fail": 10,
+            "Pass": 27,
+            "Error": 3
+          },
+          "CompareMeaning": {
+            "Pass": 34,
+            "Error": 3,
+            "Fail": 3
+          }
+        }
+      }
+    },
+    {
+      "agent": "MultiEURLEX Classic Knowledge",
+      "bot_id": "1c6a788a-6a77-4586-b528-d8b3c1d272e8",
+      "source_file": "Evaluate MultiEURLEX Classic Knowledge 260629_1008 sonet-4-6.csv",
+      "summary": {
+        "totalCases": 40,
+        "scoredCases": 39,
+        "passedCases": 35,
+        "failedCases": 4,
+        "errorCases": 1,
+        "passRate": 0.8974,
+        "methods": {
+          "GeneralQuality": {
+            "Pass": 36,
+            "Error": 1,
+            "Fail": 3
+          },
+          "CompareMeaning": {
+            "Pass": 38,
+            "Error": 1,
+            "Fail": 1
+          }
+        }
+      }
+    },
+    {
+      "agent": "MultiEURLEX Classic MCP",
+      "bot_id": "3178427b-3b5b-48f5-ae8b-8815c8e009dd",
+      "source_file": "Evaluate MultiEURLEX Classic MCP 260629_1321 sonet-4-6.csv",
+      "summary": {
+        "totalCases": 40,
+        "scoredCases": 39,
+        "passedCases": 35,
+        "failedCases": 4,
+        "errorCases": 1,
+        "passRate": 0.8974,
+        "methods": {
+          "GeneralQuality": {
+            "Pass": 35,
+            "Error": 1,
+            "Fail": 4
+          },
+          "CompareMeaning": {
+            "Pass": 39,
+            "Error": 1
+          }
+        }
+      }
+    },
+    {
+      "agent": "MultiEURLEX Classic MCP plus Semantic",
+      "bot_id": "8e544f18-eb71-f111-ab0d-000d3a340a6f",
+      "source_file": "Evaluate MultiEURLEX Classic MCP plus Semantic 260629_1050 sonet-4-6.csv",
+      "summary": {
+        "totalCases": 40,
+        "scoredCases": 38,
+        "passedCases": 36,
+        "failedCases": 2,
+        "errorCases": 2,
+        "passRate": 0.9474,
+        "methods": {
+          "GeneralQuality": {
+            "Pass": 36,
+            "Fail": 2,
+            "Error": 2
+          },
+          "CompareMeaning": {
+            "Pass": 38,
+            "Error": 2
+          }
+        }
+      }
+    },
+    {
+      "agent": "MultiEURLEX Classic Semantic",
+      "bot_id": "7dc480d4-4c8a-433d-ad19-215599a24dc5",
+      "source_file": "Evaluate MultiEURLEX Classic Semantic 260629_1129 sonet-4-6.csv",
+      "summary": {
+        "totalCases": 40,
+        "scoredCases": 40,
+        "passedCases": 33,
+        "failedCases": 7,
+        "errorCases": 0,
+        "passRate": 0.825,
+        "methods": {
+          "GeneralQuality": {
+            "Pass": 34,
+            "Fail": 6
+          },
+          "CompareMeaning": {
+            "Pass": 37,
+            "Fail": 3
+          }
+        }
+      }
+    }
+  ],
+  "missingAgents": []
+}
