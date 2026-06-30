@@ -9,34 +9,46 @@ vocabulary that does NOT appear literally in that document, only a synonym /
 paraphrase of the same meaning, so a keyword/literal match fails and only a
 semantic (embedding) match retrieves the right act.
 
+All generated artifacts land under data/eval/ in tidy sub-folders rather than
+loose in the root: the eval-set CSVs in data/eval/test_sets/, one PDF per corpus
+document in data/eval/documents/, and the two reference Copilot Studio templates
+in data/eval/templates/.
+
 Artifacts are produced from one source-of-truth table so they never drift:
 
-1. multieurlex_eval_set_source.csv  - rich, human-reviewable. Holds the question,
-   the precise expected answer, a behavioral rubric, the grounding document
-   (celex_id + title), the metadata dimensions used to constrain/disambiguate,
-   the difficulty tier, and (for tricky cases) the distractor doc ids that also
-   look like candidate answers but are ruled out by metadata.
+1. test_sets/multieurlex_eval_set_source.csv  - rich, human-reviewable. Holds the
+   question, the precise expected answer, a behavioral rubric, the grounding
+   document (celex_id + title), the metadata dimensions used to
+   constrain/disambiguate, the difficulty tier, and (for tricky cases) the
+   distractor doc ids that also look like candidate answers but are ruled out by
+   metadata.
 
-2. multieurlex_eval_set_copilot_import_conversation.csv - conforms to the
-   Copilot Studio "Import conversations" template
-   (data/eval/EvalConversationTemplate.csv): a leading block of '#' comment
-   lines, then columns conversationNumber, question, response. Each question is
-   its own conversation (one Q&A pair) so the tricky cases never share context.
-   The precise answer goes in the optional 'response' column (reference only;
-   the agent reply is not compared against it).
+2. test_sets/multieurlex_eval_set_copilot_import_conversation.csv - conforms to
+   the Copilot Studio "Import conversations" template
+   (data/eval/templates/EvalConversationTemplate.csv): a leading block of '#'
+   comment lines, then columns conversationNumber, question, response. Each
+   question is its own conversation (one Q&A pair) so the tricky cases never share
+   context. The precise answer goes in the optional 'response' column (reference
+   only; the agent reply is not compared against it).
 
-3. multieurlex_eval_set_copilot_import_classic.csv - conforms to the Copilot
-   Studio "classic" single-response template
-   (data/eval/EvaluationTemplate_classic.csv): '#' comment lines, then columns
-   question, expectedResponse. Here expectedResponse IS used by the match /
-   similarity / compare-meaning test methods, so the precise answer goes there.
+3. test_sets/multieurlex_eval_set_copilot_import_classic.csv - conforms to the
+   Copilot Studio "classic" single-response template
+   (data/eval/templates/EvaluationTemplate_classic.csv): '#' comment lines, then
+   columns question, expectedResponse. Here expectedResponse IS used by the match
+   / similarity / compare-meaning test methods, so the precise answer goes there.
 
-4. Per-tier import files. Besides the overall set above, each tier is also
-   emitted as its own standalone, independently-runnable pair so a single
-   question type can be evaluated in isolation:
+4. Per-tier import files (under test_sets/). Besides the overall set above, each
+   tier is also emitted as its own standalone, independently-runnable pair so a
+   single question type can be evaluated in isolation:
      multieurlex_eval_set_tier<X>_copilot_import_classic.csv
      multieurlex_eval_set_tier<X>_copilot_import_conversation.csv
    for X in A, B, C, D, E, S.
+
+5. documents/<celex_id>.pdf - one lightly-formatted PDF per corpus document: a
+   clear title, a formatted block of the document's metadata (CELEX id, document
+   type, policy domain, year, legal actor type, applicable role, language), then
+   the full document text. The metadata is PRINTED ON THE PAGE only - it is NOT
+   written into the PDF's file/document properties (those are left blank).
 
 Every answer is grounded in data/processed/multieurlex_selected_300.csv. For the
 "tricky" tier, more than one document in the corpus plausibly answers the topical
@@ -58,6 +70,9 @@ csv.field_size_limit(min(sys.maxsize, 2**31 - 1))
 ROOT = Path(__file__).resolve().parents[1]
 CORPUS = ROOT / "data" / "processed" / "multieurlex_selected_300.csv"
 OUT_DIR = ROOT / "data" / "eval"
+# tidy sub-folders so data/eval/ root is not a flat dump of loose files
+TEST_SET_DIR = OUT_DIR / "test_sets"   # generated eval-set CSVs
+DOC_DIR = OUT_DIR / "documents"        # one rendered PDF per corpus document
 
 # tier legend:
 #   A = few metadata cues (broad topical question, one obvious matching doc)
@@ -972,12 +987,109 @@ def render_answer(record):
     return f"CELEX {record['source_celex_id']} - {record['expected_answer']}"
 
 
-def load_titles():
-    titles = {}
+def load_corpus():
+    """Return the full corpus rows (list of dicts) in file order."""
     with CORPUS.open(newline="", encoding="utf-8") as f:
-        for r in csv.DictReader(f):
-            titles[r["celex_id"]] = r["title"]
-    return titles
+        return list(csv.DictReader(f))
+
+
+def load_titles(rows=None):
+    rows = rows if rows is not None else load_corpus()
+    return {r["celex_id"]: r["title"] for r in rows}
+
+
+# Document metadata fields rendered (in order) into the printed PDF metadata
+# block. Each entry maps a display label to the corpus column it reads. These are
+# PRINTED ON THE PAGE only - never written into the PDF's file properties.
+PDF_METADATA_FIELDS = [
+    ("CELEX id", "celex_id"),
+    ("Document type", "document_type"),
+    ("Policy domain", "policy_domain"),
+    ("Year", "year"),
+    ("Legal actor type", "legal_actor_type"),
+    ("Applicable role", "applicable_role"),
+    ("Language", "language"),
+]
+
+
+def write_pdfs(rows, out_dir):
+    """Render one lightly-formatted PDF per corpus document into out_dir.
+
+    Layout: a clear title, a formatted metadata block (PDF_METADATA_FIELDS), then
+    the full document text. The metadata appears on the page only; the PDF's own
+    document-information dictionary (Title/Author/Subject/Keywords) is left blank
+    so no metadata leaks into the file properties.
+    """
+    from xml.sax.saxutils import escape
+
+    from reportlab.lib import colors
+    from reportlab.lib.enums import TA_LEFT
+    from reportlab.lib.pagesizes import A4
+    from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+    from reportlab.lib.units import mm
+    from reportlab.platypus import (
+        Paragraph,
+        SimpleDocTemplate,
+        Spacer,
+        Table,
+        TableStyle,
+    )
+
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    base = getSampleStyleSheet()
+    title_style = ParagraphStyle(
+        "DocTitle", parent=base["Title"], fontSize=16, leading=20,
+        alignment=TA_LEFT, spaceAfter=8,
+    )
+    label_style = ParagraphStyle(
+        "MetaLabel", parent=base["Normal"], fontSize=9, leading=12,
+        textColor=colors.HexColor("#555555"), fontName="Helvetica-Bold",
+    )
+    value_style = ParagraphStyle(
+        "MetaValue", parent=base["Normal"], fontSize=9, leading=12,
+    )
+    body_style = ParagraphStyle(
+        "DocBody", parent=base["Normal"], fontSize=10, leading=14, spaceAfter=4,
+    )
+
+    for r in rows:
+        celex = r["celex_id"]
+        story = [Paragraph(escape(r["title"]), title_style)]
+
+        meta_rows = [
+            [Paragraph(label, label_style),
+             Paragraph(escape(str(r.get(col, "") or "—")), value_style)]
+            for label, col in PDF_METADATA_FIELDS
+        ]
+        meta = Table(meta_rows, colWidths=[40 * mm, 120 * mm], hAlign="LEFT")
+        meta.setStyle(TableStyle([
+            ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#f2f2f2")),
+            ("BOX", (0, 0), (-1, -1), 0.5, colors.HexColor("#cccccc")),
+            ("INNERGRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#dddddd")),
+            ("VALIGN", (0, 0), (-1, -1), "TOP"),
+            ("LEFTPADDING", (0, 0), (-1, -1), 6),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+            ("TOPPADDING", (0, 0), (-1, -1), 3),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+        ]))
+        story += [meta, Spacer(1, 8 * mm)]
+
+        # body: each non-empty source line becomes its own paragraph, preserving
+        # the document's structure without inventing or dropping any text
+        for line in r["document_text"].splitlines():
+            line = line.strip()
+            if line:
+                story.append(Paragraph(escape(line), body_style))
+
+        doc = SimpleDocTemplate(
+            str(out_dir / f"{celex}.pdf"), pagesize=A4,
+            topMargin=20 * mm, bottomMargin=20 * mm,
+            leftMargin=20 * mm, rightMargin=20 * mm,
+            # keep document metadata OUT of the file properties (page only)
+            title="", author="", subject="", creator="", producer="",
+        )
+        doc.build(story)
 
 
 # Comment blocks reproduced verbatim from the two official Copilot Studio
@@ -1062,14 +1174,15 @@ def write_classic(path, records):
 
 
 def main():
-    titles = load_titles()
+    corpus = load_corpus()
+    titles = load_titles(corpus)
     # validate every grounding doc exists in the corpus (tier-E records have none)
     missing = [r["source_celex_id"] for r in RECORDS
                if not r.get("unanswerable") and r["source_celex_id"] not in titles]
     if missing:
         raise SystemExit(f"Grounding docs not found in corpus: {missing}")
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    TEST_SET_DIR.mkdir(parents=True, exist_ok=True)
 
     # all rendered questions must respect the 500-char limit shared by both templates
     for r in RECORDS:
@@ -1078,7 +1191,7 @@ def main():
             raise SystemExit(f"{r['id']} question exceeds 500 chars ({len(rq)})")
 
     # 1) rich source-of-truth file (overall, all tiers)
-    source_path = OUT_DIR / "multieurlex_eval_set_source.csv"
+    source_path = TEST_SET_DIR / "multieurlex_eval_set_source.csv"
     fieldnames = [
         "id", "tier", "question", "filters", "expected_answer", "rubric",
         "source_celex_id", "source_title", "metadata_used",
@@ -1099,8 +1212,8 @@ def main():
             w.writerow(row)
 
     # 2) overall import files (all tiers, one combined run)
-    conv_path = OUT_DIR / "multieurlex_eval_set_copilot_import_conversation.csv"
-    classic_path = OUT_DIR / "multieurlex_eval_set_copilot_import_classic.csv"
+    conv_path = TEST_SET_DIR / "multieurlex_eval_set_copilot_import_conversation.csv"
+    classic_path = TEST_SET_DIR / "multieurlex_eval_set_copilot_import_classic.csv"
     write_conversation(conv_path, RECORDS)
     write_classic(classic_path, RECORDS)
 
@@ -1112,12 +1225,17 @@ def main():
     #    pair) so a single question type can be evaluated in isolation.
     for tier in sorted({r["tier"] for r in RECORDS}):
         recs = [r for r in RECORDS if r["tier"] == tier]
-        t_conv = OUT_DIR / f"multieurlex_eval_set_tier{tier}_copilot_import_conversation.csv"
-        t_classic = OUT_DIR / f"multieurlex_eval_set_tier{tier}_copilot_import_classic.csv"
+        t_conv = TEST_SET_DIR / f"multieurlex_eval_set_tier{tier}_copilot_import_conversation.csv"
+        t_classic = TEST_SET_DIR / f"multieurlex_eval_set_tier{tier}_copilot_import_classic.csv"
         write_conversation(t_conv, recs)
         write_classic(t_classic, recs)
         print(f"  tier {tier}: {len(recs)} questions -> "
               f"{t_classic.name}, {t_conv.name}")
+
+    # 4) one lightly-formatted PDF per corpus document (title + printed metadata
+    #    block + full text); metadata is on the page only, not in file properties.
+    write_pdfs(corpus, DOC_DIR)
+    print(f"Wrote {len(corpus)} PDFs -> {DOC_DIR}")
 
     # tier summary
     from collections import Counter

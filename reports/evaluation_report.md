@@ -76,9 +76,9 @@ spans six capability tiers:
 | E    |     5 | Unanswerable/control questions that require abstention          |
 | S    |    10 | Semantic paraphrase questions with little or no lexical overlap |
 
-The source files for the evaluation set live under `data/eval/`. The source of
-truth is `multieurlex_eval_set_source.csv`; the Copilot Studio import files are
-generated from the same source table.
+The source files for the evaluation set live under `data/eval/test_sets/`. The
+source of truth is `multieurlex_eval_set_source.csv`; the Copilot Studio import
+files are generated from the same source table.
 
 ### Retrieval Configurations
 
