@@ -16,9 +16,9 @@ Why JSONL (not CSV):
   physical lines. The JSONL file holds exactly one record per line — safe to parse.
 
 Usage:
-    python scripts/phase5_load_data.py            # DRY RUN — validates + previews, no write
-    python scripts/phase5_load_data.py --execute  # perform the upsert
-    python scripts/phase5_load_data.py --execute --limit 5   # load only first 5 (smoke test)
+    python scripts/04_dv_load_corpus.py            # DRY RUN — validates + previews, no write
+    python scripts/04_dv_load_corpus.py --execute  # perform the upsert
+    python scripts/04_dv_load_corpus.py --execute --limit 5   # load only first 5 (smoke test)
 """
 import argparse
 import json

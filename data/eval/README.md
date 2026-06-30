@@ -64,7 +64,7 @@ Useful for ingesting the corpus as real documents (e.g. into a knowledge source)
 | File | Purpose |
 |------|---------|
 | `templates/EvalConversationTemplate.csv` / `templates/EvaluationTemplate_classic.csv` | The two official Copilot Studio templates the import files are modelled on (reference). |
-| `../../scripts/build_eval_set.py` | Generator. All CSVs (overall + per-tier) **and** the per-document PDFs are produced from one table / the corpus in this script, so they never drift. Re-run after editing. |
+| `../../scripts/06_eval_build_set.py` | Generator. All CSVs (overall + per-tier) **and** the per-document PDFs are produced from one table / the corpus in this script, so they never drift. Re-run after editing. |
 
 Pick the import file that matches the evaluation type you start in Copilot
 Studio: the **conversation** file for multi-turn / *Import conversations*, or the
@@ -74,7 +74,7 @@ graded.
 Regenerate:
 
 ```bash
-python3 scripts/build_eval_set.py
+python3 scripts/06_eval_build_set.py
 ```
 
 ## Difficulty / capability tiers

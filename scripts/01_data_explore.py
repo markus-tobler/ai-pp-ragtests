@@ -7,9 +7,9 @@ Install dependencies:
     pip install datasets
 
 Usage:
-    python explore_multieurlex.py
-    python explore_multieurlex.py --lang de        # German only
-    python explore_multieurlex.py --sample 200     # limit to 200 docs for speed
+    python scripts/01_data_explore.py
+    python scripts/01_data_explore.py --lang de        # German only
+    python scripts/01_data_explore.py --sample 200     # limit to 200 docs for speed
 """
 
 import argparse

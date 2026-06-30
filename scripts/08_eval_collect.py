@@ -5,7 +5,7 @@ Interim path while the maker-evaluation REST API is unavailable in this
 environment (see docs/EVAL_APP_REGISTRATION.md note / project memory). Run each
 agent's test set in the Copilot Studio **Evaluate** tab, export the result CSV,
 drop the files in one folder, then run this script to produce the same kind of
-roll-up `run_agent_evals.py` would have written.
+roll-up `07_eval_run.py` would have written.
 
 Input: a directory of CSV files exported from the Evaluate tab. Each file is
 typically named like `Evaluate <agent name> <date>.csv`. Export CSV columns (the
@@ -31,9 +31,9 @@ re-export of one agent overrides its older rows). Files are ordered by name, and
 exports are timestamped, so the newest export wins.
 
 Usage:
-    python3 scripts/collect_eval_results.py                       # reads data/eval/exports/
-    python3 scripts/collect_eval_results.py --input-dir <dir>
-    python3 scripts/collect_eval_results.py file1.csv file2.csv   # explicit files
+    python3 scripts/08_eval_collect.py                       # reads data/eval/exports/
+    python3 scripts/08_eval_collect.py --input-dir <dir>
+    python3 scripts/08_eval_collect.py file1.csv file2.csv   # explicit files
 """
 
 from __future__ import annotations
@@ -46,9 +46,20 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-# reuse agent parsing + helpers from the sibling script
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-from run_agent_evals import REPO_ROOT, parse_agents, slugify  # noqa: E402
+# reuse agent parsing + helpers from the sibling script. Its module name starts
+# with a digit (07_eval_run), which a normal `import` can't load, so pull it in
+# by file path via importlib.
+import importlib.util  # noqa: E402
+
+_run_path = Path(__file__).resolve().parent / "07_eval_run.py"
+_spec = importlib.util.spec_from_file_location("eval_run", _run_path)
+_eval_run = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_eval_run)
+REPO_ROOT, parse_agents, slugify = (
+    _eval_run.REPO_ROOT,
+    _eval_run.parse_agents,
+    _eval_run.slugify,
+)
 
 DEFAULT_INPUT_DIR = REPO_ROOT / "data" / "eval" / "exports"
 RESULTS_ROOT = REPO_ROOT / "data" / "eval" / "results"
