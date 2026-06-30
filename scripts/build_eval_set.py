@@ -1,6 +1,15 @@
-"""Build the 40-question evaluation test set for the MultiEURLEX Search Agent.
+"""Build the 50-question evaluation test set for the MultiEURLEX Search Agent.
 
-Two artifacts are produced from one source-of-truth table so they never drift:
+The set holds 50 questions across six tiers: 45 are grounded in a single corpus
+document and 5 (tier E) are deliberately NOT answerable from the corpus - there
+the expected behaviour is for the agent to state that the available documents do
+not precisely answer the question (and to invent no CELEX id). Tier S (10
+questions) specifically stresses SEMANTIC search: each asks for a document using
+vocabulary that does NOT appear literally in that document, only a synonym /
+paraphrase of the same meaning, so a keyword/literal match fails and only a
+semantic (embedding) match retrieves the right act.
+
+Artifacts are produced from one source-of-truth table so they never drift:
 
 1. multieurlex_eval_set_source.csv  - rich, human-reviewable. Holds the question,
    the precise expected answer, a behavioral rubric, the grounding document
@@ -8,24 +17,26 @@ Two artifacts are produced from one source-of-truth table so they never drift:
    the difficulty tier, and (for tricky cases) the distractor doc ids that also
    look like candidate answers but are ruled out by metadata.
 
-   The set holds 40 questions: 35 are grounded in a single corpus document and
-   5 (tier E) are deliberately NOT answerable from the corpus - the expected
-   behaviour there is for the agent to state that the available documents do
-   not precisely answer the question (and to invent no CELEX id).
-
 2. multieurlex_eval_set_copilot_import_conversation.csv - conforms to the
    Copilot Studio "Import conversations" template
    (data/eval/EvalConversationTemplate.csv): a leading block of '#' comment
-   lines, then columns conversationNumber, question, response. Each of the 20
-   questions is its own conversation (one Q&A pair) so the tricky cases never
-   share context. The precise answer goes in the optional 'response' column
-   (reference only; the agent reply is not compared against it).
+   lines, then columns conversationNumber, question, response. Each question is
+   its own conversation (one Q&A pair) so the tricky cases never share context.
+   The precise answer goes in the optional 'response' column (reference only;
+   the agent reply is not compared against it).
 
 3. multieurlex_eval_set_copilot_import_classic.csv - conforms to the Copilot
    Studio "classic" single-response template
    (data/eval/EvaluationTemplate_classic.csv): '#' comment lines, then columns
    question, expectedResponse. Here expectedResponse IS used by the match /
    similarity / compare-meaning test methods, so the precise answer goes there.
+
+4. Per-tier import files. Besides the overall set above, each tier is also
+   emitted as its own standalone, independently-runnable pair so a single
+   question type can be evaluated in isolation:
+     multieurlex_eval_set_tier<X>_copilot_import_classic.csv
+     multieurlex_eval_set_tier<X>_copilot_import_conversation.csv
+   for X in A, B, C, D, E, S.
 
 Every answer is grounded in data/processed/multieurlex_selected_300.csv. For the
 "tricky" tier, more than one document in the corpus plausibly answers the topical
@@ -54,6 +65,8 @@ OUT_DIR = ROOT / "data" / "eval"
 #   C = precise (3+ metadata constraints pinpoint a single doc)
 #   D = tricky (several docs are candidate answers; metadata rules all but one out)
 #   E = unanswerable (no corpus doc answers; agent must say so, invent no CELEX)
+#   S = semantic (question uses only synonyms/paraphrases of the doc's wording -
+#       no literal term overlap - so only a semantic match retrieves the answer)
 #
 # fields per record:
 #   id, tier, question, expected_answer, rubric,
@@ -707,6 +720,174 @@ RECORDS = [
         distractor_celex_ids="32013D1386 (the 7th EAP, but it states no such budget)",
         notes="Anchor doc is in corpus but is non-budgetary.",
     ),
+
+    # ================= Tier S: semantic search (synonym-only wording) =================
+    # Each question is phrased entirely in synonyms/paraphrases - it shares no
+    # literal key term with the grounding document, so a keyword/literal match
+    # cannot retrieve it and only a semantic (embedding) match succeeds. No
+    # metadata filter block is attached (see FILTERS): the meaning alone must
+    # carry the retrieval.
+    dict(
+        id="Q41", tier="S",
+        question="Which EU act sets the permitted upper limits for traces of crop-treatment "
+                 "chemicals left on or in food and animal-feed products such as fruit and "
+                 "cereals?",
+        expected_answer="Commission Regulation (EU) 2015/401 of 25 February 2015, which "
+                        "amends Annexes II and III to Regulation (EC) No 396/2005 on "
+                        "maximum residue levels of pesticides.",
+        rubric="Should identify Regulation (EU) 2015/401 (pesticide MRL Regulation (EC) No "
+               "396/2005) despite the question using 'crop-treatment chemical traces / upper "
+               "limits' instead of 'pesticide maximum residue levels'.",
+        source_celex_id="32015R0401",
+        metadata_used="semantic: 'crop-treatment chemical traces / permitted upper limits' "
+                      "<-> 'maximum residue levels of pesticides'",
+        distractor_celex_ids="",
+        notes="Synonym paraphrase of the pesticide-MRL topic (cf. Q01).",
+    ),
+    dict(
+        id="Q42", tier="S",
+        question="Which EU directive aims to cut down how many flimsy throwaway shopping "
+                 "sacks each person gets through in a year?",
+        expected_answer="Directive (EU) 2015/720 of the European Parliament and of the "
+                        "Council of 29 April 2015, amending Directive 94/62/EC to reduce the "
+                        "consumption of lightweight plastic carrier bags.",
+        rubric="Should identify Directive (EU) 2015/720 despite 'flimsy throwaway shopping "
+               "sacks' standing in for 'lightweight plastic carrier bags'.",
+        source_celex_id="32015L0720",
+        metadata_used="semantic: 'flimsy throwaway shopping sacks' <-> 'lightweight plastic "
+                      "carrier bags'",
+        distractor_celex_ids="",
+        notes="Synonym paraphrase of the plastic-bag topic (cf. Q14).",
+    ),
+    dict(
+        id="Q43", tier="S",
+        question="Which EU directive updates the rules on the sweet substance produced by "
+                 "bees, in particular clarifying the status of the floral material the "
+                 "insects gather?",
+        expected_answer="Directive 2014/63/EU of the European Parliament and of the Council "
+                        "of 15 May 2014, amending Council Directive 2001/110/EC relating to "
+                        "honey (clarifying the status of pollen).",
+        rubric="Should identify Directive 2014/63/EU (honey, Directive 2001/110/EC) despite "
+               "'sweet substance produced by bees' / 'floral material' replacing 'honey' / "
+               "'pollen'.",
+        source_celex_id="32014L0063",
+        metadata_used="semantic: 'sweet substance made by bees' <-> 'honey'; 'floral "
+                      "material bees gather' <-> 'pollen'",
+        distractor_celex_ids="",
+        notes="Synonym paraphrase of the honey topic (cf. Q22).",
+    ),
+    dict(
+        id="Q44", tier="S",
+        question="Which 2014 EU regulation lifts the entry-permit requirement for short "
+                 "stays for citizens of a particular eastern European country who hold "
+                 "biometric passports?",
+        expected_answer="Regulation (EU) No 259/2014 of the European Parliament and of the "
+                        "Council of 3 April 2014, amending Regulation (EC) No 539/2001 by "
+                        "transferring the Republic of Moldova to the visa-exempt list.",
+        rubric="Should identify Regulation (EU) No 259/2014 (Moldova moved to visa-free "
+               "travel) despite 'entry-permit requirement' standing in for 'visa'.",
+        source_celex_id="32014R0259",
+        metadata_used="semantic: 'entry-permit requirement for short stays' <-> 'visa "
+                      "requirement'",
+        distractor_celex_ids="",
+        notes="Synonym paraphrase of the visa-list topic (cf. Q29).",
+    ),
+    dict(
+        id="Q45", tier="S",
+        question="Which 2015 EU directive updates the rules on the dockside facilities that "
+                 "take in rubbish and leftover cargo from boats arriving at harbours?",
+        expected_answer="Commission Directive (EU) 2015/2087 of 18 November 2015, amending "
+                        "Annex II to Directive 2000/59/EC on port reception facilities for "
+                        "ship-generated waste and cargo residues.",
+        rubric="Should identify Directive (EU) 2015/2087 (Directive 2000/59/EC) despite "
+               "'dockside facilities / rubbish from boats / harbours' replacing 'port "
+               "reception facilities / ship-generated waste'.",
+        source_celex_id="32015L2087",
+        metadata_used="semantic: 'dockside facilities for rubbish from boats' <-> 'port "
+                      "reception facilities for ship-generated waste'",
+        distractor_celex_ids="",
+        notes="Synonym paraphrase of the port-waste topic (cf. Q08).",
+    ),
+    dict(
+        id="Q46", tier="S",
+        question="Which EU directive revises the safeguards that keep underground water "
+                 "sources from becoming polluted, by updating the table of pollutant "
+                 "threshold values?",
+        expected_answer="Commission Directive 2014/80/EU of 20 June 2014, which amends "
+                        "Annex II to Directive 2006/118/EC on the protection of groundwater "
+                        "against pollution and deterioration.",
+        rubric="Should identify Directive 2014/80/EU (groundwater Directive 2006/118/EC) "
+               "despite 'underground water sources' standing in for 'groundwater'.",
+        source_celex_id="32014L0080",
+        metadata_used="semantic: 'underground water sources' <-> 'groundwater'",
+        distractor_celex_ids="",
+        notes="Synonym paraphrase of the groundwater topic (cf. Q21).",
+    ),
+    dict(
+        id="Q47", tier="S",
+        question="Which EU directive harmonises national laws on the milk-protein "
+                 "ingredients used in food for people, replacing an older 1983 measure?",
+        expected_answer="Directive (EU) 2015/2203 of the European Parliament and of the "
+                        "Council of 25 November 2015 on caseins and caseinates intended for "
+                        "human consumption, repealing Council Directive 83/417/EEC.",
+        rubric="Should identify Directive (EU) 2015/2203 (repeals Directive 83/417/EEC) "
+               "despite 'milk-protein ingredients' standing in for 'caseins and caseinates'.",
+        source_celex_id="32015L2203",
+        metadata_used="semantic: 'milk-protein ingredients' <-> 'caseins and caseinates'",
+        distractor_celex_ids="",
+        notes="Synonym paraphrase of the caseins topic (cf. Q23).",
+    ),
+    dict(
+        id="Q48", tier="S",
+        question="Which 2015 EU directive sets a maximum permitted level for a foam-forming "
+                 "chemical in the materials used to make children's playthings?",
+        expected_answer="Commission Directive (EU) 2015/2115 of 23 November 2015, amending "
+                        "Appendix C to Annex II to Directive 2009/48/EC on the safety of toys "
+                        "to adopt a specific limit value for formamide.",
+        rubric="Should identify Directive (EU) 2015/2115 (formamide, toy safety Directive "
+               "2009/48/EC) despite 'foam-forming chemical' / 'children's playthings' "
+               "replacing 'formamide' / 'toys'.",
+        source_celex_id="32015L2115",
+        metadata_used="semantic: 'foam-forming chemical' <-> 'formamide'; 'children's "
+                      "playthings' <-> 'toys'",
+        distractor_celex_ids="",
+        notes="Synonym paraphrase of the toy-safety topic (cf. Q32).",
+    ),
+    dict(
+        id="Q49", tier="S",
+        question="Which 2013 EU directive tightens the rules on selling portable power "
+                 "cells that contain cadmium and the small round cells that contain mercury?",
+        expected_answer="Directive 2013/56/EU of the European Parliament and of the Council "
+                        "of 20 November 2013, amending Directive 2006/66/EC on batteries and "
+                        "accumulators as regards portable batteries containing cadmium and "
+                        "button cells with mercury.",
+        rubric="Should identify Directive 2013/56/EU (batteries Directive 2006/66/EC) "
+               "despite 'portable power cells' / 'small round cells' replacing 'batteries "
+               "and accumulators' / 'button cells'.",
+        source_celex_id="32013L0056",
+        metadata_used="semantic: 'portable power cells / small round cells' <-> 'batteries "
+                      "and accumulators / button cells'",
+        distractor_celex_ids="",
+        notes="Synonym paraphrase of the batteries topic (cf. Q26).",
+    ),
+    dict(
+        id="Q50", tier="S",
+        question="Which 2014 EU regulation narrows the carbon-allowance trading scheme for "
+                 "airline flights so that it only covers journeys within the European "
+                 "Economic Area?",
+        expected_answer="Regulation (EU) No 421/2014 of the European Parliament and of the "
+                        "Council of 16 April 2014, amending Directive 2003/87/EC and limiting "
+                        "the EU Emissions Trading System for aviation to flights within the "
+                        "EEA.",
+        rubric="Should identify Regulation (EU) No 421/2014 (EU ETS Directive 2003/87/EC for "
+               "aviation) despite 'carbon-allowance trading scheme for airline flights' "
+               "standing in for 'Emissions Trading System for aviation'.",
+        source_celex_id="32014R0421",
+        metadata_used="semantic: 'carbon-allowance trading scheme for airline flights' <-> "
+                      "'Emissions Trading System for aviation'",
+        distractor_celex_ids="",
+        notes="Synonym paraphrase of the aviation-ETS topic (cf. Q27).",
+    ),
 ]
 
 # Human-readable metadata filter block per question. Only the metadata that the
@@ -763,6 +944,9 @@ FILTERS = {
     "Q38": [("Year", "2014"), ("Document type", "Regulation"), ("Policy domain", "Transport")],
     "Q39": [("Year", "2013"), ("Document type", "Directive")],
     "Q40": [("Year", "2013"), ("Document type", "Decision"), ("Policy domain", "Finance")],
+    # --- Tier S - semantic; NO filters, the meaning alone must carry retrieval ---
+    "Q41": [], "Q42": [], "Q43": [], "Q44": [], "Q45": [],
+    "Q46": [], "Q47": [], "Q48": [], "Q49": [], "Q50": [],
 }
 
 
@@ -796,6 +980,87 @@ def load_titles():
     return titles
 
 
+# Comment blocks reproduced verbatim from the two official Copilot Studio
+# templates. Shared by the overall files and the per-tier files.
+CONV_COMMENTS = [
+    "# Import conversations to test your agent.",
+    "#",
+    "# Limitations",
+    "# - 8 question-and-answer pairs max per conversation.",
+    "# - 50 conversations max.",
+    "# - 500 characters max per question, including spaces.",
+    "#",
+    "# Imported columns",
+    "# conversationNumber - Identifies each conversation. All questions and "
+    "responses with the same conversation number will run as a single test "
+    "case against the agent.",
+    "# question - The user prompt that the agent will respond to.",
+    "# response - The reference agent reply. This field is optional. The agent "
+    "response isn't compared to this reference answer.",
+    "#",
+    "# Test methods",
+    "# - Test methods are not included in this template. You can select them "
+    "after importing the test cases.",
+    "# - By default, the 'General quality' test method is added to the "
+    "imported test set.",
+    "#",
+    "# For more details, refer to the documentation: "
+    "https://go.microsoft.com/fwlink/?linkid=2335991",
+    "#",
+]
+CLASSIC_COMMENTS = [
+    "# Import the test cases you want to use to test your agent",
+    "#",
+    "# Limitations",
+    "# - maximum of 100 questions",
+    "# - maximum 500 characters per question including spaces",
+    "#",
+    "# Imported columns",
+    "# question - User question that the agent will answer.",
+    "# expectedResponse - Expected responses to run match, similarity and "
+    "compare meaning test cases.",
+    "#",
+    "# Test methods",
+    "# - Test methods are not included in this template. You can configure "
+    "test methods after importing the test cases.",
+    "# - Initially, the default test method will be added to the imported "
+    "test set.",
+    "#",
+    "# For more information, see the documentation.",
+    "#",
+]
+
+
+def write_conversation(path, records):
+    """Copilot Studio 'Import conversations' file (EvalConversationTemplate.csv):
+    '#' comment block, then conversationNumber, question, response. One
+    conversation per question keeps the tricky cases context-independent."""
+    if len(records) > 50:
+        raise SystemExit(f"Too many conversations in {path.name}: {len(records)} (max 50)")
+    with path.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, quoting=csv.QUOTE_ALL)
+        for line in CONV_COMMENTS:
+            w.writerow([line])
+        w.writerow(["conversationNumber", "question", "response"])
+        for i, r in enumerate(records, start=1):
+            w.writerow([str(i), render_question(r), render_answer(r)])
+
+
+def write_classic(path, records):
+    """Copilot Studio 'classic' single-response file (EvaluationTemplate_classic.csv):
+    '#' comment block, then question, expectedResponse. expectedResponse IS used
+    by the match / similarity / compare-meaning test methods."""
+    if len(records) > 100:
+        raise SystemExit(f"Too many questions in {path.name}: {len(records)} (max 100)")
+    with path.open("w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, quoting=csv.QUOTE_ALL)
+        for line in CLASSIC_COMMENTS:
+            w.writerow([line])
+        w.writerow(["question", "expectedResponse"])
+        for r in records:
+            w.writerow([render_question(r), render_answer(r)])
+
+
 def main():
     titles = load_titles()
     # validate every grounding doc exists in the corpus (tier-E records have none)
@@ -806,7 +1071,13 @@ def main():
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # 1) rich source-of-truth file
+    # all rendered questions must respect the 500-char limit shared by both templates
+    for r in RECORDS:
+        rq = render_question(r)
+        if len(rq) > 500:
+            raise SystemExit(f"{r['id']} question exceeds 500 chars ({len(rq)})")
+
+    # 1) rich source-of-truth file (overall, all tiers)
     source_path = OUT_DIR / "multieurlex_eval_set_source.csv"
     fieldnames = [
         "id", "tier", "question", "filters", "expected_answer", "rubric",
@@ -827,93 +1098,27 @@ def main():
             row["expected_answer"] = render_answer(r)
             w.writerow(row)
 
-    # all rendered questions must respect the 500-char limit shared by both templates
-    for r in RECORDS:
-        rq = render_question(r)
-        if len(rq) > 500:
-            raise SystemExit(f"{r['id']} question exceeds 500 chars ({len(rq)})")
-
-    # 2a) Copilot Studio "Import conversations" file. Matches the layout of
-    #     data/eval/EvalConversationTemplate.csv: a block of '#' comment lines,
-    #     then conversationNumber, question, response. One conversation per
-    #     question keeps the tricky cases context-independent.
+    # 2) overall import files (all tiers, one combined run)
     conv_path = OUT_DIR / "multieurlex_eval_set_copilot_import_conversation.csv"
-    conv_comments = [
-        "# Import conversations to test your agent.",
-        "#",
-        "# Limitations",
-        "# - 8 question-and-answer pairs max per conversation.",
-        "# - 50 conversations max.",
-        "# - 500 characters max per question, including spaces.",
-        "#",
-        "# Imported columns",
-        "# conversationNumber - Identifies each conversation. All questions and "
-        "responses with the same conversation number will run as a single test "
-        "case against the agent.",
-        "# question - The user prompt that the agent will respond to.",
-        "# response - The reference agent reply. This field is optional. The agent "
-        "response isn't compared to this reference answer.",
-        "#",
-        "# Test methods",
-        "# - Test methods are not included in this template. You can select them "
-        "after importing the test cases.",
-        "# - By default, the 'General quality' test method is added to the "
-        "imported test set.",
-        "#",
-        "# For more details, refer to the documentation: "
-        "https://go.microsoft.com/fwlink/?linkid=2335991",
-        "#",
-    ]
-    if len(RECORDS) > 50:
-        raise SystemExit(f"Too many conversations: {len(RECORDS)} (max 50)")
-    with conv_path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f, quoting=csv.QUOTE_ALL)
-        for line in conv_comments:
-            w.writerow([line])
-        w.writerow(["conversationNumber", "question", "response"])
-        for i, r in enumerate(RECORDS, start=1):
-            w.writerow([str(i), render_question(r), render_answer(r)])
-
-    # 2b) Copilot Studio "classic" single-response file. Matches the layout of
-    #     data/eval/EvaluationTemplate_classic.csv: '#' comment lines, then
-    #     question, expectedResponse. Unlike the conversation template,
-    #     expectedResponse IS used by the match / similarity / compare-meaning
-    #     test methods, so the precise answer goes there.
     classic_path = OUT_DIR / "multieurlex_eval_set_copilot_import_classic.csv"
-    classic_comments = [
-        "# Import the test cases you want to use to test your agent",
-        "#",
-        "# Limitations",
-        "# - maximum of 100 questions",
-        "# - maximum 500 characters per question including spaces",
-        "#",
-        "# Imported columns",
-        "# question - User question that the agent will answer.",
-        "# expectedResponse - Expected responses to run match, similarity and "
-        "compare meaning test cases.",
-        "#",
-        "# Test methods",
-        "# - Test methods are not included in this template. You can configure "
-        "test methods after importing the test cases.",
-        "# - Initially, the default test method will be added to the imported "
-        "test set.",
-        "#",
-        "# For more information, see the documentation.",
-        "#",
-    ]
-    if len(RECORDS) > 100:
-        raise SystemExit(f"Too many questions: {len(RECORDS)} (max 100)")
-    with classic_path.open("w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f, quoting=csv.QUOTE_ALL)
-        for line in classic_comments:
-            w.writerow([line])
-        w.writerow(["question", "expectedResponse"])
-        for r in RECORDS:
-            w.writerow([render_question(r), render_answer(r)])
+    write_conversation(conv_path, RECORDS)
+    write_classic(classic_path, RECORDS)
 
     print(f"Wrote {source_path} ({len(RECORDS)} rows)")
     print(f"Wrote {conv_path} ({len(RECORDS)} conversations)")
     print(f"Wrote {classic_path} ({len(RECORDS)} questions)")
+
+    # 3) per-tier import files (each tier as a standalone, independently-runnable
+    #    pair) so a single question type can be evaluated in isolation.
+    for tier in sorted({r["tier"] for r in RECORDS}):
+        recs = [r for r in RECORDS if r["tier"] == tier]
+        t_conv = OUT_DIR / f"multieurlex_eval_set_tier{tier}_copilot_import_conversation.csv"
+        t_classic = OUT_DIR / f"multieurlex_eval_set_tier{tier}_copilot_import_classic.csv"
+        write_conversation(t_conv, recs)
+        write_classic(t_classic, recs)
+        print(f"  tier {tier}: {len(recs)} questions -> "
+              f"{t_classic.name}, {t_conv.name}")
+
     # tier summary
     from collections import Counter
     tiers = Counter(r["tier"] for r in RECORDS)

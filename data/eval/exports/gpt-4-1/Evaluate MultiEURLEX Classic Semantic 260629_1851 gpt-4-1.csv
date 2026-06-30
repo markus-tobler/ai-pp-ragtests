@@ -1,0 +1,491 @@
+﻿"conversationId","question","expectedResponse","actualResponse","testMethodType_1","result_1","passingScore_1","explanation_1","testMethodType_2","result_2","passingScore_2","explanation_2"
+"f6e6c825-8825-48d0-98af-05468d479bdf","Which EU act sets maximum residue levels for pesticides such as acetamiprid and tebuconazole in or on certain products?","CELEX 32015R0401 - Commission Regulation (EU) 2015/401 of 25 February 2015, which amends Annexes II and III to Regulation (EC) No 396/2005 on maximum residue levels of pesticides.","The EU act that sets maximum residue levels (MRLs) for pesticides such as acetamiprid and tebuconazole in or on certain products is Regulation (EC) No 396/2005, as amended by subsequent regulations. Specifically, COMMISSION REGULATION (EU) No 61/2014 amends Annexes II and III to Regulation (EC) No 396/2005 to set and update MRLs for several pesticides, including tebuconazole, in or on food and feed of plant and animal origin. The regulation details the process for setting, reviewing, and amending these levels based on scientific opinions and risk assessments, and it lists the products and substances coveredcite32014R0061.
+
+Sources:
+- 32014R0061 - COMMISSION REGULATION (EU) No 61/2014 - Amends Regulation (EC) No 396/2005 to set maximum residue levels for pesticides including tebuconazole in or on certain products.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","50/100 - Some shared meaning; The Agent answer names the main regulation but misses the specific 2015/401 amendment mentioned in the Expected response, which is important for the question."
+"457e27ea-2f07-4fed-99e5-eb13b739d5a7","Which EU act includes pyriproxyfen as an active substance for biocidal products, and which Member State acted as Rapporteur for its evaluation?","CELEX 32013L0005 - Commission Directive 2013/5/EU of 14 February 2013, which adds pyriproxyfen to Annex I of Directive 98/8/EC. The Netherlands was the designated Rapporteur Member State.","No document retrieved from the MultiEURLEX corpus directly addresses the inclusion of pyriproxyfen as an active substance for biocidal products or identifies the Rapporteur Member State responsible for its evaluation. The closest matches discuss other active substances, biocidal product regulations, and evaluation procedures, but none mention pyriproxyfen or provide the specific Rapporteur Member State for its assessment. 
+
+**Sources list:**  
+- No relevant document found that addresses pyriproxyfen as an active substance for biocidal products or the Rapporteur Member State for its evaluation.","GeneralQuality","Fail",,"Not answered: The agent response says it could not provide information about the EU act including pyriproxyfen or the Rapporteur Member State. It mentions that no relevant documents were found and does not offer any alternative information that answers the question. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Fail","50","0/100 - Different meaning; The Expected response gives a clear answer, but the Agent answer says it couldn't find the information and doesn't answer the question."
+"cb8914cc-4829-4c26-9462-7de75b291ec2","Which EU regulation amended the rules on the single payment scheme and support to vine-growers?","CELEX 32012R1028 - Regulation (EU) No 1028/2012 of the European Parliament and of the Council of 25 October 2012, amending Council Regulation (EC) No 1234/2007 as regards the single payment scheme and support to vine-growers.","The EU regulation that amended the rules on the single payment scheme and support to vine-growers is Regulation (EU) No 1028/2012 of the European Parliament and of the Council of 25 October 2012. This regulation specifically amended Council Regulation (EC) No 1234/2007 as regards the regime of the single payment scheme and support to vine-growers. It introduced changes to simplify the management of support measures for vine-growers and aligned them with the objectives of direct support schemes for farmers. The regulation allowed Member States to definitively decrease funds allocated to wine sector support programmes and increase national ceilings for direct payments, as well as provided for the allocation of payment entitlements to vine-growers for 2014cite32012R1028.
+
+Sources:
+- 32012R1028 - REGULATION (EU) No 1028/2012 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - Amended the rules on the single payment scheme and support to vine-growers.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer gives the same regulation as the Expected response and adds extra details about what the regulation changed."
+"57c9ea72-c41a-4b1c-bbaa-83ac8a6519f2","Which EU regulation lays down the model for operational programmes under the Investment for growth and jobs goal for the European Structural and Investment Funds?","CELEX 32014R0288 - Commission Implementing Regulation (EU) No 288/2014 of 25 February 2014, adopted pursuant to Regulation (EU) No 1303/2013 (and Regulation (EU) No 1299/2013 for cooperation programmes).","The EU regulation that lays down the model for operational programmes under the Investment for growth and jobs goal for the European Structural and Investment Funds is COMMISSION IMPLEMENTING REGULATION (EU) No 288/2014. This regulation sets out the rules pursuant to Regulation (EU) No 1303/2013, specifically establishing the model for preparing operational programmes under the Investment for growth and jobs goal. The model is detailed in Annex I to this regulationcite32014R0288.
+
+---
+
+**Sources:**
+- 32014R0288 - COMMISSION IMPLEMENTING REGULATION (EU) No 288/2014 - This regulation directly establishes the model for operational programmes under the Investment for growth and jobs goal for the European Structural and Investment Funds.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer gives the main regulation and its purpose, but leaves out Regulation (EU) No 1299/2013, which the Expected response includes for cooperation programmes."
+"94085d5d-5c28-4b5d-b8b9-2366dcfb9644","Which EU regulation authorised the use of methacrylate copolymers as food additives in solid food supplements?","CELEX 32013R0816 - Commission Regulation (EU) No 816/2013 of 28 August 2013, amending Annex II to Regulation (EC) No 1333/2008 on food additives.","The EU regulation that authorised the use of methacrylate copolymers as food additives in solid food supplements is COMMISSION REGULATION (EU) No 816/2013. This regulation specifically amends Annex II to Regulation (EC) No 1333/2008 as regards the use of Neutral methacrylate copolymer and Anionic methacrylate copolymer in solid food supplements. It also amends the Annex to Commission Regulation (EU) No 231/2012 concerning the specifications for Basic methacrylate copolymer (E 1205), Neutral methacrylate copolymer, and Anionic methacrylate copolymer. The regulation states that it is appropriate to authorise the use of both Neutral and Anionic methacrylate copolymers as food additives in solid food supplements, assigning E 1206 to Neutral methacrylate copolymer and E 1207 to Anionic methacrylate copolymercite32013R0816.
+
+**Sources:**
+- 32013R0816 - COMMISSION REGULATION (EU) No 816/2013 - This regulation directly authorises the use of methacrylate copolymers as food additives in solid food supplements.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same regulation as the Expected response, with extra details but no important differences."
+"674d8eb3-10bd-49c1-8606-2f7d6a867a02","What does the 2015 EU Decision concerning restrictive measures in view of the situation in Libya change?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Decision","CELEX 32015D0382 - Council Decision (CFSP) 2015/382 of 6 March 2015 amends Decision 2011/137/CFSP, extending the criteria for the travel ban and asset freeze measures (implementing UN Security Council Resolution 2174 (2014)).","The 2015 EU Decision that concerns restrictive measures in view of the situation in Libya is COUNCIL DECISION (CFSP) 2015/382 of 6 March 2015. This Decision amends the earlier Decision 2011/137/CFSP and introduces several key changes:
+
+- It extends the application of travel bans and asset freeze measures to include not only those already listed in the annexes but also persons and entities that provide support for acts threatening the peace, stability, or security of Libya, or that obstruct or undermine the successful completion of its political transition.
+- The new criteria for restrictive measures now explicitly cover:
+  - Planning, directing, or committing acts that violate international human rights or humanitarian law, or acts constituting human rights abuses in Libya.
+  - Attacks against any air, land, or sea port in Libya, or against Libyan State institutions or installations, or against any foreign mission in Libya.
+  - Providing support for armed groups or criminal networks through the illicit exploitation of crude oil or other natural resources in Libya.
+  - Acting for or on behalf of, or at the direction of, listed persons or entities.
+- The Decision also updates and deletes certain entries in the annexes, in line with recent court judgments and developments.
+
+In summary, the 2015 Decision broadens the scope of restrictive measures, clarifies the criteria for their application, and updates the list of targeted individuals and entities in response to the evolving situation in Libyacite32015D0382.
+
+---
+
+**Sources:**
+- 32015D0382 - COUNCIL DECISION (CFSP) 2015/382 - Amends and broadens restrictive measures concerning Libya, including new criteria and updates to the list of targeted persons and entities.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer gives more details than the Expected response, including new criteria and updates, but leaves out the mention of the UN Security Council Resolution. The main points still match well."
+"79c62550-aef0-4b7f-bc92-05adb87c58cf","Which 2013 Directive in the Trade domain postpones the transposition and application dates of the Solvency II Directive?
+
+Metadata filters (apply with AND):
+- Year: 2013
+- Document type: Directive
+- Policy domain: Trade","CELEX 32013L0058 - Directive 2013/58/EU of the European Parliament and of the Council of 11 December 2013, amending Directive 2009/138/EC (Solvency II) as regards the dates of transposition, application and the repeal of Solvency I directives.","**2013 Directive in the Trade Domain Postponing Solvency II Transposition and Application Dates**
+
+The 2013 Directive in the Trade policy domain that postpones the transposition and application dates of the Solvency II Directive is:
+
+- **DIRECTIVE 2013/58/EU OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL** (CELEX: 32013L0058)
+
+This Directive specifically amends Directive 2009/138/EC (Solvency II) as regards the date for its transposition and the date of its application, as well as the date of repeal of certain Directives (Solvency I). The document states:
+
+> ""Directive 2013/58/EU ... amending Directive 2009/138/EC (Solvency II) as regards the date for its transposition and the date of its application, and the date of repeal of certain Directives (Solvency I) ... it is therefore appropriate to postpone the date for transposition and the date of application of Directive 2009/138/EC, allowing supervisors and insurance and reinsurance undertakings sufficient time to prepare for the application of that new architecture ... Article 1: Directive 2009/138/EC is amended as follows: (1) Article 309(1) is amended as follows: (a) in the first subparagraph, the date of ‘30 June 2013’ is replaced by that of ‘31 March 2015’; (b) in the second subparagraph, the date of ‘1 January 2014’ is replaced by that of ‘1 January 2016’...""cite32013L0058
+
+**Sources:**
+- 32013L0058 - DIRECTIVE 2013/58/EU OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - This Directive directly amends Solvency II (Directive 2009/138/EC) to postpone its transposition and application dates, matching all your metadata filters and the substantive requirement.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same information as the Expected response, just with more detail and quotes, but nothing important is missing or added."
+"97ee1512-54d3-4344-9675-bb9c517c3030","Which 2015 Transport Directive updates the EU rules on port reception facilities for ship-generated waste to reflect the revised MARPOL Annex V garbage categories?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Directive
+- Policy domain: Transport","CELEX 32015L2087 - Commission Directive (EU) 2015/2087 of 18 November 2015, amending Annex II to Directive 2000/59/EC on port reception facilities for ship-generated waste and cargo residues.","**2015 Transport Directive Updating EU Rules on Port Reception Facilities for Ship-Generated Waste**
+
+The 2015 Transport Directive that updates the EU rules on port reception facilities for ship-generated waste to reflect the revised MARPOL Annex V garbage categories is:
+
+- **COMMISSION DIRECTIVE (EU) 2015/2087 of 18 November 2015** (CELEX: 32015L2087)
+
+This Directive specifically amends Annex II to Directive 2000/59/EC on port reception facilities for ship-generated waste and cargo residues. It incorporates the new and more detailed categorization of garbage introduced by the amended Annex V to the MARPOL Convention, which entered into force on 1 January 2013. The Directive aims to ensure consistency with IMO measures and to avoid uncertainty among port users and authorities by adapting the waste categorization table in EU law to the new MARPOL standards. It also improves the regime for reducing discharges of ship-generated waste into the sea by requiring more accurate reporting and monitoring of waste delivered to port reception facilitiescite32015L2087.
+
+---
+
+**Sources:**
+
+- 32015L2087 - COMMISSION DIRECTIVE (EU) 2015/2087 - Amends EU rules on port reception facilities for ship-generated waste to reflect revised MARPOL Annex V garbage categories and updates reporting requirements.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same information as the Expected response, just with more explanation and detail."
+"3b8a6f91-b23f-4d7a-b96a-d93e86956a0e","Which 2014 EU Regulation lays down the rules on the information that Member States must send under the European Maritime and Fisheries Fund?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation","CELEX 32014R1243 - Commission Implementing Regulation (EU) No 1243/2014 of 20 November 2014, adopted pursuant to Regulation (EU) No 508/2014 on the European Maritime and Fisheries Fund.","The 2014 EU Regulation that lays down the rules on the information that Member States must send under the European Maritime and Fisheries Fund is COMMISSION IMPLEMENTING REGULATION (EU) No 1243/2014 of 20 November 2014. This Regulation establishes the rules on the information to be sent to the Commission by the Member States in order to permit the monitoring and evaluation of the operations financed under the European Maritime and Fisheries Fund (EMFF) under shared management. It specifies the data to be recorded and provided, the database structure, and the timing for entering information, as well as requirements for operation implementation datacite32014R1243.
+
+---
+
+**Sources:**
+- 32014R1243 - COMMISSION IMPLEMENTING REGULATION (EU) No 1243/2014 - Lays down the rules on the information Member States must send under the European Maritime and Fisheries Fund.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer names the right regulation and gives extra details about what it covers. The Expected response just names the regulation and its link to another law."
+"60f3d1bd-5064-4366-a41f-6d4232015b7f","Which 2014 EU Regulation amends Regulation (EU) No 965/2012 on the technical requirements and administrative procedures for air operations?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation","CELEX 32014R0379 - Commission Regulation (EU) No 379/2014 of 7 April 2014, amending Regulation (EU) No 965/2012 pursuant to the civil aviation Regulation (EC) No 216/2008.","The 2014 EU Regulation that amends Regulation (EU) No 965/2012 on the technical requirements and administrative procedures for air operations is:
+
+**COMMISSION REGULATION (EU) No 379/2014 of 7 April 2014**. This Regulation specifically amends Commission Regulation (EU) No 965/2012, laying down technical requirements and administrative procedures related to air operations pursuant to Regulation (EC) No 216/2008 of the European Parliament and of the Council. Article 1 of Regulation (EU) No 379/2014 states that Regulation (EU) No 965/2012 is amended as set out in the text, including changes to subject matter, scope, definitions, and operational requirements for various types of air operationscite32014R0379.
+
+---
+
+**Sources:**
+- 32014R0379 - COMMISSION REGULATION (EU) No 379/2014 - Amends Regulation (EU) No 965/2012 on technical requirements and administrative procedures for air operations.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same regulation and details as the Expected response, just with a bit more explanation."
+"bc2f4fc0-72bd-41ef-94cb-f36eb443d8a1","Which 2014 Commission Implementing Regulation in the Finance domain governs the reimbursement of agricultural appropriations carried over from financial year 2014, and what limit applies to that carry-over?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation
+- Policy domain: Finance","CELEX 32014R1259 - Commission Implementing Regulation (EU) No 1259/2014 of 24 November 2014. The carry-over is limited to 2% of the initial appropriations (and to the amount of the direct-payments adjustment).","**2014 Commission Implementing Regulation Governing Reimbursement of Agricultural Appropriations Carried Over from Financial Year 2014**
+
+**Relevant Regulation and Limit on Carry-Over**
+
+- The 2014 Commission Implementing Regulation in the Finance domain that governs the reimbursement of agricultural appropriations carried over from financial year 2014 is:
+  - **COMMISSION IMPLEMENTING REGULATION (EU) No 1259/2014 of 24 November 2014** (CELEX: 32014R1259).
+
+- **Limit on Carry-Over:**
+  - The carry-over of non-committed appropriations relating to agricultural actions is limited to **2% of the initial appropriations** and to the amount of the adjustment of direct payments as referred to in Article 11 of Council Regulation (EC) No 73/2009, which was applied during the preceding financial year.
+  - For the 2014 financial year, the unused appropriations corresponding to the amount of financial discipline applied in 2014 (EUR 868.2 million) remain within the 2% limit of the initial appropriations and can be carried over to financial year 2015, following a decision of the Commissioncite32014R1259.
+
+**Sources**
+- 32014R1259 - COMMISSION IMPLEMENTING REGULATION (EU) No 1259/2014 - This regulation directly governs the reimbursement of appropriations carried over from financial year 2014 and specifies the 2% limit on such carry-overs.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer gives all the main points from the Expected response and adds extra details about the amount and process for carry-over."
+"6e0782f9-906b-45d5-adce-5ee96ae85702","Which 2013 Council Regulation in the employment and working conditions domain lays down the salary weightings for EU officials serving in third countries, and for which periods?
+
+Metadata filters (apply with AND):
+- Year: 2013
+- Document type: Regulation
+- Policy domain: Employment and working conditions","CELEX 32013R0679 - Council Regulation (EU) No 679/2013 of 15 July 2013, setting the weightings applicable from 1 July 2011 to 30 June 2012 and from 1 July 2012 to the remuneration of officials, temporary and contract staff serving in third countries.","No 2013 Council Regulation in the employment and working conditions domain that lays down the salary weightings for EU officials serving in third countries was retrieved. The closest documents found are Council Decisions, not Regulations, and do not address the specific topic of salary weightings for EU officials in third countries for defined periods. Therefore, based on the available sources, there is no relevant 2013 Council Regulation matching your criteria.","GeneralQuality","Fail",,"Not answered: The agent response says it could not find any 2013 Council Regulation about salary weightings for EU officials in third countries. It does not provide any alternative information that answers the main question. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Fail","50","0/100 - Different meaning; The Expected response names a specific regulation, but the Agent answer says no such regulation exists. This is a direct contradiction."
+"68caeca1-4d01-4671-8fe3-71354e83eb02","A 2014 Commission Regulation in the Energy domain defines the criteria and geographic ranges of 'highly biodiverse grassland'. Which two Directives' biofuel sustainability provisions does it serve?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation
+- Policy domain: Energy","CELEX 32014R1307 - Commission Regulation (EU) No 1307/2014 of 8 December 2014. It serves Article 7b(3)(c) of Directive 98/70/EC (quality of petrol and diesel fuels) and Article 17(3)(c) of Directive 2009/28/EC (promotion of energy from renewable sources).","**Answer to Your Query**
+
+A 2014 Commission Regulation in the Energy domain that defines the criteria and geographic ranges of ""highly biodiverse grassland"" and specifies which two Directives' biofuel sustainability provisions it serves could not be identified in the retrieved documents. The closest 2014 Energy domain Regulations found were:
+
+- **COMMISSION IMPLEMENTING REGULATION (EU) No 996/2012**: This regulation concerns special conditions for the import of feed and food from Japan after the Fukushima accident and does not address biofuel sustainability or highly biodiverse grasslandcite2012R0996.
+- **REGULATION (EU) No 174/2013 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL**: This regulation amends rules on energy-efficiency labelling for office equipment and does not relate to biofuels or grassland biodiversitycite2013R0174.
+- **COMMISSION DELEGATED REGULATION (EU) No 285/2014**: This regulation supplements rules on OTC derivatives and does not address biofuel sustainability or grassland criteriacite2014R0285.
+
+**No retrieved 2014 Regulation in the Energy domain defines the criteria and geographic ranges of 'highly biodiverse grassland' or specifies which two Directives' biofuel sustainability provisions it serves.**
+
+---
+
+**Sources**
+- 2012R0996 - COMMISSION IMPLEMENTING REGULATION (EU) No 996/2012 - Closest 2014 Energy Regulation, but unrelated to biofuels or grassland.
+- 2013R0174 - REGULATION (EU) No 174/2013 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - Energy domain, but about energy-efficiency labelling.
+- 2014R0285 - COMMISSION DELEGATED REGULATION (EU) No 285/2014 - Energy domain, but about OTC derivatives, not biofuels or grassland.","GeneralQuality","Fail",,"Not answered: The agent response says it could not find a 2014 Energy Regulation defining highly biodiverse grassland or serving the two Directives' biofuel sustainability provisions. It lists unrelated regulations but does not provide the requested information. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Fail","50","0/100 - Different meaning; The Expected response gives a direct answer, but the Agent answer says it couldn't find the information and lists unrelated regulations instead."
+"5e6a53e3-1626-4a08-9473-264689cb9209","Which 2015 Directive amends Directive 94/62/EC to reduce the consumption of lightweight plastic carrier bags, and what per-person consumption targets does it set?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Directive
+- Policy domain: Trade","CELEX 32015L0720 - Directive (EU) 2015/720 of the European Parliament and of the Council of 29 April 2015. Member States must ensure annual consumption does not exceed 90 lightweight plastic carrier bags per person by 31 December 2019 and 40 per person by 31 December 2025 (or ensure such bags are not provided free of charge by 31 December 2018).","**2015 Directive Amending Directive 94/62/EC on Lightweight Plastic Carrier Bags**
+
+The 2015 Directive that amends Directive 94/62/EC to reduce the consumption of lightweight plastic carrier bags is **Directive (EU) 2015/720 of the European Parliament and of the Council of 29 April 2015**.
+
+**Per-Person Consumption Targets Set by the Directive:**
+- Member States must take measures to ensure that the annual consumption level does not exceed:
+  - **90 lightweight plastic carrier bags per person by 31 December 2019**
+  - **40 lightweight plastic carrier bags per person by 31 December 2025**
+- Alternatively, equivalent targets may be set in weight.
+- Very lightweight plastic carrier bags (below 15 microns) may be excluded from national consumption objectives.
+
+These measures are intended to achieve a sustained reduction in the consumption of lightweight plastic carrier bags across the EUcite32015L0720.
+
+---
+
+**Sources**
+- 32015L0720 - DIRECTIVE (EU) 2015/720 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - This Directive amends Directive 94/62/EC specifically to reduce the consumption of lightweight plastic carrier bags and sets the per-person consumption targets.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer gives the correct Directive and main targets, but leaves out the rule about not providing bags free of charge by the end of 2018, which is an important part of the Expected response."
+"976b1ca8-8083-47dd-9184-ab0a232644aa","Which 2013 Commission Directive in the Law domain amends Annex III to the rail interoperability Directive 2008/57/EC, and what concern does it add?
+
+Metadata filters (apply with AND):
+- Year: 2013
+- Document type: Directive
+- Policy domain: Law","CELEX 32013L0009 - Commission Directive 2013/9/EU of 11 March 2013. It amends Annex III to Directive 2008/57/EC to add an explicit reference to accessibility for persons with disabilities and persons with reduced mobility.","**2013 Commission Directive Amending Annex III to Directive 2008/57/EC (Rail Interoperability) in the Law Domain**
+
+After reviewing the available documents, there is no 2013 Commission Directive in the Law policy domain that amends Annex III to Directive 2008/57/EC on rail interoperability and specifies a new concern or requirement added by the amendment. The search did not return any document matching all the required metadata filters (Year: 2013, Document type: Directive, Policy domain: Law) and the specific content regarding Annex III to Directive 2008/57/EC.
+
+**Sources**
+- No relevant document found matching all criteria.","GeneralQuality","Fail",,"Not answered: The agent response says it could not find a 2013 Commission Directive in the Law domain that amends Annex III to Directive 2008/57/EC or adds a concern. It does not provide any alternative information that addresses the main question. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Fail","50","0/100 - Different meaning; The Expected response gives the correct directive and the concern it adds, but the Agent answer says no such directive exists, which is incorrect and doesn't answer the question."
+"259d0cf0-d4c0-402e-9c74-a15154e5571f","In the Council and Commission Decision (EU, Euratom) on the EU position in the Association Council established with Ukraine, which Article of the Association Agreement provides for its provisional application?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Decision
+- Policy domain: Politics","CELEX 32015D0060 - Decision (EU, Euratom) 2015/60 (the Ukraine decision) refers to Article 486 of the EU-Ukraine Association Agreement for provisional application.","**Article Providing for Provisional Application in the Association Agreement with Ukraine**
+
+The Council and Commission Decision (EU, Euratom) 2015/60 on the EU position in the Association Council established with Ukraine explicitly states that ""Article 486 of the Association Agreement between the European Union and the European Atomic Energy Community and their Member States, of the one part, and Ukraine, of the other part, provides for provisional application of the Agreement in part""cite32015D0060.
+
+**Sources**
+- 32015D0060 - COUNCIL AND COMMISSION DECISION (EU, Euratom) 2015/60 - This Decision directly cites Article 486 of the Association Agreement as the provision for provisional application, making it the authoritative source for your question.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same information as the Expected response, clearly naming Article 486 as the relevant provision for provisional application."
+"d93580b5-2e83-42f4-8d10-df1d5d0f4dde","Two of the EU-third country Association Council decisions (EU, Euratom) establishing Sub-Committees in Trade configuration are dated 17 November 2014. Which of those concerns Georgia, and what is its decision number?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Decision
+- Policy domain: Politics","CELEX 32015D0054 - Council and Commission Decision (EU, Euratom) 2015/54, which concerns the Association Agreement with Georgia (dated 17 November 2014).","The EU-third country Association Council decision (EU, Euratom) establishing Sub-Committees in Trade configuration dated 17 November 2014 that concerns Georgia is:
+
+- **COUNCIL AND COMMISSION DECISION (EU, Euratom) 2015/54**.
+
+This decision specifically addresses the position to be taken on behalf of the European Union and the European Atomic Energy Community within the Association Council established by the Association Agreement between the EU and Georgia, including the adoption of decisions on the Rules of Procedure of the Association Council, the establishment of two Sub-Committees, and the delegation of certain powers by the Association Council to the Association Committee in Trade configurationcite32015D0054.
+
+**Sources:**
+- 32015D0054 - COUNCIL AND COMMISSION DECISION (EU, Euratom) 2015/54 - Establishes Sub-Committees in Trade configuration for the EU-Georgia Association Council, dated 17 November 2014, and matches all user metadata filters.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same decision number and confirms it concerns Georgia, just like the Expected response."
+"c594e78f-cfaa-4965-94c0-d136dc101460","Among the 2015 European Central Bank Decisions, which one concerns public access to ECB documents (not the one on targeted longer-term refinancing operations), and which earlier decision does it amend?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Decision
+- Policy domain: Finance
+- Legal actor type: Financial institution","CELEX 32015D0001 - Decision (EU) 2015/529 of the ECB (ECB/2015/1) of 21 January 2015, which amends Decision ECB/2004/3 on public access to ECB documents.","**ECB Decision on Public Access to Documents (2015)**
+
+The 2015 European Central Bank (ECB) Decision that concerns public access to ECB documents—excluding those on targeted longer-term refinancing operations—is:
+
+- **DECISION (EU) 2015/529 OF THE EUROPEAN CENTRAL BANK of 21 January 2015 amending Decision ECB/2004/3 on public access to European Central Bank documents (ECB/2015/1)**.
+
+**Which earlier decision does it amend?**
+- This 2015 Decision amends **Decision ECB/2004/3** on public access to ECB documents.
+
+**Details from the Document:**
+- The Decision specifically addresses the need to ensure the protection of the public interest regarding the Union's or a Member State's policy on the prudential supervision of credit institutions in the context of public access requests to ECB documents.
+- It also amends provisions to protect the public interest concerning the purpose of supervisory inspections and the soundness and security of financial market infrastructures, payment schemes, or payment service providers.
+- The amendments clarify definitions and confidentiality rules, and update references to ECB internal structurescite2015D0001.
+
+---
+
+**Sources:**
+- 2015D0001 - DECISION (EU) 2015/529 OF THE EUROPEAN CENTRAL BANK - Amends ECB/2004/3 on public access to ECB documents; directly addresses public access and the amendment of an earlier ECB decision on this topic.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same decision and amendment as the Expected response, with a bit more detail but no important differences."
+"32a65de9-f225-4381-8587-ea19e82b44b2","In the 2015 European Central Bank Decision on targeted longer-term refinancing operations, what spread was eliminated and over which period were the affected operations to be conducted?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Decision
+- Policy domain: Finance
+- Legal actor type: Financial institution","CELEX 32015D0005 - Decision (EU) 2015/299 of the ECB (ECB/2015/5) of 10 February 2015 eliminated the 10 basis points spread over the main refinancing operations rate for the TLTROs to be conducted between March 2015 and June 2016.","**Elimination of Spread in 2015 ECB Decision on TLTROs**
+
+The 2015 European Central Bank Decision on targeted longer-term refinancing operations (TLTROs) eliminated the 10 basis points spread over the rate for main refinancing operations (MROs) for TLTROs to be conducted between March 2015 and June 2016. This change was made to support the effectiveness of the TLTROs and reflected the reduction in term premia of market-based funding instruments for institutions since the announcement of TLTROs in June 2014. The decision did not affect the interest rate applied to the first TLTROs conducted in September and December 2014, which remained fixed at the MRO rate prevailing at the time of the tender announcement plus a fixed spread of 10 basis pointscite32015D0005.
+
+**Sources**
+- 32015D0005 - DECISION (EU) 2015/299 OF THE EUROPEAN CENTRAL BANK - This document directly states the elimination of the 10 basis points spread for TLTROs conducted from March 2015 to June 2016 and details the relevant period and rationale.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer gives the main facts from the Expected response and adds extra details about earlier operations and the reasons for the change."
+"8ecdf4d2-57e9-430f-b6fd-64734bab8fa1","The corpus contains several 2013-2015 measures that add or restrict chemical substances. Which one is the 2015 Delegated Directive that adds substances to the list of restricted substances in electrical and electronic equipment (RoHS), and name two substances it adds?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Directive","CELEX 32015L0863 - Commission Delegated Directive (EU) 2015/863 of 31 March 2015, which amends Annex II to RoHS Directive 2011/65/EU. It adds, among others, DEHP (Bis(2-ethylhexyl) phthalate), BBP (Butyl benzyl phthalate), DBP (Dibutyl phthalate) and HBCDD.","The 2015 Delegated Directive that adds substances to the list of restricted substances in electrical and electronic equipment (RoHS) is COMMISSION DELEGATED DIRECTIVE (EU) 2015/863 (CELEX 32015L0863). This Directive amends Annex II to Directive 2011/65/EU as regards the list of restricted substances.
+
+Two substances it adds to the list of restricted substances in electrical and electronic equipment are:
+- Bis(2-ethylhexyl) phthalate (DEHP)
+- Butyl benzyl phthalate (BBP)
+
+The Directive also adds Dibutyl phthalate (DBP) and Diisobutyl phthalate (DIBP) to the listcite32015L0863.
+
+---
+
+**Sources**
+- 32015L0863 - COMMISSION DELEGATED DIRECTIVE (EU) 2015/863 - This Directive amends the RoHS list and explicitly names DEHP, BBP, DBP, and DIBP as newly restricted substances in electrical and electronic equipment.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer names the correct Directive and two substances, but leaves out HBCDD, which is listed in the Expected response."
+"4e523d04-a6bd-416b-8901-6ca1c7700c09","Which EU act amends the rules protecting groundwater against pollution and deterioration by updating the annex on threshold values for pollutants?","CELEX 32014L0080 - Commission Directive 2014/80/EU of 20 June 2014, which amends Annex II to Directive 2006/118/EC on the protection of groundwater against pollution and deterioration.","No retrieved document directly addresses an EU act that amends the rules protecting groundwater against pollution and deterioration by updating the annex on threshold values for pollutants. The closest matches are directives and regulations that amend annexes related to environmental protection, air quality, and pollutants, but none specifically mention groundwater or threshold values for groundwater pollutants.
+
+- COMMISSION DIRECTIVE (EU) 2015/1480 amends several annexes to Directives 2004/107/EC and 2008/50/EC, focusing on ambient air quality, reference methods, and pollutants, but it does not address groundwater or its threshold valuescite32015L1480.
+- Other retrieved documents concern amendments to directives on water meters, marine pollution, and chemical safety, but none update annexes on threshold values for groundwater pollutants.
+
+**Sources:**
+- 32015L1480 - COMMISSION DIRECTIVE (EU) 2015/1480 - Amends annexes to air quality directives, not groundwater.
+- Other documents retrieved do not address groundwater threshold values or pollution directly.","GeneralQuality","Fail",,"Not answered: The agent response says it could not find any document that directly answers which EU act amends the rules for groundwater pollution by updating the annex on threshold values. It mentions related directives but states they do not address groundwater or threshold values for groundwater pollutants. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Fail","50","0/100 - Different meaning; The Expected response gives the exact EU act needed, but the Agent answer says it can't find it and talks about unrelated directives instead."
+"1d57cbd5-d5e8-4414-93e0-fd2056d4ea1f","Which EU directive amends the Council Directive relating to honey, notably clarifying the status of pollen?","CELEX 32014L0063 - Directive 2014/63/EU of the European Parliament and of the Council of 15 May 2014, amending Council Directive 2001/110/EC relating to honey.","The EU directive that amends the Council Directive relating to honey and clarifies the status of pollen is Directive 2014/63/EU of the European Parliament and of the Council. This directive specifically amends Council Directive 2001/110/EC relating to honey. It clarifies that pollen, being a natural constituent particular to honey, shall not be considered an ingredient within the meaning of Regulation (EU) No 1169/2011 on the provision of food information to consumers. The directive explains that pollen is naturally present in honey as a result of the activity of bees and is not deliberately added by food business operatorscite32014L0063.
+
+**Sources:**
+- 32014L0063 - DIRECTIVE 2014/63/EU OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - This directive amends Council Directive 2001/110/EC relating to honey and clarifies the status of pollen as not being an ingredient.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer gives the correct directive and adds extra details about pollen and regulations that aren't in the Expected response."
+"c7d3501c-0513-423a-b051-3d979f90cc4f","Which EU directive approximates Member States' laws on caseins and caseinates intended for human consumption and repeals an older 1983 directive?","CELEX 32015L2203 - Directive (EU) 2015/2203 of the European Parliament and of the Council of 25 November 2015 on caseins and caseinates intended for human consumption, repealing Council Directive 83/417/EEC.","The EU directive that approximates the laws of Member States on caseins and caseinates intended for human consumption and repeals the older 1983 directive is DIRECTIVE (EU) 2015/2203 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL. This directive specifically states that it is ""on the approximation of the laws of the Member States relating to caseins and caseinates intended for human consumption and repealing Council Directive 83/417/EEC."" It updates and replaces the 1983 directive to align with developments in food law and international standards, ensuring the free movement of these products while providing a high level of health protectioncite32015L2203.
+
+---
+
+**Sources:**
+- 32015L2203 - DIRECTIVE (EU) 2015/2203 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - This directive approximates Member States' laws on caseins and caseinates for human consumption and repeals Council Directive 83/417/EEC.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same information as the Expected response, just with more detail and explanation."
+"9334c286-98f2-47fe-b7c3-b9961ffaed1f","Which EU regulation codifies the common rules for exports of goods from the Union?","CELEX 32015R0479 - Regulation (EU) 2015/479 of the European Parliament and of the Council of 11 March 2015 on common rules for exports (codification).","The EU regulation that codifies the common rules for exports of goods from the Union is REGULATION (EU) 2015/479 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 11 March 2015 on common rules for exports (codification). This regulation lays down the legal framework for exports from the Union, stating that the exportation of products from the Union to third countries shall be free and not subject to any quantitative restriction, except for those restrictions applied in conformity with the regulation. It also establishes procedures for protective measures, surveillance, and the adoption of restrictions in exceptional circumstancescite32015R0479.
+
+---
+
+**Sources:**
+- 32015R0479 - REGULATION (EU) 2015/479 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - Codifies the common rules for exports of goods from the Union and sets out the legal framework for export procedures and restrictions.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer names the same regulation as the Expected response but adds extra details about what the regulation covers."
+"9fa3c9b6-5379-46de-bd97-8c0e495f2d02","Which 2015 Council Directive in the Finance domain adds a common minimum anti-abuse rule to the parent-subsidiary taxation Directive 2011/96/EU?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Directive
+- Policy domain: Finance","CELEX 32015L0121 - Council Directive (EU) 2015/121 of 27 January 2015, amending Directive 2011/96/EU on the common system of taxation applicable to parent companies and subsidiaries of different Member States by adding a common anti-abuse rule.","The 2015 Council Directive in the Finance domain that adds a common minimum anti-abuse rule to the parent-subsidiary taxation Directive 2011/96/EU is not directly identified in the retrieved documents. Among the 2015 Finance Directives, none explicitly mention amending Directive 2011/96/EU or introducing a common minimum anti-abuse rule to it. The closest match in the Finance policy domain for 2015 is COUNCIL DIRECTIVE (EU) 2015/652, but this directive concerns calculation methods and reporting requirements for fuel quality and does not relate to the parent-subsidiary taxation frameworkcite2015L0652.
+
+No retrieved document directly addresses the requested amendment to Directive 2011/96/EU in 2015 within the Finance policy domain.
+
+---
+
+**Sources:**
+- 2015L0652 - COUNCIL DIRECTIVE (EU) 2015/652 - Lays down calculation methods and reporting requirements for fuel quality; not related to parent-subsidiary taxation or anti-abuse rules.","GeneralQuality","Fail",,"Not answered: The agent response says it could not find the 2015 Council Directive that adds a common minimum anti-abuse rule to Directive 2011/96/EU. It mentions an alternative directive but clearly states it does not address the main question. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Fail","50","0/100 - Different meaning; The Expected response names the correct directive, but the Agent answer says it couldn't find it and talks about a different, unrelated directive instead."
+"529b1b6e-1426-4d07-b594-cf286f0af239","Which 2013 Directive in the Trade domain amends the batteries Directive 2006/66/EC as regards placing on the market of portable batteries containing cadmium and button cells containing mercury?
+
+Metadata filters (apply with AND):
+- Year: 2013
+- Document type: Directive
+- Policy domain: Trade","CELEX 32013L0056 - Directive 2013/56/EU of the European Parliament and of the Council of 20 November 2013, amending Directive 2006/66/EC on batteries and accumulators as regards the placing on the market of portable batteries containing cadmium (cordless power tools) and button cells with low mercury content.","The 2013 Directive in the Trade policy domain that amends the batteries Directive 2006/66/EC as regards the placing on the market of portable batteries containing cadmium and button cells containing mercury is:
+
+**DIRECTIVE 2013/56/EU OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 20 November 2013**. This Directive specifically amends Directive 2006/66/EC on batteries and accumulators and waste batteries and accumulators, addressing the placing on the market of portable batteries and accumulators containing cadmium intended for use in cordless power tools, and of button cells with low mercury content. It also repeals Commission Decision 2009/603/ECcite2013L0056.
+
+---
+
+**Sources:**
+- 2013L0056 - DIRECTIVE 2013/56/EU OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - This Directive amends Directive 2006/66/EC as regards the placing on the market of portable batteries containing cadmium and button cells containing mercury, matching all requested metadata and content criteria.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same Directive and details as the Expected response, just with a bit more background. Both answers match perfectly."
+"1796dc15-8be6-4547-be1b-46cb448b5559","Which 2014 Regulation in the Transport domain amends the EU Emissions Trading System Directive 2003/87/EC to limit aviation ETS coverage to flights within the European Economic Area (the 'stop the clock' approach)?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation
+- Policy domain: Transport","CELEX 32014R0421 - Regulation (EU) No 421/2014 of the European Parliament and of the Council of 16 April 2014, amending Directive 2003/87/EC, in view of the implementation by 2020 of an international agreement and pending that, limiting the EU ETS to flights within the EEA.","The 2014 Regulation in the Transport policy domain that amends the EU Emissions Trading System Directive 2003/87/EC to limit aviation ETS coverage to flights within the European Economic Area (the 'stop the clock' approach) is:
+
+**REGULATION (EU) No 421/2014 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 16 April 2014**. This Regulation specifically amends Directive 2003/87/EC to introduce a temporary derogation for flights to and from aerodromes located in countries outside the EEA, effectively limiting the EU ETS coverage for aviation to flights within the EEA for the period until 31 December 2016. This is the legislative implementation of the 'stop the clock' approach, as described in Article 28a of the amended Directivecite2014R0421.
+
+---
+
+**Sources:**
+- 2014R0421 - REGULATION (EU) No 421/2014 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - Amends Directive 2003/87/EC to limit aviation ETS coverage to intra-EEA flights, implementing the 'stop the clock' approach.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same regulation and main details as the Expected response, just with more explanation. The essential information matches."
+"1f7d48a1-c83a-4f1f-b308-553a3ee3a2f6","Which 2015 Council Directive lays down the calculation methods and reporting requirements for the greenhouse-gas intensity of petrol and diesel fuels under the fuel quality Directive 98/70/EC?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Directive","CELEX 32015L0652 - Council Directive (EU) 2015/652 of 20 April 2015, laying down calculation methods and reporting requirements pursuant to Article 7a of Directive 98/70/EC relating to the quality of petrol and diesel fuels.","The 2015 Council Directive that lays down the calculation methods and reporting requirements for the greenhouse-gas intensity of petrol and diesel fuels under the fuel quality Directive 98/70/EC is Council Directive (EU) 2015/652 of 20 April 2015. This Directive specifically establishes rules on calculation methods and reporting requirements in accordance with Directive 98/70/EC, relating to the quality of petrol and diesel fuels. It applies to fuels used to propel road vehicles, non-road mobile machinery, agricultural and forestry tractors, recreational craft when not at sea, and electricity for use in road vehicles. The Directive details the method for calculating the greenhouse-gas intensity of fuels and energy supplied (other than biofuels) and sets out the reporting obligations for suppliers and Member Statescite2015L0652.
+
+---
+
+**Sources:**
+- 2015L0652 - COUNCIL DIRECTIVE (EU) 2015/652 - Lays down calculation methods and reporting requirements for greenhouse-gas intensity of petrol and diesel fuels under Directive 98/70/EC.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer gives the correct directive and adds extra details about its scope and requirements, while the Expected response is more concise."
+"15f8dcdf-c029-440e-a394-c6f83a54b9d9","Which 2014 Regulation amends Regulation (EC) No 539/2001 on the visa lists, and which third country does it move to the visa-exempt list?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation
+- Policy domain: Geography","CELEX 32014R0259 - Regulation (EU) No 259/2014 of the European Parliament and of the Council of 3 April 2014, amending Regulation (EC) No 539/2001 by transferring the Republic of Moldova to the visa-exempt Annex II (for holders of biometric passports).","**Answer to Your Query**
+
+**2014 Regulation amending Regulation (EC) No 539/2001 on the visa lists:**
+- The relevant Regulation from 2014 that amends Regulation (EC) No 539/2001 and concerns the visa lists is not directly found in the retrieved documents that match all your metadata filters (Year: 2014, Document type: Regulation, Policy domain: Geography). The closest match in the ""Geography"" policy domain for 2014 is COMMISSION IMPLEMENTING REGULATION (EU) 2015/588, but this amends Implementing Regulation (EU) No 470/2014 on anti-dumping duties for solar glass from China, which is unrelated to visa listscite2015R0588.
+
+**No direct match for a 2014 Regulation amending Regulation (EC) No 539/2001 on visa lists and moving a third country to the visa-exempt list was found in the available documents that also fit your metadata filters.**
+
+**Closest Related Results:**
+- Other 2014 Regulations retrieved (e.g., REGULATION (EU) No 545/2014, No 659/2014, No 285/2014, No 802/2014) do not address amendments to Regulation (EC) No 539/2001 or the visa-exempt list, nor do they pertain to the Geography policy domain or visa policy.
+
+**Sources**
+- 2015R0588 - COMMISSION IMPLEMENTING REGULATION (EU) 2015/588 - Closest 2014/2015 Regulation in the Geography policy domain, but unrelated to visa lists or Regulation (EC) No 539/2001.
+
+**Note:** If you require information on a Regulation that amends Regulation (EC) No 539/2001 and moves a third country to the visa-exempt list, it is not present in the retrieved set matching your specified metadata. If you wish, I can broaden the search criteria or remove some metadata filters to attempt to locate a relevant document.","GeneralQuality","Fail",,"Not answered: The agent response says it could not find a 2014 Regulation amending Regulation (EC) No 539/2001 on visa lists or moving a third country to the visa-exempt list. It offers to broaden the search but does not provide the requested information. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Fail","50","0/100 - Different meaning; The Expected response gives the exact regulation and country, but the Agent answer says it couldn't find this information and talks about unrelated regulations instead."
+"ba24f443-313e-40d6-b0ca-a85749910171","Which 2015 Regulation (codification) in the Law domain sets out the measures the Union may take following a report adopted by the WTO Dispute Settlement Body on anti-dumping and anti-subsidy matters?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Regulation
+- Policy domain: Law","CELEX 32015R0476 - Regulation (EU) 2015/476 of the European Parliament and of the Council of 11 March 2015 on the measures that the Union may take following a report adopted by the WTO Dispute Settlement Body concerning anti-dumping and anti-subsidy matters (codification).","The 2015 Regulation (codification) in the Law domain that sets out the measures the Union may take following a report adopted by the WTO Dispute Settlement Body on anti-dumping and anti-subsidy matters is:
+
+**REGULATION (EU) 2015/476 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL of 11 March 2015 on the measures that the Union may take following a report adopted by the WTO Dispute Settlement Body concerning anti-dumping and anti-subsidy matters (codification)** (CELEX: 32015R0476).
+
+This Regulation provides that, whenever the WTO Dispute Settlement Body adopts a report concerning a Union measure taken pursuant to the relevant anti-dumping or anti-subsidy regulations, the Commission may repeal, amend, or adopt other special measures with respect to those measures to bring the Union into conformity with the recommendations and rulings contained in the report. The Regulation also allows the Commission to suspend or review such measures as appropriatecite32015R0476.
+
+---
+
+**Sources:**
+- 32015R0476 - REGULATION (EU) 2015/476 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - Sets out the measures the Union may take following a WTO Dispute Settlement Body report on anti-dumping and anti-subsidy matters (codification).","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer gives the same Regulation as the Expected response and adds a helpful summary, but the main information matches."
+"41bb02e0-0f4c-467d-9399-b3bedd4ca59e","Which 2013 Council Directive (Euratom) in the Science domain lays down requirements protecting the health of the general public regarding radioactive substances in water intended for human consumption, and which radionuclides does it bring into scope?
+
+Metadata filters (apply with AND):
+- Year: 2013
+- Document type: Directive
+- Policy domain: Science","CELEX 32013L0051 - Council Directive 2013/51/Euratom of 22 October 2013. It sets parametric values and monitoring for radioactive substances in drinking water, including radon, tritium and an indicative dose.","No 2013 Council Directive (Euratom) in the Science policy domain matching your criteria was retrieved from the available documents. The search did not return any Council Directive (Euratom) from 2013 that lays down requirements for protecting public health regarding radioactive substances in water intended for human consumption, nor did it provide details on radionuclides brought into scope. If you need information on a different year, document type, or policy domain, please specify.","GeneralQuality","Fail",,"Not answered: The agent response said it could not provide the requested information about the 2013 Council Directive (Euratom) and did not offer any relevant alternative. It did not attempt to answer the main question. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Fail","50","0/100 - Different meaning; The Expected response gives the exact directive and details, but the Agent answer says nothing was found and suggests changing the search, so it doesn't answer the question."
+"ef97c310-b746-41ff-a432-4f67fdbb4454","Which 2015 Commission Directive in the Trade domain adds a specific limit value for formamide to Appendix C of the toy safety Directive 2009/48/EC?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Directive
+- Policy domain: Trade","CELEX 32015L2115 - Commission Directive (EU) 2015/2115 of 23 November 2015, amending Appendix C to Annex II to Directive 2009/48/EC on the safety of toys to adopt a specific limit value for formamide.","The 2015 Commission Directive in the Trade domain that adds a specific limit value for formamide to Appendix C of the toy safety Directive 2009/48/EC is COMMISSION DIRECTIVE (EU) 2015/2115. This Directive specifically amends Appendix C to Annex II of Directive 2009/48/EC by introducing a limit value for formamide (CAS number 75-12-7) in foam toy materials. The new entry sets an emission limit of 20 μg/m³ after a maximum of 28 days from the commencement of emission testing for foam toy materials containing more than 200 mg/kg of formamidecite32015L2115.
+
+**Sources:**
+- 32015L2115 - COMMISSION DIRECTIVE (EU) 2015/2115 - This Directive is directly relevant as it amends Directive 2009/48/EC to add a specific limit value for formamide in toys.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same directive as the Expected response and adds some extra details, but the main information matches perfectly."
+"c189ff2b-8e5a-4080-a67f-2816d35122f4","Which 2015 CFSP Decision appoints the European Union Special Representative for Central Asia, who is appointed, and until when?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Decision
+- Policy domain: Geography","CELEX 32015D0598 - Council Decision (CFSP) 2015/598 of 15 April 2015 appoints Mr Peter Burian as the EU Special Representative for Central Asia until 30 April 2016.","**2015 CFSP Decision Appointing the EU Special Representative for Central Asia**
+
+- The 2015 CFSP Decision that appoints the European Union Special Representative (EUSR) for Central Asia is **COUNCIL DECISION (CFSP) 2015/598** of 15 April 2015.
+- The person appointed as EUSR for Central Asia is **Mr Peter BURIAN**.
+- The appointment is valid **until 30 April 2016**. The Council may decide to terminate the mandate earlier, based on an assessment by the Political and Security Committee and a proposal from the High Representative of the Union for Foreign Affairs and Security Policycite32015D0598.
+
+---
+
+**Sources**
+- 32015D0598 - COUNCIL DECISION (CFSP) 2015/598 - This document directly appoints Mr Peter Burian as the EU Special Representative for Central Asia until 30 April 2016 and provides the relevant details on the mandate and duration.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives all the same facts as the Expected response, just with a bit more detail, but nothing important is missing or changed."
+"e0ce5d60-b560-43cb-b6a9-08316d8ff9e5","Two 2014 Regulations adjust the remuneration and pensions of EU officials - one with effect from 1 July 2011 and one from 1 July 2012. Which applies from 1 July 2012, and what adjustment percentage does it set?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation
+- Policy domain: Employment and working conditions","CELEX 32014R0423 - Regulation (EU) No 423/2014 of 16 April 2014 adjusts remuneration and pensions with effect from 1 July 2012, setting an adjustment of 0,8 %. (The 1 July 2011 adjustment, set at 0 %, is Regulation (EU) No 422/2014.)","**Regulation Applying from 1 July 2012 and Adjustment Percentage**
+
+The 2014 Regulation that adjusts the remuneration and pensions of EU officials with effect from 1 July 2012 is:
+
+- **REGULATION (EU) No 423/2014 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL**
+
+This Regulation sets the adjustment of remuneration and pensions in Belgium and Luxembourg to **0.8% for 2012**. The adjustment is part of a global approach to settle disputes regarding the 2011 and 2012 adjustments, which also involved an adjustment of 0% for 2011. The Regulation provides detailed tables and coefficients for the new salary and pension levels, all effective from 1 July 2012cite32014R0423.
+
+**Sources**
+- 32014R0423 - REGULATION (EU) No 423/2014 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - Adjusts remuneration and pensions of EU officials with effect from 1 July 2012 and sets the adjustment percentage at 0.8% for 2012.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same regulation and adjustment percentage as the Expected response, with only minor extra details."
+"40006fc8-4961-4b14-a4c0-8a18d088e670","Several 2013 Directives add active substances to the biocidal products Directive 98/8/EC. Which one includes Alkyl (C12-16) dimethylbenzyl ammonium chloride as a wood-preservative (product-type 8) active substance, and which Member State was Rapporteur?
+
+Metadata filters (apply with AND):
+- Year: 2013
+- Document type: Directive","CELEX 32013L0007 - Commission Directive 2013/7/EU of 21 February 2013 adds Alkyl (C12-16) dimethylbenzyl ammonium chloride to Annex I of Directive 98/8/EC for product-type 8 (wood preservatives). Italy was the Rapporteur Member State.","The 2013 Directive that adds Alkyl (C12-16) dimethylbenzyl ammonium chloride as a wood-preservative (product-type 8) active substance to Directive 98/8/EC is:
+
+- **COMMISSION DIRECTIVE 2013/7/EU** (CELEX: 32013L0007)
+
+This Directive specifically amends Directive 98/8/EC to include Alkyl (C12-16) dimethylbenzyl ammonium chloride as an active substance for use in product-type 8 (wood preservatives). According to the Directive, Italy was designated as the Rapporteur Member State and submitted the competent authority report to the Commissioncite32013L0007.
+
+---
+
+**Sources:**
+- 32013L0007 - COMMISSION DIRECTIVE 2013/7/EU - This Directive includes Alkyl (C12-16) dimethylbenzyl ammonium chloride as a wood-preservative (product-type 8) active substance and identifies Italy as the Rapporteur Member State.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same information as the Expected response, just with a bit more detail and formatting."
+"9aa3d786-823e-4ab2-874d-e507d14ed68b","Which act in the corpus sets out the data subject's right to erasure (the 'right to be forgotten') of personal data?","The corpus contains no data-protection instrument; no document establishes a right to erasure / 'right to be forgotten'. The agent should state that the available documents do not precisely answer this question and should not invent a CELEX id.","The act in the corpus that most directly addresses the data subject's right to erasure (the ""right to be forgotten"") of personal data is COUNCIL REGULATION (EU) No 1417/2013. This regulation states that persons to whom a laissez-passer is issued ""shall have the right to verify the personal data contained in it, pursuant to Regulation (EC) No 45/2001, and, where appropriate, to ask for its rectification or erasure."" This establishes a right for individuals to request the erasure of their personal data, aligning with the concept of the ""right to be forgotten""cite32013R1417.
+
+No other document in the retrieved set directly sets out the right to erasure of personal data in the context of general data protection law (such as the GDPR), but COUNCIL REGULATION (EU) No 1417/2013 is the closest and most relevant in the corpus.
+
+---
+
+**Sources:**
+
+- 32013R1417 - COUNCIL REGULATION (EU) No 1417/2013 - Sets out the right of individuals to request rectification or erasure of their personal data in the context of laissez-passer documents, directly referencing the right to erasure.","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Fail","50","0/100 - Different meaning; The Agent answer says a specific act sets out the right to erasure, but the Expected response says no document in the corpus does this. The Agent answer is incorrect."
+"1aa73ab7-6f49-4048-9d0c-10c255a68667","Which 2015 Regulation sets the CO2 emission performance standards for new passenger cars or light commercial vehicles?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Regulation","No Regulation in the corpus sets CO2 emission performance standards for cars or vans (the standard-setting Regulations 443/2009 and 510/2011 are not present; only a few Decisions approve eco-innovations under that regime). The agent should state that the available documents do not precisely answer this question.","No 2015 Regulation setting CO2 emission performance standards for new passenger cars or light commercial vehicles was found in the retrieved documents. The closest relevant document is a 2015 Commission Implementing Decision (EU) 2015/158, which approves innovative technologies for reducing CO2 emissions from passenger cars pursuant to Regulation (EC) No 443/2009, but this is a Decision, not a Regulation, and it does not itself set the emission performance standards. The Decision refers to Regulation (EC) No 443/2009 as the act setting the standards, but that Regulation is from 2009, not 2015cite32015D0158.
+
+No 2015 Regulation matching your criteria was found in the corpus.
+
+Sources:
+- 32015D0158 - COMMISSION IMPLEMENTING DECISION (EU) 2015/158 - Closest relevant act, refers to the 2009 Regulation as the source of the standards, but is not itself a Regulation or from 2015.","GeneralQuality","Fail",,"Not answered: The agent response says it could not find any 2015 Regulation that sets CO2 emission performance standards for new passenger cars or light commercial vehicles. It mentions a related Decision but clearly states it does not answer the main question. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same information as the Expected response, explaining that no 2015 Regulation matching the criteria was found."
+"cb172df0-07ef-4465-b848-cafa5a097a93","In Regulation (EU) No 421/2014 amending the EU Emissions Trading System for aviation, what per-tonne CO2 price applies to flights to and from third countries?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation
+- Policy domain: Transport","Regulation (EU) No 421/2014 sets no per-tonne CO2 price; it limits the aviation ETS to flights within the EEA and exempts (defers) extra-EEA flights, rather than fixing a price. The agent should state that the document does not precisely answer this question.","**Regulation (EU) No 421/2014 and the Per-Tonne CO2 Price for Flights to and from Third Countries**
+
+**Key Findings:**
+- Regulation (EU) No 421/2014 amends the EU Emissions Trading System (EU ETS) for aviation, specifically in the context of international negotiations and the implementation of a global market-based measure for aviation emissions.
+- The Regulation introduces a temporary derogation for flights to and from aerodromes located in countries outside the European Economic Area (EEA) for the period from 1 January 2013 to 31 December 2016. During this period, Member States are to take no action against aircraft operators in respect of emissions from such flights.
+- The document does not specify a per-tonne CO2 price for flights to and from third countries. Instead, it suspends the requirement for operators to surrender allowances for these flights during the derogation period. The allocation and auctioning of allowances, as well as the use of revenues, are discussed, but no explicit price per tonne of CO2 is set for these international flights in the Regulation itself.
+- The methods for allocation and issuance of allowances remain those established under Directive 2003/87/EC, which are based on verified tonne-kilometre data, but the actual market price of allowances is determined by the trading system and not fixed in the Regulation.
+
+**Conclusion:**
+Regulation (EU) No 421/2014 does not set a specific per-tonne CO2 price for flights to and from third countries. Instead, it temporarily exempts these flights from the EU ETS surrender obligation for the period up to 31 December 2016, meaning no per-tonne price applies under the EU ETS for these routes during that timecite32014R0421.
+
+---
+
+**Sources:**
+- 32014R0421 - REGULATION (EU) No 421/2014 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - Relevant as it directly amends the EU ETS for aviation and addresses the treatment of flights to and from third countries, including the absence of a per-tonne CO2 price for these flights during the derogation period.","GeneralQuality","Fail",,"Not answered: The agent response explains that the regulation does not specify a per-tonne CO2 price for flights to and from third countries and states that these flights are temporarily exempt from the surrender obligation. The agent response does not provide alternative information that answers the main question. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer matches the Expected response, explaining that the regulation does not set a per-tonne CO2 price for flights to and from third countries and exempts them from the ETS."
+"19490071-21d4-4063-8ded-11bc70993b05","Among the Directives that add active substances to the biocidal products Directive 98/8/EC, which one adds glyphosate, and for which product-type?
+
+Metadata filters (apply with AND):
+- Year: 2013
+- Document type: Directive","No corpus Directive adds glyphosate to Directive 98/8/EC; the 98/8/EC amending Directives in the corpus add other substances (e.g. pyriproxyfen, Alkyl (C12-16) dimethylbenzyl ammonium chloride). The agent should state that the available documents do not precisely answer this question.","After reviewing all 2013 Directives retrieved, none of them add glyphosate as an active substance to Directive 98/8/EC on biocidal products. The 2013 Directives found address other topics, such as the status of Mayotte, free movement of goods, and batteries, but do not mention glyphosate or its addition to the biocidal products Directive. Therefore, based on the available documents, there is no evidence that a 2013 Directive added glyphosate to Directive 98/8/EC for any product-type.
+
+Sources:
+- 2013L0064 - COUNCIL DIRECTIVE 2013/64/EU - Amends Directives regarding the status of Mayotte; does not address biocidal products or glyphosate.
+- 2013L0015 - COUNCIL DIRECTIVE 2013/15/EU - Adapts directives for Croatia's accession; unrelated to biocidal products or glyphosate.
+- 2013L0056 - DIRECTIVE 2013/56/EU OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - Amends Directive 2006/66/EC on batteries; does not concern biocidal products or glyphosate.","GeneralQuality","Fail",,"Not answered: The agent response says it could not find any 2013 Directive that adds glyphosate to Directive 98/8/EC, and provides no alternative information that answers the main question. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer says, like the Expected response, that no 2013 Directive adds glyphosate to Directive 98/8/EC and that the documents don't answer the question directly."
+"f438976b-f0c2-409d-ae9f-2484de88d8fe","What total euro budget does Decision No 1386/2013/EU (the General Union Environment Action Programme to 2020) allocate to each Member State?
+
+Metadata filters (apply with AND):
+- Year: 2013
+- Document type: Decision
+- Policy domain: Finance","Decision No 1386/2013/EU sets out priority objectives for the 7th Environment Action Programme; it allocates no euro budget to Member States. The agent should state that the document does not precisely answer this question.","**Requested Budget Allocation in Decision No 1386/2013/EU**
+
+After reviewing the content of Decision No 1386/2013/EU (the General Union Environment Action Programme to 2020), the document sets out the strategic objectives and policy framework for the EU’s environment action up to 2020. However, it does not specify or allocate a total euro budget to each Member State. The Decision focuses on priority objectives, implementation responsibilities, and monitoring mechanisms, but there is no annex, article, or section that details financial distribution or a breakdown of euro amounts per Member State.
+
+**Key Points from the Document:**
+- The Decision establishes the 7th Environment Action Programme (EAP) and its objectives.
+- It outlines the roles of the Commission, Member States, and other stakeholders in achieving these objectives.
+- There is reference to the need for “adequate investments” and the importance of effective use of funds, but no concrete figures or allocations are provided for individual Member States.
+- The document does not contain tables, annexes, or articles with financial distribution data.
+
+**Conclusion:**
+Decision No 1386/2013/EU does not allocate a total euro budget to each Member State. It is a policy and strategy document, not a financial regulation or funding decisioncite32013D1386.
+
+---
+
+**Sources:**
+- 32013D1386 - DECISION No 1386/2013/EU OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL - This is the relevant legal act establishing the General Union Environment Action Programme to 2020, but it contains no Member State-specific budget allocation.","GeneralQuality","Fail",,"Not answered: The agent response says it cannot provide the total euro budget allocated to each Member State because the document does not include this information. The agent explains that the Decision is a policy document and does not contain financial distribution details. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same main information as the Expected response: the Decision does not allocate a euro budget to Member States."

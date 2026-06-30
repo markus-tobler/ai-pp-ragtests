@@ -30,6 +30,27 @@ With 2+ runs you also get `data/eval/results/comparison.csv` (+ `.json`): an
 Loose CSVs placed directly in this folder (no subfolder) are treated as one run
 labeled `default` (override with `--run-name`).
 
+## Multiple files per agent (merging)
+
+Several CSVs in one run can map to the **same agent** — e.g. you split a test set
+across exports, or re-ran one agent and exported again. Their rows are **merged**
+into that agent's single record (`<agent-slug>.json`, one row in `summary.csv`).
+
+Rows are de-duplicated by **question text**; if the same question appears in more
+than one file, the **later file wins**. Files are ordered by name and exports are
+timestamped (`... 260628_1822.csv`), so the **newest export** of a question
+overrides the older one — drop a fresh re-export next to the old one to update it.
+
+```
+data/eval/exports/
+  gpt-4o/
+    Evaluate MultiEURLEX Classic MCP 260628_1000.csv   <- older rows
+    Evaluate MultiEURLEX Classic MCP 260629_1500.csv   <- newer rows win on conflict
+```
+
+Both files above match `MultiEURLEX Classic MCP` → merged into one record; the
+console prints `[merged 2 files]` and `summary.csv`'s `source_files` lists both.
+
 This is the interim path while the maker-evaluation **REST API is unavailable**
 in this environment (the `makerevaluation/*` routes 404 `RouteNotFound` — a
 Microsoft Preview rollout gap; `scripts/run_agent_evals.py` is correct and will

@@ -1,0 +1,79 @@
+"# Import the test cases you want to use to test your agent"
+"#"
+"# Limitations"
+"# - maximum of 100 questions"
+"# - maximum 500 characters per question including spaces"
+"#"
+"# Imported columns"
+"# question - User question that the agent will answer."
+"# expectedResponse - Expected responses to run match, similarity and compare meaning test cases."
+"#"
+"# Test methods"
+"# - Test methods are not included in this template. You can configure test methods after importing the test cases."
+"# - Initially, the default test method will be added to the imported test set."
+"#"
+"# For more information, see the documentation."
+"#"
+"question","expectedResponse"
+"What does the 2015 EU Decision concerning restrictive measures in view of the situation in Libya change?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Decision","CELEX 32015D0382 - Council Decision (CFSP) 2015/382 of 6 March 2015 amends Decision 2011/137/CFSP, extending the criteria for the travel ban and asset freeze measures (implementing UN Security Council Resolution 2174 (2014))."
+"Which 2013 Directive in the Trade domain postpones the transposition and application dates of the Solvency II Directive?
+
+Metadata filters (apply with AND):
+- Year: 2013
+- Document type: Directive
+- Policy domain: Trade","CELEX 32013L0058 - Directive 2013/58/EU of the European Parliament and of the Council of 11 December 2013, amending Directive 2009/138/EC (Solvency II) as regards the dates of transposition, application and the repeal of Solvency I directives."
+"Which 2015 Transport Directive updates the EU rules on port reception facilities for ship-generated waste to reflect the revised MARPOL Annex V garbage categories?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Directive
+- Policy domain: Transport","CELEX 32015L2087 - Commission Directive (EU) 2015/2087 of 18 November 2015, amending Annex II to Directive 2000/59/EC on port reception facilities for ship-generated waste and cargo residues."
+"Which 2014 EU Regulation lays down the rules on the information that Member States must send under the European Maritime and Fisheries Fund?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation","CELEX 32014R1243 - Commission Implementing Regulation (EU) No 1243/2014 of 20 November 2014, adopted pursuant to Regulation (EU) No 508/2014 on the European Maritime and Fisheries Fund."
+"Which 2014 EU Regulation amends Regulation (EU) No 965/2012 on the technical requirements and administrative procedures for air operations?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation","CELEX 32014R0379 - Commission Regulation (EU) No 379/2014 of 7 April 2014, amending Regulation (EU) No 965/2012 pursuant to the civil aviation Regulation (EC) No 216/2008."
+"Which 2015 Council Directive in the Finance domain adds a common minimum anti-abuse rule to the parent-subsidiary taxation Directive 2011/96/EU?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Directive
+- Policy domain: Finance","CELEX 32015L0121 - Council Directive (EU) 2015/121 of 27 January 2015, amending Directive 2011/96/EU on the common system of taxation applicable to parent companies and subsidiaries of different Member States by adding a common anti-abuse rule."
+"Which 2013 Directive in the Trade domain amends the batteries Directive 2006/66/EC as regards placing on the market of portable batteries containing cadmium and button cells containing mercury?
+
+Metadata filters (apply with AND):
+- Year: 2013
+- Document type: Directive
+- Policy domain: Trade","CELEX 32013L0056 - Directive 2013/56/EU of the European Parliament and of the Council of 20 November 2013, amending Directive 2006/66/EC on batteries and accumulators as regards the placing on the market of portable batteries containing cadmium (cordless power tools) and button cells with low mercury content."
+"Which 2014 Regulation in the Transport domain amends the EU Emissions Trading System Directive 2003/87/EC to limit aviation ETS coverage to flights within the European Economic Area (the 'stop the clock' approach)?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation
+- Policy domain: Transport","CELEX 32014R0421 - Regulation (EU) No 421/2014 of the European Parliament and of the Council of 16 April 2014, amending Directive 2003/87/EC, in view of the implementation by 2020 of an international agreement and pending that, limiting the EU ETS to flights within the EEA."
+"Which 2015 Council Directive lays down the calculation methods and reporting requirements for the greenhouse-gas intensity of petrol and diesel fuels under the fuel quality Directive 98/70/EC?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Directive","CELEX 32015L0652 - Council Directive (EU) 2015/652 of 20 April 2015, laying down calculation methods and reporting requirements pursuant to Article 7a of Directive 98/70/EC relating to the quality of petrol and diesel fuels."
+"Which 2014 Regulation amends Regulation (EC) No 539/2001 on the visa lists, and which third country does it move to the visa-exempt list?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation
+- Policy domain: Geography","CELEX 32014R0259 - Regulation (EU) No 259/2014 of the European Parliament and of the Council of 3 April 2014, amending Regulation (EC) No 539/2001 by transferring the Republic of Moldova to the visa-exempt Annex II (for holders of biometric passports)."
+"Which 2015 Regulation (codification) in the Law domain sets out the measures the Union may take following a report adopted by the WTO Dispute Settlement Body on anti-dumping and anti-subsidy matters?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Regulation
+- Policy domain: Law","CELEX 32015R0476 - Regulation (EU) 2015/476 of the European Parliament and of the Council of 11 March 2015 on the measures that the Union may take following a report adopted by the WTO Dispute Settlement Body concerning anti-dumping and anti-subsidy matters (codification)."

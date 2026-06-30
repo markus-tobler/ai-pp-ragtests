@@ -16,7 +16,7 @@ Data layout consumed (one run = one sub-directory of the results root):
 
     summary.json:
         { runLabel, generatedUtc,
-          agents: [ { agent, bot_id, source_file,
+          agents: [ { agent, bot_id, source_files,
                       summary: { totalCases, scoredCases, passedCases, failedCases,
                                  errorCases, passRate,
                                  methods: { <Method>: { Pass, Fail, Error } } } } ],

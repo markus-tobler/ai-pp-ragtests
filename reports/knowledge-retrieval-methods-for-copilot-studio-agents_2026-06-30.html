@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<style>
+:root {
+  --navy:      #003854;
+  --navy2:     #00243a;
+  --white:     #FFFFFF;
+  --surf:      #F5F7FA;
+  --s3:        #D4DCE1;
+  --s4:        #EAEEF1;
+  --muted:     #A7BBC5;
+  --text:      #1a3040;
+  --text2:     #4a6878;
+  --p1:        #554596;
+  --p2:        #E83181;
+  --p3:        #F6A424;
+  --grad:      linear-gradient(135deg, #554596 0%, #E83181 50%, #F6A424 100%);
+  --grad2:     linear-gradient(135deg, #3d3372 0%, #c52470 55%, #d48a1a 100%);
+  --card-dk:   rgba(255,255,255,0.07);
+  --font:      'Segoe UI', 'Source Sans Pro', sans-serif;
+  --r:         16px;
+  --r-sm:      8px;
+  --shadow:    0 4px 24px rgba(0,56,84,0.10);
+  --shadow-md: 0 8px 40px rgba(0,56,84,0.15);
+  --shadow-lg: 0 20px 60px rgba(0,56,84,0.18);
+  --nav-h:     68px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.6;
+  font-size: 0.92rem;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 { font-weight: 700; font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.1; }
+h2 { font-weight: 700; font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; color: var(--navy); }
+h3 { font-weight: 600; font-size: 1.1rem; color: var(--navy); }
+p  { font-weight: 400; }
+a  { color: inherit; text-decoration: none; }
+
+/* ---------- Animations ---------- */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.3); }
+}
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes barSlide {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.js-ready .reveal.visible { opacity: 1; transform: translateY(0); }
+.js-ready .reveal-delay-1 { transition-delay: 0.1s; }
+.js-ready .reveal-delay-2 { transition-delay: 0.2s; }
+.js-ready .reveal-delay-3 { transition-delay: 0.3s; }
+.js-ready .reveal-delay-4 { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .js-ready .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* ---------- Print ---------- */
+@media print {
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .js-ready .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .nav { display: none !important; }
+  body { padding-top: 0 !important; }
+  section, .card, .stat-card, table, .callout,
+  .flow-step, .summary-box { page-break-inside: avoid; break-inside: avoid; }
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: var(--text2);
+  }
+  .nav a::after, .footer a::after { content: none !important; }
+  .hero { min-height: auto !important; padding: 48px 0 !important; }
+  * { box-shadow: none !important; }
+  .hero-bg-gradient, .hero-pattern-overlay { display: none !important; }
+  .hero-badge-dot { animation: none !important; }
+}
+
+/* ---------- Nav ---------- */
+.nav {
+  position: fixed; top: 0; width: 100%; height: var(--nav-h);
+  backdrop-filter: blur(12px);
+  background: rgba(0,36,58,0.96);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; z-index: 100;
+}
+.nav-logo { display: inline-flex; align-items: center; line-height: 1; text-decoration: none; }
+.nav-logo svg { height: 28px; width: auto; display: block; }
+.nav-links { list-style: none; display: flex; gap: 26px; align-items: center; }
+.nav-links a {
+  color: rgba(255,255,255,0.82); font-size: 0.82rem; font-weight: 500;
+  letter-spacing: 0.02em; transition: color 0.2s;
+}
+.nav-links a:hover { color: #fff; }
+.nav-cta {
+  background: var(--grad); color: #fff; font-weight: 600; font-size: 0.82rem;
+  padding: 9px 18px; border-radius: 20px; transition: transform 0.2s, box-shadow 0.2s;
+}
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(232,49,129,0.4); }
+@media (max-width: 880px) { .nav-links { display: none; } }
+
+/* ---------- Layout ---------- */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+section { padding: 84px 0; }
+.section-alt { background: var(--surf); }
+.section-dark { background: var(--navy); color: #fff; }
+
+.sec-head { margin-bottom: 40px; }
+.sec-label {
+  color: var(--p2); text-transform: uppercase; letter-spacing: 0.15em;
+  font-size: 0.75rem; font-weight: 700; display: block; margin-bottom: 10px;
+}
+.section-dark .sec-label { color: var(--p3); }
+.sec-bar {
+  height: 3px; width: 48px; background: var(--grad);
+  transform-origin: left; animation: barSlide 0.6s ease both 0.3s;
+  margin-top: 14px; border-radius: 2px;
+}
+.sec-intro { color: var(--text2); max-width: 760px; margin-top: 18px; font-size: 0.98rem; }
+.section-dark .sec-intro { color: var(--muted); }
+
+/* ---------- Hero ---------- */
+.hero {
+  min-height: 100vh;
+  background: var(--navy2);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: calc(var(--nav-h) + 40px) 0 40px;
+  color: #fff;
+}
+.hero-bg-gradient {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(85,69,150,0.35) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(232,49,129,0.2) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 20%, rgba(246,164,36,0.12) 0%, transparent 55%);
+}
+.hero-pattern-overlay {
+  position: absolute; inset: 0; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-content { position: relative; z-index: 2; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+  padding: 7px 16px; border-radius: 20px; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.04em; animation: fadeUp 0.6s ease both;
+}
+.hero-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--p2); animation: pulse 2s infinite; }
+.hero-eyebrow {
+  color: var(--muted); font-size: 0.9rem; letter-spacing: 0.04em;
+  margin-top: 26px; animation: fadeUp 0.7s 0.05s ease both;
+}
+.hero h1 { margin-top: 12px; max-width: 16ch; animation: fadeUp 0.7s 0.10s ease both; }
+.hero h1 em {
+  font-style: normal;
+  background: var(--grad); background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s ease infinite;
+}
+.hero-lead {
+  margin-top: 22px; max-width: 64ch; color: rgba(255,255,255,0.85);
+  font-size: 1.05rem; animation: fadeUp 0.7s 0.20s ease both;
+}
+.hero-actions { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.7s 0.30s ease both; }
+.btn-primary {
+  background: var(--grad); color: #fff; font-weight: 600; font-size: 0.92rem;
+  padding: 13px 26px; border-radius: 26px; transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,49,129,0.45); }
+.btn-secondary {
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2);
+  color: #fff; font-weight: 600; font-size: 0.92rem; padding: 13px 26px; border-radius: 26px;
+  transition: background 0.2s;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.14); }
+.hero-stats {
+  margin-top: 56px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+  max-width: 720px; animation: fadeUp 0.7s 0.40s ease both;
+}
+.hero-stat-num {
+  font-size: clamp(2.1rem, 4vw, 3rem); font-weight: 800; line-height: 1;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-stat-label { color: var(--muted); font-size: 0.8rem; margin-top: 8px; letter-spacing: 0.02em; }
+@media (max-width: 680px) { .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 22px; } }
+
+/* ---------- Stat cards ---------- */
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.stat-card {
+  background: var(--s4); border-radius: var(--r-sm); padding: 26px 24px;
+  border-top: 3px solid var(--p2); box-shadow: var(--shadow);
+}
+.stat-num {
+  font-size: clamp(2.3rem, 5vw, 3.4rem); font-weight: 800; line-height: 1;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.stat-label { font-size: 0.86rem; color: var(--text2); margin-top: 10px; }
+.stat-sub { font-size: 0.78rem; color: var(--text2); margin-top: 4px; opacity: 0.85; }
+@media (max-width: 760px) { .stat-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Card grid ---------- */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 880px) { .grid-3 { grid-template-columns: 1fr; } .grid-2 { grid-template-columns: 1fr; } }
+.card {
+  background: var(--s4); border-top: 3px solid var(--p2); border-radius: var(--r-sm);
+  padding: 24px; box-shadow: var(--shadow); transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.card h3 { margin-bottom: 10px; }
+.card p { font-size: 0.88rem; color: var(--text2); }
+.section-dark .card { background: var(--card-dk); border-top-color: var(--p3); }
+.section-dark .card h3 { color: #fff; }
+.section-dark .card p { color: var(--muted); }
+.card-kicker {
+  display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--p2); margin-bottom: 8px;
+}
+.section-dark .card-kicker { color: var(--p3); }
+
+/* ---------- Tables ---------- */
+.table-scroll { overflow-x: auto; border-radius: var(--r-sm); box-shadow: var(--shadow); }
+table.data-table { width: 100%; border-collapse: collapse; background: #fff; font-size: 0.86rem; min-width: 560px; }
+.data-table thead { background: var(--navy); color: #fff; }
+.data-table th { text-align: left; padding: 13px 16px; font-weight: 600; font-size: 0.8rem; letter-spacing: 0.02em; white-space: nowrap; }
+.data-table th.num, .data-table td.num { text-align: right; }
+.data-table td { padding: 12px 16px; border-bottom: 1px solid var(--s3); }
+.data-table tbody tr:nth-child(even) { background: var(--surf); }
+.data-table tbody tr { transition: background 0.15s; }
+.data-table tbody tr:hover { background: var(--s4); }
+.data-table td.agent { font-weight: 600; color: var(--navy); white-space: nowrap; }
+.data-table .best { color: var(--p2); font-weight: 700; }
+.data-table .low { color: var(--text2); }
+.cell-e { color: var(--p3); font-weight: 700; font-size: 0.78rem; }
+
+/* ---------- Callout ---------- */
+.callout {
+  border-left: 3px solid var(--p3); background: var(--s4);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0; padding: 18px 22px; margin-top: 26px;
+}
+.callout p { font-size: 0.9rem; color: var(--text); }
+.callout strong { color: var(--navy); }
+.section-dark .callout { background: rgba(255,255,255,0.06); }
+.section-dark .callout p { color: #eaf2f6; }
+.section-dark .callout strong { color: #fff; }
+
+/* ---------- Summary box ---------- */
+.summary-box {
+  background: var(--navy); color: #fff; border-radius: var(--r); padding: 36px 40px;
+  display: flex; justify-content: space-between; align-items: center; gap: 30px;
+  box-shadow: var(--shadow-md); flex-wrap: wrap; margin-top: 36px;
+}
+.summary-box .sb-text { max-width: 60ch; }
+.summary-box .sb-text h3 { color: #fff; font-size: 1.25rem; margin-bottom: 8px; }
+.summary-box .sb-text p { color: var(--muted); font-size: 0.9rem; }
+.summary-box .sb-num {
+  font-size: clamp(2.6rem, 6vw, 4rem); font-weight: 800; line-height: 1; white-space: nowrap;
+  background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Pills ---------- */
+.pill {
+  display: inline-flex; align-items: center; border-radius: 20px; padding: 3px 11px;
+  font-size: 0.72rem; background: #fff; border: 1px solid var(--s3); color: var(--text2);
+  margin: 2px 3px 2px 0; white-space: nowrap;
+}
+.pill-fail { border-color: rgba(232,49,129,0.45); color: var(--p2); background: rgba(232,49,129,0.06); }
+.pill-err { border-color: rgba(246,164,36,0.5); color: #b9760a; background: rgba(246,164,36,0.08); }
+
+/* ---------- Tier badge ---------- */
+.tier-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 7px; font-weight: 800; font-size: 0.82rem;
+  color: #fff; background: var(--grad);
+}
+
+/* ---------- Grouped bar chart ---------- */
+.chart-card {
+  background: #fff; border-radius: var(--r); padding: 28px 26px 20px; box-shadow: var(--shadow);
+  margin-bottom: 28px; border: 1px solid var(--s3);
+}
+.chart-title { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.chart-note { font-size: 0.78rem; color: var(--text2); margin-bottom: 22px; }
+.legend { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 18px; }
+.legend-item { display: inline-flex; align-items: center; gap: 7px; font-size: 0.78rem; color: var(--text2); font-weight: 500; }
+.legend-swatch { width: 13px; height: 13px; border-radius: 3px; }
+
+.gchart-scroll { overflow-x: auto; }
+.gchart {
+  display: flex; align-items: flex-end; gap: 4px; height: 300px;
+  padding: 0 0 0 38px; position: relative; min-width: 560px;
+}
+.gchart-grid { position: absolute; inset: 0 0 0 38px; pointer-events: none; }
+.gchart-grid span {
+  position: absolute; left: 0; right: 0; border-top: 1px dashed var(--s3);
+  font-size: 0.68rem; color: var(--muted);
+}
+.gchart-grid span b { position: absolute; left: -38px; top: -8px; font-weight: 400; }
+.bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
+.bars { display: flex; align-items: flex-end; gap: 5px; height: 270px; width: 100%; justify-content: center; }
+.bar {
+  width: 26px; border-radius: 4px 4px 0 0; position: relative;
+  transform-origin: bottom; animation: barSlide 0.8s ease both 0.3s;
+}
+.bar.m1 { background: linear-gradient(180deg, #6a59ad, var(--p1)); }
+.bar.m2 { background: linear-gradient(180deg, #f15ca0, var(--p2)); }
+.bar.m3 { background: linear-gradient(180deg, #f8b647, var(--p3)); }
+.bar .bv {
+  position: absolute; top: -17px; left: 50%; transform: translateX(-50%);
+  font-size: 0.64rem; font-weight: 700; color: var(--text); white-space: nowrap;
+}
+.bar-group-label {
+  margin-top: 12px; font-size: 0.74rem; color: var(--text2); text-align: center;
+  font-weight: 600; line-height: 1.15; min-height: 2.3em;
+}
+
+/* ---------- Horizontal bar chart ---------- */
+.hbar { display: grid; grid-template-columns: 132px 1fr 58px; align-items: center; gap: 14px; margin-bottom: 13px; }
+.hbar-label { font-size: 0.82rem; font-weight: 600; color: var(--navy); text-align: right; line-height: 1.2; }
+.hbar-track { background: var(--s4); border-radius: 6px; height: 22px; overflow: hidden; }
+.hbar-fill { height: 100%; border-radius: 6px; transform-origin: left; animation: barSlide 0.9s ease both 0.2s; }
+.hbar-val { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+.fill-1 { background: linear-gradient(90deg, #6a59ad, var(--p1)); }
+.fill-2 { background: linear-gradient(90deg, #f15ca0, var(--p2)); }
+.fill-3 { background: linear-gradient(90deg, #f8b647, var(--p3)); }
+
+/* ---------- Stacked composition ---------- */
+.stack { display: grid; grid-template-columns: 132px 1fr 96px; align-items: center; gap: 14px; margin-bottom: 11px; }
+.stack-track { display: flex; height: 22px; border-radius: 6px; overflow: hidden; background: var(--s4); }
+.seg { height: 100%; transform-origin: left; animation: barSlide 0.9s ease both 0.2s; }
+.seg-pass { background: var(--navy); }
+.seg-fail { background: var(--p2); }
+.seg-err  { background: var(--p3); }
+.stack-val { font-size: 0.78rem; font-weight: 600; color: var(--text2); }
+.stack-val b { color: var(--navy); }
+
+/* ---------- Spread cards ---------- */
+.spread-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 8px; }
+@media (max-width: 760px) { .spread-grid { grid-template-columns: 1fr; } }
+.spread-card { background: #fff; border-radius: var(--r-sm); padding: 22px; box-shadow: var(--shadow); border: 1px solid var(--s3); }
+.spread-model { font-size: 0.8rem; font-weight: 700; color: var(--p2); letter-spacing: 0.03em; }
+.spread-num { font-size: 2.2rem; font-weight: 800; color: var(--navy); line-height: 1.1; margin-top: 8px; }
+.spread-range { font-size: 0.8rem; color: var(--text2); margin-top: 6px; }
+
+/* ---------- Recommendations ---------- */
+.rec-list { display: flex; flex-direction: column; gap: 16px; }
+.rec-item {
+  display: grid; grid-template-columns: 44px 1fr; gap: 18px; align-items: start;
+  background: var(--s4); border-radius: var(--r-sm); padding: 20px 24px; box-shadow: var(--shadow);
+  border-left: 3px solid var(--p2);
+}
+.rec-num {
+  width: 40px; height: 40px; border-radius: 10px; background: var(--grad); color: #fff;
+  font-weight: 800; font-size: 1.05rem; display: flex; align-items: center; justify-content: center;
+}
+.rec-item h3 { margin-bottom: 5px; font-size: 1rem; }
+.rec-item p { font-size: 0.87rem; color: var(--text2); }
+
+/* ---------- Footer ---------- */
+.footer { background: var(--navy); color: #fff; padding: 48px 0; }
+.footer-wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; gap: 28px; flex-wrap: wrap; }
+.footer-logo { display: inline-flex; align-items: center; }
+.footer-logo svg { height: 24px; width: auto; display: block; }
+.footer-left p { color: var(--muted); font-size: 0.82rem; margin-top: 14px; }
+.footer-right { text-align: right; }
+.footer-right p { color: var(--muted); font-size: 0.82rem; }
+.footer-right p + p { margin-top: 6px; }
+@media (max-width: 680px) { .footer-right { text-align: left; } }
+</style>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor msdt:dt="string">Markus Tobler</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor>
+<mso:Order msdt:dt="string">2926000.00000000</mso:Order>
+<mso:ComplianceAssetId msdt:dt="string"></mso:ComplianceAssetId>
+<mso:_ExtendedDescription msdt:dt="string"></mso:_ExtendedDescription>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author msdt:dt="string">Markus Tobler</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author>
+<mso:TriggerFlowInfo msdt:dt="string"></mso:TriggerFlowInfo>
+<mso:ContentTypeId msdt:dt="string">0x010100AE0085604448BD4BA4CD1D922B823DC4</mso:ContentTypeId>
+<mso:_SourceUrl msdt:dt="string"></mso:_SourceUrl>
+<mso:_SharedFileIndex msdt:dt="string"></mso:_SharedFileIndex>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav">
+  <a href="#" class="nav-logo" aria-label="isolutions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 928 130" width="928" height="130" role="img" aria-label="isolutions"><image width="928" height="130" href="data:image/png;base64,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"/></svg></a>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#design">Design</a></li>
+    <li><a href="#gpt41">GPT&#8209;4.1</a></li>
+    <li><a href="#gpt5">GPT&#8209;5 Chat</a></li>
+    <li><a href="#sonnet">Sonnet 4.6</a></li>
+    <li><a href="#findings">Findings</a></li>
+  </ul>
+  <a href="#recommendations" class="nav-cta">Recommendations</a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-bg-gradient"></div>
+  <div class="hero-pattern-overlay"></div>
+  <div class="wrap hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span>Evaluation Report &middot; 30 June 2026</span>
+    </div>
+    <p class="hero-eyebrow">Copilot Studio &middot; MultiEURLEX legal-document corpus</p>
+    <h1>Knowledge Retrieval Methods for <em>Copilot Studio Agents</em></h1>
+    <p class="hero-lead">Six retrieval configurations, the same 50-question test set, scored across
+      three models — GPT&#8209;4.1, GPT&#8209;5 Chat, and Claude Sonnet 4.6. The headline metric is the
+      CompareMeaning pass rate over a 300-document corpus of EU legal texts.</p>
+    <div class="hero-actions">
+      <a href="#overview" class="btn-primary">View the results &rarr;</a>
+      <a href="#design" class="btn-secondary">Evaluation design</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hero-stat-num">300</div><div class="hero-stat-label">EU legal documents</div></div>
+      <div><div class="hero-stat-num">50</div><div class="hero-stat-label">Evaluation questions</div></div>
+      <div><div class="hero-stat-num">6</div><div class="hero-stat-label">Retrieval methods</div></div>
+      <div><div class="hero-stat-num">3</div><div class="hero-stat-label">Model runs</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OVERVIEW ===================== -->
+<section id="overview">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Results across runs</span>
+      <h2>Retrieval method and model are not independent</h2>
+      <div class="sec-bar"></div>
+      <p class="sec-intro">The same corpus, question set, instructions, and grading were used in all three
+        runs. CompareMeaning is the pass/fail metric; empty responses and timeouts are counted as errors and
+        excluded from the pass-rate denominator.</p>
+    </div>
+
+    <div class="chart-card reveal">
+      <div class="chart-title">CompareMeaning pass rate by method &mdash; across all three runs</div>
+      <div class="chart-note">Bars show the scored pass rate (passed &divide; passed + failed). "+3E" methods on Sonnet 4.6 had three error cases excluded from the denominator.</div>
+      <div class="legend">
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--p1)"></span>GPT&#8209;4.1</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--p2)"></span>GPT&#8209;5 Chat</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:var(--p3)"></span>Sonnet 4.6</span>
+      </div>
+      <div class="gchart-scroll">
+        <div class="gchart">
+          <div class="gchart-grid">
+            <span style="bottom:100%"><b>100%</b></span>
+            <span style="bottom:75%"><b>75%</b></span>
+            <span style="bottom:50%"><b>50%</b></span>
+            <span style="bottom:25%"><b>25%</b></span>
+            <span style="bottom:0"><b>0%</b></span>
+          </div>
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar m1" style="height:96.0%"><span class="bv">96.0</span></div>
+              <div class="bar m2" style="height:90.0%"><span class="bv">90.0</span></div>
+              <div class="bar m3" style="height:100.0%"><span class="bv">100</span></div>
+            </div>
+            <div class="bar-group-label">DV&nbsp;Knowledge</div>
+          </div>
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar m1" style="height:60.0%"><span class="bv">60.0</span></div>
+              <div class="bar m2" style="height:58.0%"><span class="bv">58.0</span></div>
+              <div class="bar m3" style="height:93.6%"><span class="bv">93.6</span></div>
+            </div>
+            <div class="bar-group-label">DV&nbsp;Table</div>
+          </div>
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar m1" style="height:84.0%"><span class="bv">84.0</span></div>
+              <div class="bar m2" style="height:68.0%"><span class="bv">68.0</span></div>
+              <div class="bar m3" style="height:97.9%"><span class="bv">97.9</span></div>
+            </div>
+            <div class="bar-group-label">Knowledge</div>
+          </div>
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar m1" style="height:76.0%"><span class="bv">76.0</span></div>
+              <div class="bar m2" style="height:96.0%"><span class="bv">96.0</span></div>
+              <div class="bar m3" style="height:100.0%"><span class="bv">100</span></div>
+            </div>
+            <div class="bar-group-label">MCP</div>
+          </div>
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar m1" style="height:74.0%"><span class="bv">74.0</span></div>
+              <div class="bar m2" style="height:92.0%"><span class="bv">92.0</span></div>
+              <div class="bar m3" style="height:97.9%"><span class="bv">97.9</span></div>
+            </div>
+            <div class="bar-group-label">MCP&nbsp;+&nbsp;Semantic</div>
+          </div>
+          <div class="bar-group">
+            <div class="bars">
+              <div class="bar m1" style="height:74.0%"><span class="bv">74.0</span></div>
+              <div class="bar m2" style="height:76.0%"><span class="bv">76.0</span></div>
+              <div class="bar m3" style="height:90.0%"><span class="bv">90.0</span></div>
+            </div>
+            <div class="bar-group-label">Semantic</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-scroll reveal">
+      <table class="data-table">
+        <thead>
+          <tr><th>Agent</th><th class="num">GPT&#8209;4.1</th><th class="num">GPT&#8209;5 Chat</th><th class="num">Sonnet 4.6</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="agent">DV Knowledge</td><td class="num best">96.0% (48/50)</td><td class="num">90.0% (45/50)</td><td class="num best">100.0% (50/50)</td></tr>
+          <tr><td class="agent">DV Table</td><td class="num low">60.0% (30/50)</td><td class="num low">58.0% (29/50)</td><td class="num">93.6% (44/47) <span class="cell-e">+3E</span></td></tr>
+          <tr><td class="agent">Knowledge</td><td class="num">84.0% (42/50)</td><td class="num">68.0% (34/50)</td><td class="num">97.9% (46/47) <span class="cell-e">+3E</span></td></tr>
+          <tr><td class="agent">MCP</td><td class="num">76.0% (38/50)</td><td class="num best">96.0% (48/50)</td><td class="num best">100.0% (47/47) <span class="cell-e">+3E</span></td></tr>
+          <tr><td class="agent">MCP plus Semantic</td><td class="num">74.0% (37/50)</td><td class="num">92.0% (46/50)</td><td class="num">97.9% (46/47) <span class="cell-e">+3E</span></td></tr>
+          <tr><td class="agent">Semantic</td><td class="num">74.0% (37/50)</td><td class="num">76.0% (38/50)</td><td class="num">90.0% (45/50)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:52px; margin-bottom:18px;">
+      <h3>Scored pass-rate spread by model</h3>
+    </div>
+    <div class="spread-grid reveal">
+      <div class="spread-card">
+        <div class="spread-model">GPT&#8209;4.1</div>
+        <div class="spread-num">36.0&nbsp;pts</div>
+        <div class="spread-range">Highest 96.0% &middot; lowest 60.0%</div>
+      </div>
+      <div class="spread-card">
+        <div class="spread-model">GPT&#8209;5 Chat</div>
+        <div class="spread-num">38.0&nbsp;pts</div>
+        <div class="spread-range">Highest 96.0% &middot; lowest 58.0%</div>
+      </div>
+      <div class="spread-card">
+        <div class="spread-model">Sonnet 4.6</div>
+        <div class="spread-num">10.0&nbsp;pts</div>
+        <div class="spread-range">Highest 100.0% &middot; lowest 90.0%</div>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <p><strong>What the cross-run view shows.</strong> DV Knowledge is strongest on GPT&#8209;4.1, MCP is strongest
+        on GPT&#8209;5 Chat, and Sonnet 4.6 raises nearly every method above 90%. DV Table is the consistent low point
+        on both GPT runs. Sonnet 4.6 lifts the floor, but DV Table, Knowledge, MCP, and MCP plus Semantic each
+        carry three error cases in that run.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DESIGN ===================== -->
+<section id="design" class="section-alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Evaluation design</span>
+      <h2>One corpus, six ways to expose it</h2>
+      <div class="sec-bar"></div>
+      <p class="sec-intro">A curated, reproducible slice of MultiEURLEX with readable plain-text metadata, a
+        50-question test set spanning six capability tiers, and CompareMeaning as the single pass/fail signal.</p>
+    </div>
+
+    <div class="stat-grid reveal">
+      <div class="stat-card">
+        <div class="stat-num">300</div>
+        <div class="stat-label">English-language EU legal documents, each with a unique CELEX id</div>
+        <div class="stat-sub">Regulation, Decision &amp; Directive &middot; 2012&ndash;2015 &middot; ~2&ndash;10 pages each</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Metadata dimensions for structured filtering</div>
+        <div class="stat-sub">Policy domain, document type, year band, legal actor type, applicable role</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">50</div>
+        <div class="stat-label">Questions generated from the actual corpus</div>
+        <div class="stat-sub">Every expected answer traces to a real source document by CELEX id</div>
+      </div>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:54px; margin-bottom:18px;"><h3>Question set &mdash; six capability tiers</h3></div>
+    <div class="table-scroll reveal">
+      <table class="data-table">
+        <thead><tr><th>Tier</th><th class="num">Count</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tier-badge">A</span></td><td class="num">9</td><td>Broad topical questions with few metadata cues</td></tr>
+          <tr><td><span class="tier-badge">B</span></td><td class="num">11</td><td>Medium metadata constraints such as year and domain</td></tr>
+          <tr><td><span class="tier-badge">C</span></td><td class="num">8</td><td>Precise questions with 3+ constraints and exact facts</td></tr>
+          <tr><td><span class="tier-badge">D</span></td><td class="num">7</td><td>Tricky distractor cases where several documents look plausible</td></tr>
+          <tr><td><span class="tier-badge">E</span></td><td class="num">5</td><td>Unanswerable / control questions that require abstention</td></tr>
+          <tr><td><span class="tier-badge">S</span></td><td class="num">10</td><td>Semantic paraphrase questions with little or no lexical overlap</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:54px; margin-bottom:18px;"><h3>The six retrieval configurations</h3></div>
+    <div class="table-scroll reveal">
+      <table class="data-table">
+        <thead><tr><th>Agent</th><th>Retrieval mechanism</th><th>Tools</th></tr></thead>
+        <tbody>
+          <tr><td class="agent">MCP</td><td>Dataverse MCP <code>read_query</code> with metadata filters plus keyword/synonym matching</td><td>Dataverse MCP</td></tr>
+          <tr><td class="agent">Semantic</td><td>Single natural-language query to Dataverse semantic search via a Copilot Studio tool</td><td>Dataverse Semantic Search</td></tr>
+          <tr><td class="agent">MCP plus Semantic</td><td>Runs MCP and semantic-search retrieval, unions results, then re-ranks</td><td>MCP + Semantic Search</td></tr>
+          <tr><td class="agent">Knowledge</td><td>Whole corpus uploaded as one CSV file to a Copilot Studio knowledge source</td><td>none</td></tr>
+          <tr><td class="agent">DV Knowledge</td><td>Each document uploaded individually as a knowledge file</td><td>none</td></tr>
+          <tr><td class="agent">DV Table</td><td>Dataverse table connected directly as a native knowledge source</td><td>none</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout reveal">
+      <p><strong>Scoring.</strong> Pass/fail uses CompareMeaning only &mdash; whether the agent answer means the
+        same thing as the expected answer. GeneralQuality is reported for answer-form quality but is not the
+        headline metric. Errors (empty responses or timeouts) appear in absolute totals but are excluded from the
+        pass-rate denominator.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GPT-4.1 ===================== -->
+<section id="gpt41">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Run 1 &middot; GPT&#8209;4.1</span>
+      <h2>Per-document uploaded knowledge wins</h2>
+      <div class="sec-bar"></div>
+      <p class="sec-intro">GPT&#8209;4.1 strongly favours DV Knowledge, which leads by 12 points over the next-best
+        method and by 20 points over MCP. DV Table is the weakest configuration by a wide margin.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="chart-card reveal">
+        <div class="chart-title">CompareMeaning pass rate by method</div>
+        <div class="chart-note">Scored pass rate over 50 cases &middot; no errors in this run</div>
+        <div class="hbar"><span class="hbar-label">DV Knowledge</span><div class="hbar-track"><div class="hbar-fill fill-1" style="width:96%"></div></div><span class="hbar-val">96.0%</span></div>
+        <div class="hbar"><span class="hbar-label">Knowledge</span><div class="hbar-track"><div class="hbar-fill fill-1" style="width:84%"></div></div><span class="hbar-val">84.0%</span></div>
+        <div class="hbar"><span class="hbar-label">MCP</span><div class="hbar-track"><div class="hbar-fill fill-1" style="width:76%"></div></div><span class="hbar-val">76.0%</span></div>
+        <div class="hbar"><span class="hbar-label">MCP + Semantic</span><div class="hbar-track"><div class="hbar-fill fill-1" style="width:74%"></div></div><span class="hbar-val">74.0%</span></div>
+        <div class="hbar"><span class="hbar-label">Semantic</span><div class="hbar-track"><div class="hbar-fill fill-1" style="width:74%"></div></div><span class="hbar-val">74.0%</span></div>
+        <div class="hbar"><span class="hbar-label">DV Table</span><div class="hbar-track"><div class="hbar-fill fill-1" style="width:60%"></div></div><span class="hbar-val">60.0%</span></div>
+      </div>
+      <div class="chart-card reveal reveal-delay-1">
+        <div class="chart-title">Case composition &mdash; passed / failed / errors</div>
+        <div class="chart-note">Each bar = 50 cases</div>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--navy)"></span>Passed</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--p2)"></span>Failed</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--p3)"></span>Errors</span>
+        </div>
+        <div class="stack"><span class="hbar-label">DV Knowledge</span><div class="stack-track"><div class="seg seg-pass" style="width:96%"></div><div class="seg seg-fail" style="width:4%"></div></div><span class="stack-val"><b>48</b> / 2 / 0</span></div>
+        <div class="stack"><span class="hbar-label">Knowledge</span><div class="stack-track"><div class="seg seg-pass" style="width:84%"></div><div class="seg seg-fail" style="width:16%"></div></div><span class="stack-val"><b>42</b> / 8 / 0</span></div>
+        <div class="stack"><span class="hbar-label">MCP</span><div class="stack-track"><div class="seg seg-pass" style="width:76%"></div><div class="seg seg-fail" style="width:24%"></div></div><span class="stack-val"><b>38</b> / 12 / 0</span></div>
+        <div class="stack"><span class="hbar-label">MCP + Semantic</span><div class="stack-track"><div class="seg seg-pass" style="width:74%"></div><div class="seg seg-fail" style="width:26%"></div></div><span class="stack-val"><b>37</b> / 13 / 0</span></div>
+        <div class="stack"><span class="hbar-label">Semantic</span><div class="stack-track"><div class="seg seg-pass" style="width:74%"></div><div class="seg seg-fail" style="width:26%"></div></div><span class="stack-val"><b>37</b> / 13 / 0</span></div>
+        <div class="stack"><span class="hbar-label">DV Table</span><div class="stack-track"><div class="seg seg-pass" style="width:60%"></div><div class="seg seg-fail" style="width:40%"></div></div><span class="stack-val"><b>30</b> / 20 / 0</span></div>
+      </div>
+    </div>
+
+    <div class="table-scroll reveal" style="margin-top:8px;">
+      <table class="data-table">
+        <thead><tr><th>Agent</th><th class="num">Cases</th><th class="num">Passed</th><th class="num">Failed</th><th class="num">Errors</th><th class="num">CompareMeaning</th><th class="num">GeneralQuality</th></tr></thead>
+        <tbody>
+          <tr><td class="agent">DV Knowledge</td><td class="num">50</td><td class="num">48</td><td class="num">2</td><td class="num">0</td><td class="num best">96.0% (48/50)</td><td class="num">94.0% (47/50)</td></tr>
+          <tr><td class="agent">DV Table</td><td class="num">50</td><td class="num">30</td><td class="num">20</td><td class="num">0</td><td class="num low">60.0% (30/50)</td><td class="num">54.0% (27/50)</td></tr>
+          <tr><td class="agent">Knowledge</td><td class="num">50</td><td class="num">42</td><td class="num">8</td><td class="num">0</td><td class="num">84.0% (42/50)</td><td class="num">80.0% (40/50)</td></tr>
+          <tr><td class="agent">MCP</td><td class="num">50</td><td class="num">38</td><td class="num">12</td><td class="num">0</td><td class="num">76.0% (38/50)</td><td class="num">78.0% (39/50)</td></tr>
+          <tr><td class="agent">MCP plus Semantic</td><td class="num">50</td><td class="num">37</td><td class="num">13</td><td class="num">0</td><td class="num">74.0% (37/50)</td><td class="num">74.0% (37/50)</td></tr>
+          <tr><td class="agent">Semantic</td><td class="num">50</td><td class="num">37</td><td class="num">13</td><td class="num">0</td><td class="num">74.0% (37/50)</td><td class="num">72.0% (36/50)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:48px; margin-bottom:16px;"><h3>Top failing questions</h3></div>
+    <div class="table-scroll reveal">
+      <table class="data-table">
+        <thead><tr><th class="num">#</th><th>Question (abbreviated)</th><th class="num">Failed</th><th>Failing agents</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Act setting out the data subject's right to erasure ("right to be forgotten")</td><td class="num best">6/6</td><td><span class="pill pill-fail">DV Knowledge</span><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">Knowledge</span><span class="pill pill-fail">MCP</span><span class="pill pill-fail">MCP + Sem</span><span class="pill pill-fail">Semantic</span></td></tr>
+          <tr><td class="num">2</td><td>2015 EU directive on a maximum level for a foam-forming chemical</td><td class="num">4/6</td><td><span class="pill pill-fail">Knowledge</span><span class="pill pill-fail">MCP</span><span class="pill pill-fail">MCP + Sem</span><span class="pill pill-fail">Semantic</span></td></tr>
+          <tr><td class="num">3</td><td>EU act including pyriproxyfen as a biocidal active substance</td><td class="num">3/6</td><td><span class="pill pill-fail">Knowledge</span><span class="pill pill-fail">MCP + Sem</span><span class="pill pill-fail">Semantic</span></td></tr>
+          <tr><td class="num">4</td><td>2013 Commission Directive amending Annex III, rail interoperability</td><td class="num">3/6</td><td><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">MCP + Sem</span><span class="pill pill-fail">Semantic</span></td></tr>
+          <tr><td class="num">5</td><td>2015 ECB Decision on targeted longer-term refinancing operations</td><td class="num">3/6</td><td><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">MCP</span><span class="pill pill-fail">MCP + Sem</span></td></tr>
+          <tr><td class="num">6</td><td>2015 EU directive updating port reception facility rules for waste</td><td class="num">3/6</td><td><span class="pill pill-fail">MCP</span><span class="pill pill-fail">MCP + Sem</span><span class="pill pill-fail">Semantic</span></td></tr>
+          <tr><td class="num">7</td><td>EU regulation amending the single payment scheme &amp; support to vine-growers</td><td class="num">2/6</td><td><span class="pill pill-fail">Knowledge</span><span class="pill pill-fail">MCP + Sem</span></td></tr>
+          <tr><td class="num">8</td><td>EU regulation authorising methacrylate copolymers as food additives</td><td class="num">2/6</td><td><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">MCP + Sem</span></td></tr>
+          <tr><td class="num">9</td><td>2014 EU Regulation on information Member States must supply</td><td class="num">2/6</td><td><span class="pill pill-fail">MCP</span><span class="pill pill-fail">MCP + Sem</span></td></tr>
+          <tr><td class="num">10</td><td>2014 EU Regulation amending Regulation (EU) No 965/2012</td><td class="num">2/6</td><td><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">MCP</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GPT-5 CHAT ===================== -->
+<section id="gpt5" class="section-alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Run 2 &middot; GPT&#8209;5 Chat</span>
+      <h2>Structured MCP retrieval takes the lead</h2>
+      <div class="sec-bar"></div>
+      <p class="sec-intro">GPT&#8209;5 Chat reverses the GPT&#8209;4.1 pattern for tool-based methods: MCP becomes the
+        strongest configuration with only two failures, and the hybrid method is close behind. The whole-corpus
+        Knowledge and native DV Table approaches fall well behind.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="chart-card reveal">
+        <div class="chart-title">CompareMeaning pass rate by method</div>
+        <div class="chart-note">Scored pass rate over 50 cases &middot; no errors in this run</div>
+        <div class="hbar"><span class="hbar-label">MCP</span><div class="hbar-track"><div class="hbar-fill fill-2" style="width:96%"></div></div><span class="hbar-val">96.0%</span></div>
+        <div class="hbar"><span class="hbar-label">MCP + Semantic</span><div class="hbar-track"><div class="hbar-fill fill-2" style="width:92%"></div></div><span class="hbar-val">92.0%</span></div>
+        <div class="hbar"><span class="hbar-label">DV Knowledge</span><div class="hbar-track"><div class="hbar-fill fill-2" style="width:90%"></div></div><span class="hbar-val">90.0%</span></div>
+        <div class="hbar"><span class="hbar-label">Semantic</span><div class="hbar-track"><div class="hbar-fill fill-2" style="width:76%"></div></div><span class="hbar-val">76.0%</span></div>
+        <div class="hbar"><span class="hbar-label">Knowledge</span><div class="hbar-track"><div class="hbar-fill fill-2" style="width:68%"></div></div><span class="hbar-val">68.0%</span></div>
+        <div class="hbar"><span class="hbar-label">DV Table</span><div class="hbar-track"><div class="hbar-fill fill-2" style="width:58%"></div></div><span class="hbar-val">58.0%</span></div>
+      </div>
+      <div class="chart-card reveal reveal-delay-1">
+        <div class="chart-title">Case composition &mdash; passed / failed / errors</div>
+        <div class="chart-note">Each bar = 50 cases</div>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--navy)"></span>Passed</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--p2)"></span>Failed</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--p3)"></span>Errors</span>
+        </div>
+        <div class="stack"><span class="hbar-label">MCP</span><div class="stack-track"><div class="seg seg-pass" style="width:96%"></div><div class="seg seg-fail" style="width:4%"></div></div><span class="stack-val"><b>48</b> / 2 / 0</span></div>
+        <div class="stack"><span class="hbar-label">MCP + Semantic</span><div class="stack-track"><div class="seg seg-pass" style="width:92%"></div><div class="seg seg-fail" style="width:8%"></div></div><span class="stack-val"><b>46</b> / 4 / 0</span></div>
+        <div class="stack"><span class="hbar-label">DV Knowledge</span><div class="stack-track"><div class="seg seg-pass" style="width:90%"></div><div class="seg seg-fail" style="width:10%"></div></div><span class="stack-val"><b>45</b> / 5 / 0</span></div>
+        <div class="stack"><span class="hbar-label">Semantic</span><div class="stack-track"><div class="seg seg-pass" style="width:76%"></div><div class="seg seg-fail" style="width:24%"></div></div><span class="stack-val"><b>38</b> / 12 / 0</span></div>
+        <div class="stack"><span class="hbar-label">Knowledge</span><div class="stack-track"><div class="seg seg-pass" style="width:68%"></div><div class="seg seg-fail" style="width:32%"></div></div><span class="stack-val"><b>34</b> / 16 / 0</span></div>
+        <div class="stack"><span class="hbar-label">DV Table</span><div class="stack-track"><div class="seg seg-pass" style="width:58%"></div><div class="seg seg-fail" style="width:42%"></div></div><span class="stack-val"><b>29</b> / 21 / 0</span></div>
+      </div>
+    </div>
+
+    <div class="table-scroll reveal" style="margin-top:8px;">
+      <table class="data-table">
+        <thead><tr><th>Agent</th><th class="num">Cases</th><th class="num">Passed</th><th class="num">Failed</th><th class="num">Errors</th><th class="num">CompareMeaning</th><th class="num">GeneralQuality</th></tr></thead>
+        <tbody>
+          <tr><td class="agent">DV Knowledge</td><td class="num">50</td><td class="num">45</td><td class="num">5</td><td class="num">0</td><td class="num">90.0% (45/50)</td><td class="num">84.0% (42/50)</td></tr>
+          <tr><td class="agent">DV Table</td><td class="num">50</td><td class="num">29</td><td class="num">21</td><td class="num">0</td><td class="num low">58.0% (29/50)</td><td class="num">52.0% (26/50)</td></tr>
+          <tr><td class="agent">Knowledge</td><td class="num">50</td><td class="num">34</td><td class="num">16</td><td class="num">0</td><td class="num">68.0% (34/50)</td><td class="num">64.0% (32/50)</td></tr>
+          <tr><td class="agent">MCP</td><td class="num">50</td><td class="num">48</td><td class="num">2</td><td class="num">0</td><td class="num best">96.0% (48/50)</td><td class="num">84.0% (42/50)</td></tr>
+          <tr><td class="agent">MCP plus Semantic</td><td class="num">50</td><td class="num">46</td><td class="num">4</td><td class="num">0</td><td class="num">92.0% (46/50)</td><td class="num">80.0% (40/50)</td></tr>
+          <tr><td class="agent">Semantic</td><td class="num">50</td><td class="num">38</td><td class="num">12</td><td class="num">0</td><td class="num">76.0% (38/50)</td><td class="num">66.0% (33/50)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:48px; margin-bottom:16px;"><h3>Top failing questions</h3></div>
+    <div class="table-scroll reveal">
+      <table class="data-table">
+        <thead><tr><th class="num">#</th><th>Question (abbreviated)</th><th class="num">Failed</th><th>Failing agents</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>EU act including pyriproxyfen as a biocidal active substance</td><td class="num">3/6</td><td><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">MCP + Sem</span><span class="pill pill-fail">Semantic</span></td></tr>
+          <tr><td class="num">2</td><td>2013 Council Regulation, employment &amp; working conditions domain</td><td class="num">3/6</td><td><span class="pill pill-fail">DV Knowledge</span><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">Knowledge</span></td></tr>
+          <tr><td class="num">3</td><td>2015 Council Directive, Finance domain, common minimum anti-abuse rule</td><td class="num">3/6</td><td><span class="pill pill-fail">DV Knowledge</span><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">Knowledge</span></td></tr>
+          <tr><td class="num">4</td><td>2015 CFSP Decision appointing the EUSR for Central Asia</td><td class="num">3/6</td><td><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">Knowledge</span><span class="pill pill-fail">Semantic</span></td></tr>
+          <tr><td class="num">5</td><td>Act setting out the data subject's right to erasure</td><td class="num">3/6</td><td><span class="pill pill-fail">DV Knowledge</span><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">Knowledge</span></td></tr>
+          <tr><td class="num">6</td><td>EU act on maximum residue levels for acetamiprid &amp; tebuconazole</td><td class="num">2/6</td><td><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">MCP + Sem</span></td></tr>
+          <tr><td class="num">7</td><td>2015 EU Decision on restrictive measures</td><td class="num">2/6</td><td><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">Semantic</span></td></tr>
+          <tr><td class="num">8</td><td>2014 EU Regulation amending Regulation (EU) No 965/2012</td><td class="num">2/6</td><td><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">MCP</span></td></tr>
+          <tr><td class="num">9</td><td>2014 Commission Implementing Regulation, Finance reimbursement</td><td class="num">2/6</td><td><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">Knowledge</span></td></tr>
+          <tr><td class="num">10</td><td>2014 Commission Regulation, Energy domain criteria &amp; geographic range</td><td class="num">2/6</td><td><span class="pill pill-fail">DV Knowledge</span><span class="pill pill-fail">Knowledge</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout reveal">
+      <p><strong>DV Table dominates the failures.</strong> The native Dataverse table appears in eight of the ten
+        top failing-question rows for this run. Knowledge-source failures concentrate on the same precise legal
+        questions &mdash; pyriproxyfen, the 2013 employment regulation, the 2015 anti-abuse Finance directive, and
+        the right-to-erasure act.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SONNET 4.6 ===================== -->
+<section id="sonnet">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Run 3 &middot; Claude Sonnet 4.6</span>
+      <h2>The strongest results &mdash; with an error caveat</h2>
+      <div class="sec-bar"></div>
+      <p class="sec-intro">DV Knowledge and MCP both reach 100.0% over their scored cases, and Knowledge plus MCP
+        plus Semantic are within one failure of perfect. The main caveat is reliability: four methods carry three
+        error cases each, which the scored pass rate excludes from its denominator.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="chart-card reveal">
+        <div class="chart-title">CompareMeaning pass rate by method</div>
+        <div class="chart-note">Scored pass rate &middot; "+3E" methods scored over 47 cases (3 errors excluded)</div>
+        <div class="hbar"><span class="hbar-label">DV Knowledge</span><div class="hbar-track"><div class="hbar-fill fill-3" style="width:100%"></div></div><span class="hbar-val">100%</span></div>
+        <div class="hbar"><span class="hbar-label">MCP <span class="cell-e">+3E</span></span><div class="hbar-track"><div class="hbar-fill fill-3" style="width:100%"></div></div><span class="hbar-val">100%</span></div>
+        <div class="hbar"><span class="hbar-label">Knowledge <span class="cell-e">+3E</span></span><div class="hbar-track"><div class="hbar-fill fill-3" style="width:97.9%"></div></div><span class="hbar-val">97.9%</span></div>
+        <div class="hbar"><span class="hbar-label">MCP + Sem <span class="cell-e">+3E</span></span><div class="hbar-track"><div class="hbar-fill fill-3" style="width:97.9%"></div></div><span class="hbar-val">97.9%</span></div>
+        <div class="hbar"><span class="hbar-label">DV Table <span class="cell-e">+3E</span></span><div class="hbar-track"><div class="hbar-fill fill-3" style="width:93.6%"></div></div><span class="hbar-val">93.6%</span></div>
+        <div class="hbar"><span class="hbar-label">Semantic</span><div class="hbar-track"><div class="hbar-fill fill-3" style="width:90%"></div></div><span class="hbar-val">90.0%</span></div>
+      </div>
+      <div class="chart-card reveal reveal-delay-1">
+        <div class="chart-title">Case composition &mdash; passed / failed / errors</div>
+        <div class="chart-note">Each bar = 50 cases &middot; errors now appear (gold)</div>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--navy)"></span>Passed</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--p2)"></span>Failed</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:var(--p3)"></span>Errors</span>
+        </div>
+        <div class="stack"><span class="hbar-label">DV Knowledge</span><div class="stack-track"><div class="seg seg-pass" style="width:100%"></div></div><span class="stack-val"><b>50</b> / 0 / 0</span></div>
+        <div class="stack"><span class="hbar-label">MCP</span><div class="stack-track"><div class="seg seg-pass" style="width:94%"></div><div class="seg seg-err" style="width:6%"></div></div><span class="stack-val"><b>47</b> / 0 / 3</span></div>
+        <div class="stack"><span class="hbar-label">Knowledge</span><div class="stack-track"><div class="seg seg-pass" style="width:92%"></div><div class="seg seg-fail" style="width:2%"></div><div class="seg seg-err" style="width:6%"></div></div><span class="stack-val"><b>46</b> / 1 / 3</span></div>
+        <div class="stack"><span class="hbar-label">MCP + Semantic</span><div class="stack-track"><div class="seg seg-pass" style="width:92%"></div><div class="seg seg-fail" style="width:2%"></div><div class="seg seg-err" style="width:6%"></div></div><span class="stack-val"><b>46</b> / 1 / 3</span></div>
+        <div class="stack"><span class="hbar-label">DV Table</span><div class="stack-track"><div class="seg seg-pass" style="width:88%"></div><div class="seg seg-fail" style="width:6%"></div><div class="seg seg-err" style="width:6%"></div></div><span class="stack-val"><b>44</b> / 3 / 3</span></div>
+        <div class="stack"><span class="hbar-label">Semantic</span><div class="stack-track"><div class="seg seg-pass" style="width:90%"></div><div class="seg seg-fail" style="width:10%"></div></div><span class="stack-val"><b>45</b> / 5 / 0</span></div>
+      </div>
+    </div>
+
+    <div class="table-scroll reveal" style="margin-top:8px;">
+      <table class="data-table">
+        <thead><tr><th>Agent</th><th class="num">Cases</th><th class="num">Passed</th><th class="num">Failed</th><th class="num">Errors</th><th class="num">CompareMeaning</th><th class="num">GeneralQuality</th></tr></thead>
+        <tbody>
+          <tr><td class="agent">DV Knowledge</td><td class="num">50</td><td class="num">50</td><td class="num">0</td><td class="num">0</td><td class="num best">100.0% (50/50)</td><td class="num">90.0% (45/50)</td></tr>
+          <tr><td class="agent">DV Table</td><td class="num">50</td><td class="num">44</td><td class="num">3</td><td class="num">3</td><td class="num">93.6% (44/47) <span class="cell-e">+3E</span></td><td class="num">76.6% (36/47) <span class="cell-e">+3E</span></td></tr>
+          <tr><td class="agent">Knowledge</td><td class="num">50</td><td class="num">46</td><td class="num">1</td><td class="num">3</td><td class="num">97.9% (46/47) <span class="cell-e">+3E</span></td><td class="num">93.6% (44/47) <span class="cell-e">+3E</span></td></tr>
+          <tr><td class="agent">MCP</td><td class="num">50</td><td class="num">47</td><td class="num">0</td><td class="num">3</td><td class="num best">100.0% (47/47) <span class="cell-e">+3E</span></td><td class="num">91.5% (43/47) <span class="cell-e">+3E</span></td></tr>
+          <tr><td class="agent">MCP plus Semantic</td><td class="num">50</td><td class="num">46</td><td class="num">1</td><td class="num">3</td><td class="num">97.9% (46/47) <span class="cell-e">+3E</span></td><td class="num">93.6% (44/47) <span class="cell-e">+3E</span></td></tr>
+          <tr><td class="agent">Semantic</td><td class="num">50</td><td class="num">45</td><td class="num">5</td><td class="num">0</td><td class="num">90.0% (45/50)</td><td class="num">84.0% (42/50)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:48px; margin-bottom:16px;"><h3>Top failing questions</h3></div>
+    <div class="table-scroll reveal">
+      <table class="data-table">
+        <thead><tr><th class="num">#</th><th>Question (abbreviated)</th><th class="num">Failed</th><th>Failing / errored agents</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Act setting out the data subject's right to erasure</td><td class="num">2/6</td><td><span class="pill pill-fail">DV Table</span><span class="pill pill-fail">Knowledge</span></td></tr>
+          <tr><td class="num">2</td><td>Directives adding active substances to biocidal Directive 98/8/EC</td><td class="num">1/6</td><td><span class="pill pill-fail">Semantic</span><span class="pill pill-err">err: DV Table</span><span class="pill pill-err">err: MCP + Sem</span></td></tr>
+          <tr><td class="num">3</td><td>2015 EU directive on a maximum level for a foam-forming chemical</td><td class="num">1/6</td><td><span class="pill pill-fail">Semantic</span><span class="pill pill-err">err: Knowledge</span></td></tr>
+          <tr><td class="num">4</td><td>2014 EU Regulation on information Member States must supply</td><td class="num">1/6</td><td><span class="pill pill-fail">Semantic</span></td></tr>
+          <tr><td class="num">5</td><td>2015 Council Directive, Finance domain, common minimum anti-abuse rule</td><td class="num">1/6</td><td><span class="pill pill-fail">DV Table</span></td></tr>
+          <tr><td class="num">6</td><td>2014 Regulation, Transport domain, amending the EU ETS Directive</td><td class="num">1/6</td><td><span class="pill pill-fail">DV Table</span></td></tr>
+          <tr><td class="num">7</td><td>2014 Regulation amending Regulation (EC) No 539/2001 on visa lists</td><td class="num">1/6</td><td><span class="pill pill-fail">Semantic</span></td></tr>
+          <tr><td class="num">8</td><td>EU directive cutting consumption of lightweight plastic carrier bags</td><td class="num">1/6</td><td><span class="pill pill-fail">MCP + Sem</span></td></tr>
+          <tr><td class="num">9</td><td>EU directive revising safeguards protecting groundwater sources</td><td class="num">1/6</td><td><span class="pill pill-fail">Semantic</span></td></tr>
+          <tr><td class="num">10</td><td>EU act setting upper limits for crop-treatment chemical residues</td><td class="num">0/6</td><td><span class="pill pill-err">err: MCP</span><span class="pill pill-err">err: MCP + Sem</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout reveal">
+      <p><strong>A much sparser failure map.</strong> The right-to-erasure question is the only row failed by more
+        than one agent, and two rows are primarily error rows rather than failure rows. Because errors are excluded
+        from the denominator, MCP's 100.0% is 47/47 rather than 50/50.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINDINGS ===================== -->
+<section id="findings" class="section-dark">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Discussion</span>
+      <h2 style="color:#fff;">Five findings from the data</h2>
+      <div class="sec-bar"></div>
+      <p class="sec-intro">The evaluation does not identify a single retrieval method that dominates every model.
+        These observations follow directly from the per-run results above.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="card reveal">
+        <span class="card-kicker">Finding 01</span>
+        <h3>Retrieval and model interact</h3>
+        <p>DV Knowledge is best on GPT&#8209;4.1, MCP is best on GPT&#8209;5 Chat, and Sonnet 4.6 makes several
+          approaches look excellent. An architecture selected under one model can change rank under another.</p>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <span class="card-kicker">Finding 02</span>
+        <h3>Structured retrieval is the strongest tool-based default</h3>
+        <p>MCP improves from 76.0% on GPT&#8209;4.1 to 96.0% on GPT&#8209;5 Chat and 100.0% over scored Sonnet
+          cases &mdash; well matched to a corpus where year, type, domain, and act identifiers are decisive.</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <span class="card-kicker">Finding 03</span>
+        <h3>Knowledge granularity matters</h3>
+        <p>The same corpus behaves very differently by shape. Per-document upload is the most reliable knowledge
+          source; whole-corpus CSV and native table knowledge are more sensitive to model choice.</p>
+      </div>
+      <div class="card reveal">
+        <span class="card-kicker">Finding 04</span>
+        <h3>Semantic search is useful but not sufficient alone</h3>
+        <p>Semantic is stable at 74.0%, 76.0%, and 90.0% but leads no run. Many hard questions need exact
+          disambiguation among similar legal acts, which favours structured filters over similarity alone.</p>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <span class="card-kicker">Finding 05</span>
+        <h3>Errors reshape near-perfect scores</h3>
+        <p>A method with 100.0% on 47 scored cases and three timeouts is not operationally equivalent to 100.0% on
+          50 scored cases. Pass rate and error counts must be read together.</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <span class="card-kicker">Knowledge shape</span>
+        <h3>Granularity, side by side</h3>
+        <table style="width:100%; border-collapse:collapse; font-size:0.78rem; margin-top:6px; color:#eaf2f6;">
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.16);"><td style="padding:6px 4px;">Per-document (DV Knowledge)</td><td style="text-align:right; padding:6px 4px; color:var(--p3); font-weight:700;">96 / 90 / 100</td></tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.16);"><td style="padding:6px 4px;">Whole corpus CSV (Knowledge)</td><td style="text-align:right; padding:6px 4px;">84 / 68 / 97.9</td></tr>
+          <tr><td style="padding:6px 4px;">Native table (DV Table)</td><td style="text-align:right; padding:6px 4px;">60 / 58 / 93.6</td></tr>
+        </table>
+        <p style="margin-top:8px; font-size:0.74rem;">% by run: GPT&#8209;4.1 / GPT&#8209;5 Chat / Sonnet 4.6</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RECOMMENDATIONS ===================== -->
+<section id="recommendations" class="section-alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-label">Engineering guidance</span>
+      <h2>Recommendations</h2>
+      <div class="sec-bar"></div>
+      <p class="sec-intro">For metadata-rich legal and policy corpora: use structured MCP retrieval as the default
+        when tools are available; use the hybrid method when semantic recall is worth the added cost; for native
+        knowledge grounding, prefer one uploaded file per document.</p>
+    </div>
+
+    <div class="rec-list reveal">
+      <div class="rec-item"><div class="rec-num">1</div><div><h3>Default to MCP for metadata-rich Dataverse-backed corpora</h3><p>It is the strongest GPT&#8209;5 Chat method and reaches perfect scored accuracy under Sonnet 4.6. Its structured filters align with legal corpora where year, domain, document type, and act identifiers are decisive.</p></div></div>
+      <div class="rec-item"><div class="rec-num">2</div><div><h3>Use MCP plus Semantic when recall matters more than latency</h3><p>A good robustness option when questions may be paraphrased or when missing a relevant document is costlier than running both the MCP and semantic-search paths.</p></div></div>
+      <div class="rec-item"><div class="rec-num">3</div><div><h3>For knowledge grounding, upload one file per document</h3><p>DV Knowledge is the strongest knowledge-source option in every run. Avoid one large CSV as the primary knowledge object unless operational simplicity is worth the accuracy trade-off.</p></div></div>
+      <div class="rec-item"><div class="rec-num">4</div><div><h3>Treat native Dataverse table knowledge as a fallback</h3><p>DV Table is last on both GPT runs and has errors under Sonnet 4.6. It may be convenient, but it should be evaluated carefully before production use.</p></div></div>
+      <div class="rec-item"><div class="rec-num">5</div><div><h3>Keep model selection in the retrieval decision</h3><p>Sonnet 4.6 compresses the spread across methods, while GPT&#8209;4.1 and GPT&#8209;5 Chat expose larger differences. Re-run the evaluation when changing the model behind an agent.</p></div></div>
+      <div class="rec-item"><div class="rec-num">6</div><div><h3>Track failures and errors separately</h3><p>CompareMeaning pass rate is the right headline retrieval metric, but timeout and empty-response counts should be reviewed alongside it for operational readiness.</p></div></div>
+      <div class="rec-item"><div class="rec-num">7</div><div><h3>Use the tiered question set to diagnose weaknesses</h3><p>Tiers C and D expose exact legal disambiguation failures; Tier E checks abstention; Tier S checks paraphrase retrieval. The aggregate score alone hides which capability is failing.</p></div></div>
+    </div>
+
+    <div class="summary-box reveal">
+      <div class="sb-text">
+        <h3>Best scored result across the evaluation</h3>
+        <p>DV Knowledge and MCP both reach a perfect CompareMeaning pass rate over their scored cases under
+          Claude Sonnet 4.6 &mdash; read together with this run's three-error reliability caveat on four methods.</p>
+      </div>
+      <div class="sb-num">100%</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="footer-wrap">
+    <div class="footer-left">
+      <a class="footer-logo" aria-label="isolutions"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 928 130" width="928" height="130" role="img" aria-label="isolutions"><image width="928" height="130" href="data:image/png;base64,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"/></svg></a>
+      <p>isolutions AG &middot; Schanzenstrasse 4c &middot; 3008 Bern</p>
+    </div>
+    <div class="footer-right">
+      <p>Erstellt von Markus Tobler, Business Consultant &amp; Solution Architect &middot; 2026-06-30</p>
+      <p>Source: Evaluation results generated 30 June 2026 &middot; CompareMeaning is the headline pass/fail metric.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  document.documentElement.classList.add('js-ready');
+  var els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function(el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>

@@ -1,237 +1,347 @@
 {
-  "generatedUtc": "2026-06-29T12:10:52.842943+00:00",
+  "generatedUtc": "2026-06-30T06:47:30.474732+00:00",
   "runs": [
+    "gpt-4-1",
     "gpt-5-chat",
     "sonnet-4-6"
   ],
   "agents": {
     "MultiEURLEX Classic MCP": {
-      "gpt-5-chat": {
-        "totalCases": 40,
-        "scoredCases": 40,
-        "passedCases": 32,
-        "failedCases": 8,
+      "gpt-4-1": {
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 33,
+        "failedCases": 17,
         "errorCases": 0,
-        "passRate": 0.8,
+        "passRate": 0.66,
         "methods": {
           "GeneralQuality": {
-            "Fail": 8,
-            "Pass": 32
+            "Pass": 39,
+            "Fail": 11
           },
           "CompareMeaning": {
             "Pass": 38,
+            "Fail": 12
+          }
+        }
+      },
+      "gpt-5-chat": {
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 42,
+        "failedCases": 8,
+        "errorCases": 0,
+        "passRate": 0.84,
+        "methods": {
+          "GeneralQuality": {
+            "Fail": 8,
+            "Pass": 42
+          },
+          "CompareMeaning": {
+            "Pass": 48,
             "Fail": 2
           }
         }
       },
       "sonnet-4-6": {
-        "totalCases": 40,
-        "scoredCases": 39,
-        "passedCases": 35,
+        "totalCases": 50,
+        "scoredCases": 47,
+        "passedCases": 43,
         "failedCases": 4,
-        "errorCases": 1,
-        "passRate": 0.8974,
+        "errorCases": 3,
+        "passRate": 0.9149,
         "methods": {
           "GeneralQuality": {
-            "Pass": 35,
-            "Error": 1,
+            "Pass": 43,
+            "Error": 3,
             "Fail": 4
           },
           "CompareMeaning": {
-            "Pass": 39,
-            "Error": 1
+            "Pass": 47,
+            "Error": 3
           }
         }
       }
     },
     "MultiEURLEX Classic Semantic": {
-      "gpt-5-chat": {
-        "totalCases": 40,
-        "scoredCases": 40,
-        "passedCases": 26,
-        "failedCases": 14,
+      "gpt-4-1": {
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 33,
+        "failedCases": 17,
         "errorCases": 0,
-        "passRate": 0.65,
+        "passRate": 0.66,
         "methods": {
           "GeneralQuality": {
-            "Fail": 14,
-            "Pass": 26
+            "Pass": 36,
+            "Fail": 14
           },
           "CompareMeaning": {
-            "Pass": 32,
-            "Fail": 8
+            "Pass": 37,
+            "Fail": 13
+          }
+        }
+      },
+      "gpt-5-chat": {
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 32,
+        "failedCases": 18,
+        "errorCases": 0,
+        "passRate": 0.64,
+        "methods": {
+          "GeneralQuality": {
+            "Fail": 17,
+            "Pass": 33
+          },
+          "CompareMeaning": {
+            "Pass": 38,
+            "Fail": 12
           }
         }
       },
       "sonnet-4-6": {
-        "totalCases": 40,
-        "scoredCases": 40,
-        "passedCases": 33,
-        "failedCases": 7,
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 41,
+        "failedCases": 9,
         "errorCases": 0,
-        "passRate": 0.825,
+        "passRate": 0.82,
         "methods": {
           "GeneralQuality": {
-            "Pass": 34,
-            "Fail": 6
+            "Pass": 42,
+            "Fail": 8
           },
           "CompareMeaning": {
-            "Pass": 37,
-            "Fail": 3
+            "Pass": 45,
+            "Fail": 5
           }
         }
       }
     },
     "MultiEURLEX Classic MCP plus Semantic": {
-      "gpt-5-chat": {
-        "totalCases": 40,
-        "scoredCases": 40,
+      "gpt-4-1": {
+        "totalCases": 50,
+        "scoredCases": 50,
         "passedCases": 33,
-        "failedCases": 7,
+        "failedCases": 17,
         "errorCases": 0,
-        "passRate": 0.825,
+        "passRate": 0.66,
         "methods": {
           "GeneralQuality": {
-            "Fail": 7,
-            "Pass": 33
+            "Fail": 13,
+            "Pass": 37
           },
           "CompareMeaning": {
-            "Fail": 2,
-            "Pass": 38
+            "Pass": 37,
+            "Fail": 13
+          }
+        }
+      },
+      "gpt-5-chat": {
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 40,
+        "failedCases": 10,
+        "errorCases": 0,
+        "passRate": 0.8,
+        "methods": {
+          "GeneralQuality": {
+            "Fail": 10,
+            "Pass": 40
+          },
+          "CompareMeaning": {
+            "Fail": 4,
+            "Pass": 46
           }
         }
       },
       "sonnet-4-6": {
-        "totalCases": 40,
-        "scoredCases": 38,
-        "passedCases": 36,
-        "failedCases": 2,
-        "errorCases": 2,
-        "passRate": 0.9474,
+        "totalCases": 50,
+        "scoredCases": 47,
+        "passedCases": 44,
+        "failedCases": 3,
+        "errorCases": 3,
+        "passRate": 0.9362,
         "methods": {
           "GeneralQuality": {
-            "Pass": 36,
-            "Fail": 2,
-            "Error": 2
+            "Pass": 44,
+            "Fail": 3,
+            "Error": 3
           },
           "CompareMeaning": {
-            "Pass": 38,
-            "Error": 2
+            "Pass": 46,
+            "Error": 3,
+            "Fail": 1
           }
         }
       }
     },
     "MultiEURLEX Classic Knowledge": {
-      "gpt-5-chat": {
-        "totalCases": 40,
-        "scoredCases": 40,
-        "passedCases": 23,
-        "failedCases": 17,
+      "gpt-4-1": {
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 37,
+        "failedCases": 13,
         "errorCases": 0,
-        "passRate": 0.575,
+        "passRate": 0.74,
         "methods": {
           "GeneralQuality": {
-            "Pass": 25,
-            "Fail": 15
+            "Pass": 40,
+            "Fail": 10
           },
           "CompareMeaning": {
-            "Pass": 26,
-            "Fail": 14
+            "Pass": 42,
+            "Fail": 8
+          }
+        }
+      },
+      "gpt-5-chat": {
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 30,
+        "failedCases": 20,
+        "errorCases": 0,
+        "passRate": 0.6,
+        "methods": {
+          "GeneralQuality": {
+            "Pass": 32,
+            "Fail": 18
+          },
+          "CompareMeaning": {
+            "Pass": 34,
+            "Fail": 16
           }
         }
       },
       "sonnet-4-6": {
-        "totalCases": 40,
-        "scoredCases": 39,
-        "passedCases": 35,
+        "totalCases": 50,
+        "scoredCases": 47,
+        "passedCases": 43,
         "failedCases": 4,
-        "errorCases": 1,
-        "passRate": 0.8974,
+        "errorCases": 3,
+        "passRate": 0.9149,
         "methods": {
           "GeneralQuality": {
-            "Pass": 36,
-            "Error": 1,
+            "Pass": 44,
+            "Error": 3,
             "Fail": 3
           },
           "CompareMeaning": {
-            "Pass": 38,
-            "Error": 1,
+            "Pass": 46,
+            "Error": 3,
             "Fail": 1
           }
         }
       }
     },
     "MultiEURLEX Classic DV Knowledge": {
-      "gpt-5-chat": {
-        "totalCases": 40,
-        "scoredCases": 40,
-        "passedCases": 31,
-        "failedCases": 9,
+      "gpt-4-1": {
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 46,
+        "failedCases": 4,
         "errorCases": 0,
-        "passRate": 0.775,
+        "passRate": 0.92,
         "methods": {
           "GeneralQuality": {
-            "Pass": 32,
+            "Pass": 47,
+            "Fail": 3
+          },
+          "CompareMeaning": {
+            "Pass": 48,
+            "Fail": 2
+          }
+        }
+      },
+      "gpt-5-chat": {
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 41,
+        "failedCases": 9,
+        "errorCases": 0,
+        "passRate": 0.82,
+        "methods": {
+          "GeneralQuality": {
+            "Pass": 42,
             "Fail": 8
           },
           "CompareMeaning": {
-            "Pass": 35,
+            "Pass": 45,
             "Fail": 5
           }
         }
       },
       "sonnet-4-6": {
-        "totalCases": 40,
-        "scoredCases": 40,
-        "passedCases": 35,
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 45,
         "failedCases": 5,
         "errorCases": 0,
-        "passRate": 0.875,
+        "passRate": 0.9,
         "methods": {
           "GeneralQuality": {
-            "Pass": 35,
+            "Pass": 45,
             "Fail": 5
           },
           "CompareMeaning": {
-            "Pass": 40
+            "Pass": 50
           }
         }
       }
     },
     "MultiEURLEX Classic DV Table": {
-      "gpt-5-chat": {
-        "totalCases": 40,
-        "scoredCases": 40,
-        "passedCases": 16,
-        "failedCases": 24,
+      "gpt-4-1": {
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 27,
+        "failedCases": 23,
         "errorCases": 0,
-        "passRate": 0.4,
+        "passRate": 0.54,
         "methods": {
           "GeneralQuality": {
-            "Fail": 23,
-            "Pass": 17
+            "Pass": 27,
+            "Fail": 23
           },
           "CompareMeaning": {
-            "Fail": 20,
-            "Pass": 20
+            "Pass": 30,
+            "Fail": 20
+          }
+        }
+      },
+      "gpt-5-chat": {
+        "totalCases": 50,
+        "scoredCases": 50,
+        "passedCases": 25,
+        "failedCases": 25,
+        "errorCases": 0,
+        "passRate": 0.5,
+        "methods": {
+          "GeneralQuality": {
+            "Fail": 24,
+            "Pass": 26
+          },
+          "CompareMeaning": {
+            "Fail": 21,
+            "Pass": 29
           }
         }
       },
       "sonnet-4-6": {
-        "totalCases": 40,
-        "scoredCases": 37,
-        "passedCases": 26,
-        "failedCases": 11,
+        "totalCases": 50,
+        "scoredCases": 47,
+        "passedCases": 35,
+        "failedCases": 12,
         "errorCases": 3,
-        "passRate": 0.7027,
+        "passRate": 0.7447,
         "methods": {
           "GeneralQuality": {
-            "Fail": 10,
-            "Pass": 27,
+            "Fail": 11,
+            "Pass": 36,
             "Error": 3
           },
           "CompareMeaning": {
-            "Pass": 34,
+            "Pass": 44,
             "Error": 3,
             "Fail": 3
           }

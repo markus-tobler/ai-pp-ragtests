@@ -1,0 +1,111 @@
+﻿"conversationId","question","expectedResponse","actualResponse","testMethodType_1","result_1","passingScore_1","explanation_1","testMethodType_2","result_2","passingScore_2","explanation_2"
+"26b75380-eaf5-406f-b64a-9c2d7a4d047b","Which EU act sets the permitted upper limits for traces of crop-treatment chemicals left on or in food and animal-feed products such as fruit and cereals?","CELEX 32015R0401 - Commission Regulation (EU) 2015/401 of 25 February 2015, which amends Annexes II and III to Regulation (EC) No 396/2005 on maximum residue levels of pesticides.","**EU Act Setting Permitted Upper Limits for Crop-Treatment Chemicals**
+
+The EU act that sets the permitted upper limits for traces of crop-treatment chemicals (pesticides) in food and animal-feed products such as fruit and cereals is **Regulation (EC) No 396/2005**. This regulation establishes maximum residue levels (MRLs) for pesticides in various products. It covers amendments and opinions related to MRLs for numerous products including nuts, fruits, vegetables, cereals, and animal products. The regulation specifies that MRLs should be set at existing levels or adjusted based on scientific opinions, with provisions for transitional arrangements to allow compliance. It is periodically reviewed and amended to incorporate new scientific data and technical developments[1].
+
+---
+
+**Sources**
+- 396/2005 - Regulation (EC) No 396/2005 - Sets maximum residue levels for pesticides in food and feed; directly relevant to permitted upper limits for crop-treatment chemicals.
+
+[1]: https://mto-training-management.crm.dynamics.com/main.aspx?forceUCI=1&newWindow=true&pagetype=entityrecord&etn=is_rag_multieurlex_document&id=3547657f-5471-f111-ab0d-000d3a340640 ""is_rag_multieurlex_document""","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","50/100 - Some shared meaning; The Agent answer names the main regulation but leaves out the specific amending regulation mentioned in the Expected response, which is an important detail."
+"0363a58d-a9af-40b7-910e-7cff109304b5","Which EU directive aims to cut down how many flimsy throwaway shopping sacks each person gets through in a year?","CELEX 32015L0720 - Directive (EU) 2015/720 of the European Parliament and of the Council of 29 April 2015, amending Directive 94/62/EC to reduce the consumption of lightweight plastic carrier bags.","**EU Directive on Reducing Flimsy Throwaway Shopping Sacks**
+
+The EU directive specifically aims to cut down the annual consumption of lightweight plastic carrier bags per person. It sets national reduction targets and economic instruments for Member States:
+
+- By 31 December 2019, consumption must not exceed 90 bags per person.
+- By 31 December 2025, consumption must not exceed 40 bags per person, or equivalent weight targets.
+- Very lightweight plastic bags may be excluded from these targets.
+- By 31 December 2018, lightweight plastic bags should not be provided free of charge at points of sale unless equally effective measures are implemented.
+- Member States are required to report annual consumption data to the Commission.
+- The directive also includes measures for biodegradable and compostable bags, requiring labeling specifications for Union-wide recognition and consumer information.
+- Member States had to implement necessary laws by 27 November 2016 and communicate these to the Commission.
+- Public awareness campaigns about the environmental impact of excessive plastic bag use are encouraged.
+
+These measures are designed to significantly reduce the number of flimsy throwaway shopping sacks each person uses annually[1].
+
+**Sources**
+- turn14search0 - EU directive on lightweight plastic carrier bags - Directly addresses reduction targets for annual consumption of flimsy throwaway shopping sacks per person.
+
+[1]: https://mto-training-management.crm.dynamics.com/main.aspx?forceUCI=1&newWindow=true&pagetype=entityrecord&etn=is_rag_multieurlex_document&id=3f454887-5471-f111-ab0d-000d3a340a6f ""is_rag_multieurlex_document""","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","50/100 - Some shared meaning; The Agent answer explains what the directive does but doesn't name or cite it, while the Expected response gives the exact directive name and number."
+"cbd51743-762b-4114-b4a2-aada799f3497","Which EU directive updates the rules on the sweet substance produced by bees, in particular clarifying the status of the floral material the insects gather?","CELEX 32014L0063 - Directive 2014/63/EU of the European Parliament and of the Council of 15 May 2014, amending Council Directive 2001/110/EC relating to honey (clarifying the status of pollen).","I'm sorry, I'm not sure how to help with that. Can you try rephrasing?","GeneralQuality","Fail",,"Not answered: The agent response says it cannot help with identifying the EU directive about the sweet substance produced by bees. It does not offer any alternative information related to the question. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources.","CompareMeaning","Fail","50","1. 🚫 Irrelevant info: It appears like the agent is not aligned with the question.; 2. 📚 Support assessment: It seems like the expected response is found in the knowledge sources."
+"773bdb97-eca1-4302-b4f7-22815d8d3832","Which 2014 EU regulation lifts the entry-permit requirement for short stays for citizens of a particular eastern European country who hold biometric passports?","CELEX 32014R0259 - Regulation (EU) No 259/2014 of the European Parliament and of the Council of 3 April 2014, amending Regulation (EC) No 539/2001 by transferring the Republic of Moldova to the visa-exempt list.","**2014 EU Regulation Lifting Entry-Permit Requirement for Short Stays**
+
+The 2014 EU regulation amended Regulation (EC) No 539/2001 by removing Moldova from Annex I, Part 1, and adding it to Annex II, Part 1. This change lifted the entry-permit (visa) requirement for short stays for citizens of Moldova who hold biometric passports issued according to International Civil Aviation Organisation (ICAO) standards. The visa waiver applies only to holders of such biometric passports. The regulation became effective on the twentieth day after its publication in the Official Journal of the European Union and is binding and directly applicable in all Member States according to the Treaties[1].
+
+**Sources**
+- turn14search0 - 2014 EU regulation amending Regulation (EC) No 539/2001 - Directly addresses the lifting of entry-permit requirements for Moldovan citizens with biometric passports.
+
+[1]: https://mto-training-management.crm.dynamics.com/main.aspx?forceUCI=1&newWindow=true&pagetype=entityrecord&etn=is_rag_multieurlex_document&id=6f21b87f-5471-f111-ab0d-000d3a340a6f ""is_rag_multieurlex_document""","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer explains the regulation and its effect but leaves out the exact regulation number and CELEX reference found in the Expected response."
+"c3f432e2-403b-4502-acc0-e9a75d68c6f3","Which 2015 EU directive updates the rules on the dockside facilities that take in rubbish and leftover cargo from boats arriving at harbours?","CELEX 32015L2087 - Commission Directive (EU) 2015/2087 of 18 November 2015, amending Annex II to Directive 2000/59/EC on port reception facilities for ship-generated waste and cargo residues.","**2015 EU Directive on Dockside Facilities for Ship Waste**
+
+The 2015 EU Directive that updates the rules on dockside facilities for rubbish and leftover cargo from boats arriving at harbours is Directive 2015/2087. This directive amends Annex II to Directive 2000/59/EC concerning port reception facilities for ship-generated waste and cargo residues. It aligns the waste categorization with the International Maritime Organisation's amended Annex V to the MARPOL Convention, introducing a more detailed classification of garbage.
+
+**Key Updates:**
+- The updated annex includes types and quantities of ship-generated waste delivered at the last port, which is essential for calculating sufficient dedicated storage capacity on ships.
+- Ships may proceed to the next port without delivering waste if storage is adequate, improving maritime traffic efficiency and reducing port turnaround times.
+- The directive emphasizes accurate data collection on waste delivery, using waste receipts or declarations by ship masters, recorded in the Garbage Record Book as required by MARPOL.
+- It supports better statistical analysis of waste flow patterns and links the information and monitoring system to the Union maritime information and exchange system (SafeSeaNet) and the Port State Control database for enhanced monitoring and reporting.
+
+**Sources:**
+- 2015/2087 - Amends Annex II to Directive 2000/59/EC - Updates rules on port reception facilities for ship-generated waste and cargo residues, aligning with MARPOL and improving monitoring and reporting[1]
+
+[1]: https://mto-training-management.crm.dynamics.com/main.aspx?forceUCI=1&newWindow=true&pagetype=entityrecord&etn=is_rag_multieurlex_document&id=4a21b87f-5471-f111-ab0d-000d3a340a6f ""is_rag_multieurlex_document""","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer gives the correct directive and adds extra details about its updates and impacts, while the Expected response only names the directive."
+"6e0adbeb-ac01-45f3-a7e0-ee92602e0e28","Which EU directive revises the safeguards that keep underground water sources from becoming polluted, by updating the table of pollutant threshold values?","CELEX 32014L0080 - Commission Directive 2014/80/EU of 20 June 2014, which amends Annex II to Directive 2006/118/EC on the protection of groundwater against pollution and deterioration.","**Directive Revising Safeguards for Underground Water Pollution**
+
+The EU directive that revises the safeguards protecting underground water sources from pollution by updating the table of pollutant threshold values is **Commission Directive 2014/80/EU**. This directive amends Annex II to Directive 2006/118/EC, which concerns the protection of groundwater against pollution and deterioration.
+
+**Key Points from Commission Directive 2014/80/EU:**
+- Updates the table of pollutant threshold values in Annex II to Directive 2006/118/EC.
+- Introduces common principles for determining background levels to improve comparability of threshold values.
+- Recognizes the risk of eutrophication posed by nitrogen and phosphorus compounds in groundwater, including nitrates, ammonium, nitrites, and total phosphorus or phosphates.
+- Establishes a watch list for pollutants under the Common Implementation Strategy for Directive 2000/60/EC to enhance monitoring and facilitate identification of substances for which quality standards or threshold values should be set.
+- Clarifies requirements for information provided by Member States on pollutants and indicators with established threshold values to ensure transparency and comparability across Member States.
+- Requires Member States to implement necessary laws, regulations, and administrative provisions within 24 months of the directive’s entry into force.
+
+**Sources:**
+- 2014/80/EU - Commission Directive 2014/80/EU amending Annex II to Directive 2006/118/EC - Directly revises safeguards and updates pollutant threshold values for groundwater protection[1]
+
+[1]: https://mto-training-management.crm.dynamics.com/main.aspx?forceUCI=1&newWindow=true&pagetype=entityrecord&etn=is_rag_multieurlex_document&id=5921b87f-5471-f111-ab0d-000d3a340a6f ""is_rag_multieurlex_document""","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer gives the correct directive and adds extra details about its contents and requirements, while the Expected response only names the directive and its amendment."
+"c2de0885-b045-4b21-9a7f-39c26cc8e8c1","Which EU directive harmonises national laws on the milk-protein ingredients used in food for people, replacing an older 1983 measure?","CELEX 32015L2203 - Directive (EU) 2015/2203 of the European Parliament and of the Council of 25 November 2015 on caseins and caseinates intended for human consumption, repealing Council Directive 83/417/EEC.","**EU Directive Harmonising Milk-Protein Ingredients in Food**
+
+The EU directive that harmonises national laws on milk-protein ingredients used in food for people, replacing the older 1983 measure, is **Directive 32015L2203**. This directive repeals Directive 83/417/EEC effective 22 December 2016, and requires Member States to transpose its provisions into national law by that date. It sets out rules for the marking and marketing of milk products, including requirements for minimum milk protein content as specified in its annexes. The directive also grants the European Commission powers to amend these standards through delegated acts, with a five-year delegation period starting from 21 December 2015. References to the repealed 1983 directive are to be construed as references to Directive 32015L2203 from the date of repeal[1].
+
+**Sources**
+- 32015L2203 - [Title not provided] - Harmonises national laws on milk-protein ingredients in food, repeals Directive 83/417/EEC, and sets new standards and procedures for milk products.
+
+[1]: https://mto-training-management.crm.dynamics.com/main.aspx?forceUCI=1&newWindow=true&pagetype=entityrecord&etn=is_rag_multieurlex_document&id=45454887-5471-f111-ab0d-000d3a340a6f ""is_rag_multieurlex_document""","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer gives the right directive and repeal info, but adds extra details about the rules and procedures that aren't in the Expected response."
+"e8f98f22-a042-4828-876f-82fc359a2f10","Which 2015 EU directive sets a maximum permitted level for a foam-forming chemical in the materials used to make children's playthings?","CELEX 32015L2115 - Commission Directive (EU) 2015/2115 of 23 November 2015, amending Appendix C to Annex II to Directive 2009/48/EC on the safety of toys to adopt a specific limit value for formamide.","**Directive Setting Maximum Permitted Level for Foam-Forming Chemical in Children's Playthings (2015)**
+
+The relevant EU directive is **Directive 2015/2115**, dated 23 November 2015. This directive amends Appendix C to Annex II of Directive 2009/48/EC concerning the safety of toys. It specifically sets a maximum emission limit for **formamide**, a foam-forming chemical used in children's playthings such as foam puzzle mats.
+
+- **Formamide Limit**: The directive establishes an emission limit of **20 micrograms per cubic meter (μg/m³)**, measured after a maximum of 28 days from the start of emission testing for foam toy materials containing more than 200 milligrams per kilogram (mg/kg) of formamide.
+- **Testing Exemption**: Emission testing is not required if the formamide content is **200 mg/kg or less**.
+- **Purpose**: The directive aims to ensure a high level of protection for children against chemical risks in toys, especially those intended for children under 36 months or likely to be placed in the mouth.
+- **Implementation**: Member States were required to adopt and publish laws to comply with this directive by 24 May 2017 and apply these provisions from that date.
+
+**Sources**
+- 2015/2115 - Amendment to Directive 2009/48/EC concerning the safety of toys - Sets maximum permitted level for formamide in foam materials used in children's playthings[1]
+
+[1]: https://mto-training-management.crm.dynamics.com/main.aspx?forceUCI=1&newWindow=true&pagetype=entityrecord&etn=is_rag_multieurlex_document&id=6221b87f-5471-f111-ab0d-000d3a340a6f ""is_rag_multieurlex_document""","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer names the correct directive and gives extra details about the limit, testing, and purpose that aren't in the Expected response."
+"338262c0-cd39-457a-89a0-7a8ed9d209ba","Which 2013 EU directive tightens the rules on selling portable power cells that contain cadmium and the small round cells that contain mercury?","CELEX 32013L0056 - Directive 2013/56/EU of the European Parliament and of the Council of 20 November 2013, amending Directive 2006/66/EC on batteries and accumulators as regards portable batteries containing cadmium and button cells with mercury.","**2013 EU Directive on Portable Power Cells with Cadmium and Mercury**
+
+The 2013 EU directive that tightens the rules on selling portable power cells containing cadmium and small round cells (button cells) containing mercury is **Directive 2013/56/EU of the European Parliament and of the Council**.
+
+**Key Provisions:**
+- **Cadmium Restrictions:** The directive prohibits portable batteries and accumulators containing more than 0.002% cadmium by weight. An exemption for cordless power tools was reviewed and phased out by 31 December 2016, aiming to reduce environmental cadmium release. Cadmium-free substitutes such as nickel-metal hydride and lithium-ion batteries are available.
+- **Mercury Restrictions:** The directive prohibits batteries containing more than 0.0005% mercury by weight. While button cells were previously allowed to contain up to 2% mercury by weight, the directive aims to prohibit marketing button cells exceeding 0.0005% mercury content, encouraging mercury-free alternatives.
+- **Implementation and Reporting:** The directive aligns Commission powers with Articles 290 and 291 of the Treaty on the Functioning of the European Union, delegating powers for criteria on treatment and recycling outside the Union, labelling exemptions, and other implementation details. It ensures uniform conditions for implementing Directive 2006/66/EC, including transitional arrangements, collection rates, sales calculation methodologies, recycling efficiencies, and national reporting requirements[1].
+
+**Sources**
+- 2013/56/EU - Directive 2013/56/EU of the European Parliament and of the Council - Tightens rules on cadmium and mercury in portable batteries and button cells, directly addresses the question.
+
+[1]: https://mto-training-management.crm.dynamics.com/main.aspx?forceUCI=1&newWindow=true&pagetype=entityrecord&etn=is_rag_multieurlex_document&id=61454887-5471-f111-ab0d-000d3a340a6f ""is_rag_multieurlex_document""","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","75/100 - Mostly same meaning; The Agent answer names the same directive as the Expected response and adds extra details about its rules and implementation."
+"8e865295-a19c-4a72-a22e-d49302a95b97","Which 2014 EU regulation narrows the carbon-allowance trading scheme for airline flights so that it only covers journeys within the European Economic Area?","CELEX 32014R0421 - Regulation (EU) No 421/2014 of the European Parliament and of the Council of 16 April 2014, amending Directive 2003/87/EC and limiting the EU Emissions Trading System for aviation to flights within the EEA.","**Regulation (EU) No 421/2014 - Narrowing the Carbon-Allowance Trading Scheme for Airline Flights**
+
+Regulation (EU) No 421/2014 of the European Parliament and of the Council, dated 16 April 2014, amends Directive 2003/87/EC, which established the EU's greenhouse gas emission allowance trading scheme. This regulation specifically narrows the scope of the carbon-allowance trading scheme for airline flights so that, until a global agreement is fully implemented, it only covers flights within the European Economic Area (EEA). Flights to and from aerodromes outside the EEA are temporarily exempted from the requirements of Directive 2003/87/EC until 31 December 2016, while flights within the EEA remain covered. The regulation also clarifies that flights between EEA states and countries that joined the Union in 2013 are treated as EEA flights[1].
+
+**Sources**
+- 421/2014 - Regulation (EU) No 421/2014 of the European Parliament and of the Council - This regulation is directly relevant as it amends the trading scheme to cover only flights within the EEA, temporarily exempting flights outside the EEA.
+
+[1]: https://mto-training-management.crm.dynamics.com/main.aspx?forceUCI=1&newWindow=true&pagetype=entityrecord&etn=is_rag_multieurlex_document&id=83454887-5471-f111-ab0d-000d3a340a6f ""is_rag_multieurlex_document""","GeneralQuality","Pass",,"All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents.","CompareMeaning","Pass","50","100/100 - Same meaning; The Agent answer gives the same regulation as the Expected response and explains it in more detail, but the main information matches perfectly."

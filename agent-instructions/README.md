@@ -29,8 +29,8 @@ relevance check, answer rules, conversation starters) and **differ only in the
 | File | Variant (retrieval strategy) |
 |---|---|
 | [multieurlex-search-agent-mcp.md](multieurlex-search-agent-mcp.md) | mcp — `read_query`: metadata filters (AND) + keyword/synonym OR text match over title/text/domain, relax if empty |
-| [multieurlex-search-agent-semantic.md](multieurlex-search-agent-semantic.md) | semantic — Semantic Search with a natural-language semantic query, broaden if empty |
-| [multieurlex-search-agent-hybrid.md](multieurlex-search-agent-hybrid.md) | hybrid — always runs BOTH the mcp and semantic paths, then consolidates |
+| [multieurlex-search-agent-semantic.md](multieurlex-search-agent-semantic.md) | semantic — Dataverse semantic search via a Copilot Studio tool, using a natural-language semantic query; broaden if empty |
+| [multieurlex-search-agent-hybrid.md](multieurlex-search-agent-hybrid.md) | hybrid — always runs BOTH the mcp path and the Dataverse semantic-search tool path, then consolidates |
 | [multieurlex-search-agent-knowledge.md](multieurlex-search-agent-knowledge.md) | knowledge — grounded on the agent's attached knowledge source (no tools) |
 
 ## Agents
@@ -41,8 +41,8 @@ Edit the instruction file, commit, then paste into the agent's instructions box 
 | Agent | Bot ID | Instruction file | Environment |
 |---|---|---|---|
 | MultiEURLEX Classic MCP | `3178427b-3b5b-48f5-ae8b-8815c8e009dd` | [multieurlex-search-agent-mcp.md](multieurlex-search-agent-mcp.md) | mto-training-management |
-| MultiEURLEX Classic Semantic | `7dc480d4-4c8a-433d-ad19-215599a24dc5` | [multieurlex-search-agent-semantic.md](multieurlex-search-agent-semantic.md) | mto-training-management |
-| MultiEURLEX Classic MCP plus Semantic | `8e544f18-eb71-f111-ab0d-000d3a340a6f` | [multieurlex-search-agent-hybrid.md](multieurlex-search-agent-hybrid.md) | mto-training-management |
+| MultiEURLEX Classic Semantic | `7dc480d4-4c8a-433d-ad19-215599a24dc5` | [multieurlex-search-agent-semantic.md](multieurlex-search-agent-semantic.md) — uses Dataverse semantic search via a Copilot Studio tool | mto-training-management |
+| MultiEURLEX Classic MCP plus Semantic | `8e544f18-eb71-f111-ab0d-000d3a340a6f` | [multieurlex-search-agent-hybrid.md](multieurlex-search-agent-hybrid.md) — uses MCP plus the Dataverse semantic-search tool | mto-training-management |
 | MultiEURLEX Classic Knowledge | `1c6a788a-6a77-4586-b528-d8b3c1d272e8` | [multieurlex-search-agent-knowledge.md](multieurlex-search-agent-knowledge.md) | mto-training-management |
 | MultiEURLEX Classic DV Knowledge | `b6a6468d-632d-49df-93a1-aa1a9afbf4d6` | [multieurlex-search-agent-knowledge.md](multieurlex-search-agent-knowledge.md) | mto-training-management |
 | MultiEURLEX Classic DV Table | `aec67584-420c-4aea-8c12-abab5e372cbb` | [multieurlex-search-agent-knowledge.md](multieurlex-search-agent-knowledge.md) | mto-training-management |
