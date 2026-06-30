@@ -42,7 +42,7 @@ abstention behaviour.
 | File | Purpose |
 |------|---------|
 | `EvalConversationTemplate.csv` / `EvaluationTemplate_classic.csv` | The two official Copilot Studio templates the import files are modelled on (reference). |
-| `../../scripts/build_eval_set.py` | Generator. All CSVs (overall + per-tier) are produced from one table in this script, so they never drift. Re-run after editing. |
+| `../../scripts/06_eval_build_set.py` | Generator. All CSVs (overall + per-tier) are produced from one table in this script, so they never drift. Re-run after editing. |
 
 Pick the import file that matches the evaluation type you start in Copilot
 Studio: the **conversation** file for multi-turn / *Import conversations*, or the
@@ -52,7 +52,7 @@ graded.
 Regenerate:
 
 ```bash
-python3 scripts/build_eval_set.py
+python3 scripts/06_eval_build_set.py
 ```
 
 ## Difficulty / capability tiers

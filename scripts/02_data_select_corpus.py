@@ -10,8 +10,8 @@ Install dependencies:
     pip install datasets huggingface_hub
 
 Usage:
-    python select_corpus.py
-    python select_corpus.py --lang en --seed 42
+    python scripts/02_data_select_corpus.py
+    python scripts/02_data_select_corpus.py --lang en --seed 42
 """
 
 import argparse

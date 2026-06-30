@@ -31,12 +31,12 @@ Idempotency / rerun:
   already-loaded ones are skipped, no empty orphans are left behind.
 
 Usage:
-    python scripts/load_knowledge_files.py                 # DRY RUN — preview only, no write
-    python scripts/load_knowledge_files.py --execute       # create + upload all files, then publish
-    python scripts/load_knowledge_files.py --execute --limit 5      # smoke test (first 5)
-    python scripts/load_knowledge_files.py --execute --overwrite    # replace existing files
-    python scripts/load_knowledge_files.py --execute --clean        # wipe all knowledge first, then load fresh
-    python scripts/load_knowledge_files.py --execute --no-publish   # skip PvaPublish
+    python scripts/05_dv_load_knowledge.py                 # DRY RUN — preview only, no write
+    python scripts/05_dv_load_knowledge.py --execute       # create + upload all files, then publish
+    python scripts/05_dv_load_knowledge.py --execute --limit 5      # smoke test (first 5)
+    python scripts/05_dv_load_knowledge.py --execute --overwrite    # replace existing files
+    python scripts/05_dv_load_knowledge.py --execute --clean        # wipe all knowledge first, then load fresh
+    python scripts/05_dv_load_knowledge.py --execute --no-publish   # skip PvaPublish
 """
 import argparse
 import csv

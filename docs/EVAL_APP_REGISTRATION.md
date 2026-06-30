@@ -1,6 +1,6 @@
-# App Registration for `run_agent_evals.py`
+# App Registration for `07_eval_run.py`
 
-`scripts/run_agent_evals.py` calls the **Power Platform "maker evaluation" API**
+`scripts/07_eval_run.py` calls the **Power Platform "maker evaluation" API**
 (`https://api.powerplatform.com/...`) to run Copilot Studio evaluations against
 each agent's draft bot. That needs an Entra ID (Azure AD) **App Registration**
 whose delegated permissions include the Power Platform API.
@@ -113,7 +113,7 @@ MCS_CONNECTION_ID=<connection GUID>
 ## Verify
 
 ```bash
-python3 scripts/run_agent_evals.py --check-only
+python3 scripts/07_eval_run.py --check-only
 ```
 
 Expected: one device-code login, then a list of the 5 agents each reporting

@@ -39,9 +39,9 @@ Config (.env in repo root):
   MCS_CONNECTION_ID   optional  Microsoft Copilot Studio connection id (prompted if absent)
 
 Usage:
-  python scripts/run_agent_evals.py            # full check -> run -> collect
-  python scripts/run_agent_evals.py --check-only
-  python scripts/run_agent_evals.py --anonymous   # no connection id (tools/knowledge skipped)
+  python scripts/07_eval_run.py            # full check -> run -> collect
+  python scripts/07_eval_run.py --check-only
+  python scripts/07_eval_run.py --anonymous   # no connection id (tools/knowledge skipped)
 """
 
 from __future__ import annotations
@@ -237,7 +237,7 @@ def resolve_environment_id(token: str, dataverse_url: str) -> str:
 
     print(
         "\nCould not match an environment to DATAVERSE_URL automatically.\n"
-        "Run 'python3 scripts/run_agent_evals.py --list-environments' to see ids,\n"
+        "Run 'python3 scripts/07_eval_run.py --list-environments' to see ids,\n"
         "or set ENVIRONMENT_ID in .env (Power Platform Admin Center >> Environments\n"
         ">> your environment >> 'Environment ID').",
         flush=True,

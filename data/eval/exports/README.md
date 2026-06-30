@@ -3,7 +3,7 @@
 Put the CSV files exported from the Copilot Studio **Evaluate** tab here, then run:
 
 ```bash
-python3 scripts/collect_eval_results.py
+python3 scripts/08_eval_collect.py
 ```
 
 ## Layout: one subfolder per run
@@ -53,7 +53,7 @@ console prints `[merged 2 files]` and `summary.csv`'s `source_files` lists both.
 
 This is the interim path while the maker-evaluation **REST API is unavailable**
 in this environment (the `makerevaluation/*` routes 404 `RouteNotFound` — a
-Microsoft Preview rollout gap; `scripts/run_agent_evals.py` is correct and will
+Microsoft Preview rollout gap; `scripts/07_eval_run.py` is correct and will
 work once they deploy).
 
 ## How to export

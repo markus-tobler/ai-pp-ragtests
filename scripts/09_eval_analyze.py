@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Static analysis of evaluation results -> charts + a factual markdown report.
 
-Reads the roll-up `summary.json` files produced by `collect_eval_results.py`
+Reads the roll-up `summary.json` files produced by `08_eval_collect.py`
 (one per run directory under data/eval/results/) and renders charts comparing
 agents against each other and across runs. The accompanying markdown only states
 bare facts read from the data (counts, pass rates, per-method tallies, sample
@@ -31,8 +31,8 @@ Output (default data/eval/analysis/):
     report.md       # factual tables + embedded chart links
 
 Usage:
-    python3 scripts/analyze_eval_results.py
-    python3 scripts/analyze_eval_results.py --results-dir <dir> --output-dir <dir>
+    python3 scripts/09_eval_analyze.py
+    python3 scripts/09_eval_analyze.py --results-dir <dir> --output-dir <dir>
 """
 
 from __future__ import annotations
