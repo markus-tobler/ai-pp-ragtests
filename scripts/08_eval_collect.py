@@ -15,6 +15,14 @@ typically named like `Evaluate <agent name> <date>.csv`. Export CSV columns (the
     testMethodType_1, result_1, passingScore_1, explanation_1,
     testMethodType_2, result_2, ...
 
+Pass/fail scoring: graders that emit a numeric score prefix their explanation
+with "N/100" (e.g. CompareMeaning -> "75/100 - ..."). For those, Pass/Fail is
+RE-DERIVED from that achieved score against a configurable threshold
+(PASSING_SCORE in .env, default 75, inclusive: 75 passes, 74 fails) rather than
+trusting the grader's own verdict (which used its own, often lower, passingScore
+of 50). Binary graders with no score (e.g. GeneralQuality) keep their verdict.
+The achieved scores are also rolled up per agent (mean/min/max).
+
 Output: data/eval/results/run_<UTC-ts>/
     <agent-slug>.json   - merged rows + summary for that agent
     summary.csv         - one row per agent: totals, pass rate, per-method tally
@@ -41,6 +49,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 import re
 import sys
 from datetime import datetime, timezone
@@ -55,10 +64,11 @@ _run_path = Path(__file__).resolve().parent / "07_eval_run.py"
 _spec = importlib.util.spec_from_file_location("eval_run", _run_path)
 _eval_run = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_eval_run)
-REPO_ROOT, parse_agents, slugify = (
+REPO_ROOT, parse_agents, slugify, load_env = (
     _eval_run.REPO_ROOT,
     _eval_run.parse_agents,
     _eval_run.slugify,
+    _eval_run.load_env,
 )
 
 DEFAULT_INPUT_DIR = REPO_ROOT / "data" / "eval" / "exports"
@@ -66,6 +76,36 @@ RESULTS_ROOT = REPO_ROOT / "data" / "eval" / "results"
 
 PASS = "pass"
 FAIL = "fail"
+
+DEFAULT_PASSING_SCORE = 75
+
+# Graders such as CompareMeaning prefix their explanation with the achieved
+# score, e.g. "75/100 - Mostly same meaning; ...". This is the per-case score we
+# grade on; binary graders (GeneralQuality) carry no such number.
+SCORE_RE = re.compile(r"^\s*(\d{1,3})\s*/\s*100")
+
+
+def passing_score() -> int:
+    """Pass/fail threshold (inclusive) from PASSING_SCORE in .env, default 75.
+
+    A case scored on a numeric grader passes when its achieved score is >= this
+    value (so 75 passes, 74 fails when the threshold is 75).
+    """
+    load_env()
+    raw = (os.environ.get("PASSING_SCORE") or "").strip()
+    try:
+        return int(raw)
+    except ValueError:
+        return DEFAULT_PASSING_SCORE
+
+
+def parse_score(explanation: str) -> int | None:
+    """Achieved 0-100 score parsed from a grader explanation's "N/100" prefix."""
+    m = SCORE_RE.match(explanation or "")
+    if not m:
+        return None
+    v = int(m.group(1))
+    return v if 0 <= v <= 100 else None
 
 
 def rel(p: Path) -> str:
@@ -86,8 +126,15 @@ def method_indices(fieldnames: list[str]) -> list[str]:
     return sorted(idx, key=int)
 
 
-def parse_rows(path: Path) -> list[dict]:
-    """Parse one export CSV into normalized per-case rows."""
+def parse_rows(path: Path, threshold: int) -> list[dict]:
+    """Parse one export CSV into normalized per-case rows.
+
+    For methods that report a numeric score (the "N/100" prefix), Pass/Fail is
+    re-derived from that score against `threshold` (>= passes) rather than taken
+    from the grader's own verdict — the grader graded at its own passingScore
+    (often 50), we want a configurable bar. Methods with no score (e.g.
+    GeneralQuality) keep the grader's original Pass/Fail.
+    """
     with path.open(newline="", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         indices = method_indices(reader.fieldnames or [])
@@ -102,15 +149,25 @@ def parse_rows(path: Path) -> list[dict]:
             saw_verdict = False  # any method produced a non-empty Pass/Fail result
             for n in indices:
                 mtype = (raw.get(f"testMethodType_{n}") or "").strip()
-                result = (raw.get(f"result_{n}") or "").strip()
-                if not mtype and not result:
+                orig_result = (raw.get(f"result_{n}") or "").strip()
+                explanation = (raw.get(f"explanation_{n}") or "").strip()
+                if not mtype and not orig_result:
                     continue  # this method column is absent for the row
                 name = mtype or f"method_{n}"
+                score = parse_score(explanation)
+                # Re-derive the verdict from the achieved score when present;
+                # otherwise fall back to the grader's own Pass/Fail.
+                if score is not None:
+                    result = "Pass" if score >= threshold else "Fail"
+                else:
+                    result = orig_result  # empty == no verdict (timeout / no answer)
                 methods.append({
                     "type": name,
                     "result": result,  # empty == no verdict (timeout / no answer)
+                    "score": score,  # achieved 0-100 score, or None (binary grader)
+                    "resultOriginal": orig_result,  # grader's verdict before threshold
                     "passingScore": (raw.get(f"passingScore_{n}") or "").strip(),
-                    "explanation": (raw.get(f"explanation_{n}") or "").strip(),
+                    "explanation": explanation,
                 })
                 if result:
                     saw_verdict = True
@@ -129,9 +186,10 @@ def parse_rows(path: Path) -> list[dict]:
     return rows
 
 
-def summarize(rows: list[dict]) -> dict:
+def summarize(rows: list[dict], threshold: int) -> dict:
     """Roll a list of normalized rows up into a summary + per-method tally."""
     method_tally: dict[str, dict[str, int]] = {}
+    method_scores: dict[str, list[int]] = {}
     cases_passed = 0
     cases_error = 0
     for r in rows:
@@ -147,10 +205,22 @@ def summarize(rows: list[dict]) -> dict:
                 # empty result = the grader never ran (e.g. empty answer);
                 # bucket as Error, kept out of the method's pass/fail denominator
                 tally["Error"] = tally.get("Error", 0) + 1
+            if m.get("score") is not None:
+                method_scores.setdefault(m["type"], []).append(m["score"])
     cases_total = len(rows)
     # Errors count in the total but are excluded from the pass-rate denominator.
     scored = cases_total - cases_error
     pass_rate = round(cases_passed / scored, 4) if scored else None
+    # Per-method achieved-score distribution (only graders that emit a number).
+    score_stats = {
+        mt: {
+            "n": len(v),
+            "mean": round(sum(v) / len(v), 1),
+            "min": min(v),
+            "max": max(v),
+        }
+        for mt, v in method_scores.items()
+    }
     return {
         "totalCases": cases_total,
         "scoredCases": scored,
@@ -158,7 +228,9 @@ def summarize(rows: list[dict]) -> dict:
         "failedCases": scored - cases_passed,
         "errorCases": cases_error,
         "passRate": pass_rate,
+        "passingScore": threshold,
         "methods": method_tally,
+        "methodScores": score_stats,
     }
 
 
@@ -187,7 +259,8 @@ def match_agent(file_stem: str, agents: list[dict]) -> dict | None:
     return best
 
 
-def collect(files: list[Path], agents: list[dict], out_dir: Path) -> list[dict]:
+def collect(files: list[Path], agents: list[dict], out_dir: Path,
+            threshold: int) -> list[dict]:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # Group files by agent (or by file stem when unmatched). Several CSVs can map
@@ -203,8 +276,8 @@ def collect(files: list[Path], agents: list[dict], out_dir: Path) -> list[dict]:
     for slug, g in groups.items():
         agent = g["agent"]
         paths = g["files"]
-        rows = merge_rows([parse_rows(p) for p in paths])
-        summary = summarize(rows)
+        rows = merge_rows([parse_rows(p, threshold) for p in paths])
+        summary = summarize(rows, threshold)
         record = {
             "agent": agent["name"] if agent else None,
             "bot_id": agent["bot_id"] if agent else None,
@@ -222,13 +295,17 @@ def collect(files: list[Path], agents: list[dict], out_dir: Path) -> list[dict]:
 
 
 def write_summaries(collected: list[dict], agents: list[dict], out_dir: Path,
-                    run_label: str | None = None) -> None:
+                    run_label: str | None = None, threshold: int | None = None) -> None:
     # union of all method names for stable columns
     methods = sorted({m for r in collected for m in r["summary"]["methods"]})
+    # methods that carry a numeric score get an extra mean/min column
+    scored_methods = sorted({m for r in collected
+                             for m in r["summary"].get("methodScores", {})})
 
     fields = ["agent", "bot_id", "source_files", "total", "scored", "passed",
-              "failed", "errors", "pass_rate"]
+              "failed", "errors", "pass_rate", "passing_score"]
     fields += [f"{m}" for m in methods]
+    fields += [f"{m}_score" for m in scored_methods]
     with (out_dir / "summary.csv").open("w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
@@ -244,10 +321,15 @@ def write_summaries(collected: list[dict], agents: list[dict], out_dir: Path,
                 "failed": s["failedCases"],
                 "errors": s.get("errorCases", 0),
                 "pass_rate": s["passRate"] if s["passRate"] is not None else "",
+                "passing_score": s.get("passingScore", threshold if threshold is not None else ""),
             }
             for m in methods:
                 t = s["methods"].get(m, {})
                 row[m] = ",".join(f"{k}={v}" for k, v in sorted(t.items()))
+            for m in scored_methods:
+                st = s.get("methodScores", {}).get(m, {})
+                row[f"{m}_score"] = (f"mean={st['mean']},min={st['min']},"
+                                     f"max={st['max']},n={st['n']}" if st else "")
             w.writerow(row)
 
     # note any agents from the README with no exported file
@@ -257,6 +339,7 @@ def write_summaries(collected: list[dict], agents: list[dict], out_dir: Path,
     (out_dir / "summary.json").write_text(json.dumps({
         "runLabel": run_label,
         "generatedUtc": datetime.now(timezone.utc).isoformat(),
+        "passingScore": threshold,
         "agents": [{
             "agent": r["agent"],
             "bot_id": r["bot_id"],
@@ -272,12 +355,13 @@ def write_summaries(collected: list[dict], agents: list[dict], out_dir: Path,
 
 
 def process_run(run_label: str, files: list[Path], agents: list[dict],
-                out_dir: Path) -> list[dict]:
+                out_dir: Path, threshold: int) -> list[dict]:
     """Collect one run's CSVs into out_dir; return the collected records."""
     print(f"\n[{run_label}] collecting {len(files)} export(s) -> {rel(out_dir)}",
           file=sys.stderr)
-    collected = collect(files, agents, out_dir)
-    write_summaries(collected, agents, out_dir, run_label=run_label)
+    collected = collect(files, agents, out_dir, threshold)
+    write_summaries(collected, agents, out_dir, run_label=run_label,
+                    threshold=threshold)
     return collected
 
 
@@ -344,10 +428,16 @@ def main() -> None:
                     help="Run label for loose CSVs / explicit files (default: 'default').")
     ap.add_argument("--results-root", default=str(RESULTS_ROOT),
                     help=f"Root for output (default: {rel(RESULTS_ROOT)}).")
+    ap.add_argument("--passing-score", type=int, default=None,
+                    help="Score (0-100, inclusive) a numeric grader must reach to "
+                         "pass; overrides PASSING_SCORE in .env (default 75).")
     args = ap.parse_args()
 
     agents = parse_agents()
     results_root = Path(args.results_root)
+    threshold = args.passing_score if args.passing_score is not None else passing_score()
+    print(f"Pass/fail derived from achieved score >= {threshold} "
+          f"(PASSING_SCORE, inclusive).", file=sys.stderr)
 
     if args.files:
         runs = {args.run_name: [Path(f) for f in args.files if Path(f).exists()]}
@@ -365,7 +455,8 @@ def main() -> None:
     collected_by_run: dict[str, list[dict]] = {}
     for label, files in runs.items():
         out_dir = results_root / slugify(label)
-        collected_by_run[label] = process_run(label, files, agents, out_dir)
+        collected_by_run[label] = process_run(label, files, agents, out_dir,
+                                              threshold)
 
     print(f"\n=== Results ===")
     for label, collected in collected_by_run.items():

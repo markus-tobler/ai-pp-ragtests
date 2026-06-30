@@ -1,6 +1,7 @@
 {
   "runLabel": "sonnet-4-6",
-  "generatedUtc": "2026-06-30T06:47:30.473815+00:00",
+  "generatedUtc": "2026-06-30T15:36:19.761463+00:00",
+  "passingScore": 75,
   "agents": [
     {
       "agent": "MultiEURLEX Classic DV Knowledge",
@@ -12,17 +13,27 @@
       "summary": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 45,
-        "failedCases": 5,
+        "passedCases": 44,
+        "failedCases": 6,
         "errorCases": 0,
-        "passRate": 0.9,
+        "passRate": 0.88,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 45,
             "Fail": 5
           },
           "CompareMeaning": {
-            "Pass": 50
+            "Pass": 49,
+            "Fail": 1
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 86.0,
+            "min": 50,
+            "max": 100
           }
         }
       }
@@ -41,6 +52,7 @@
         "failedCases": 12,
         "errorCases": 3,
         "passRate": 0.7447,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Fail": 11,
@@ -48,9 +60,17 @@
             "Error": 3
           },
           "CompareMeaning": {
-            "Pass": 44,
+            "Pass": 43,
             "Error": 3,
-            "Fail": 3
+            "Fail": 4
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 44,
+            "mean": 88.6,
+            "min": 50,
+            "max": 100
           }
         }
       }
@@ -65,10 +85,11 @@
       "summary": {
         "totalCases": 50,
         "scoredCases": 47,
-        "passedCases": 43,
-        "failedCases": 4,
+        "passedCases": 42,
+        "failedCases": 5,
         "errorCases": 3,
-        "passRate": 0.9149,
+        "passRate": 0.8936,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 44,
@@ -76,9 +97,17 @@
             "Fail": 3
           },
           "CompareMeaning": {
-            "Pass": 46,
+            "Pass": 45,
             "Error": 3,
-            "Fail": 1
+            "Fail": 2
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 46,
+            "mean": 87.5,
+            "min": 50,
+            "max": 100
           }
         }
       }
@@ -97,6 +126,7 @@
         "failedCases": 4,
         "errorCases": 3,
         "passRate": 0.9149,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 43,
@@ -106,6 +136,14 @@
           "CompareMeaning": {
             "Pass": 47,
             "Error": 3
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 47,
+            "mean": 87.2,
+            "min": 75,
+            "max": 100
           }
         }
       }
@@ -124,6 +162,7 @@
         "failedCases": 3,
         "errorCases": 3,
         "passRate": 0.9362,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 44,
@@ -134,6 +173,14 @@
             "Pass": 46,
             "Error": 3,
             "Fail": 1
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 47,
+            "mean": 88.3,
+            "min": 0,
+            "max": 100
           }
         }
       }
@@ -148,22 +195,33 @@
       "summary": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 41,
-        "failedCases": 9,
+        "passedCases": 40,
+        "failedCases": 10,
         "errorCases": 0,
-        "passRate": 0.82,
+        "passRate": 0.8,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 42,
             "Fail": 8
           },
           "CompareMeaning": {
-            "Pass": 45,
-            "Fail": 5
+            "Pass": 44,
+            "Fail": 6
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 79.0,
+            "min": 0,
+            "max": 100
           }
         }
       }
     }
   ],
-  "missingAgents": []
+  "missingAgents": [
+    "MultiEURLEX Classic SharePoint"
+  ]
 }

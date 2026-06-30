@@ -12,6 +12,7 @@
     "failedCases": 4,
     "errorCases": 3,
     "passRate": 0.9149,
+    "passingScore": 75,
     "methods": {
       "GeneralQuality": {
         "Pass": 43,
@@ -21,6 +22,14 @@
       "CompareMeaning": {
         "Pass": 47,
         "Error": 3
+      }
+    },
+    "methodScores": {
+      "CompareMeaning": {
+        "n": 47,
+        "mean": 87.2,
+        "min": 75,
+        "max": 100
       }
     }
   },
@@ -33,12 +42,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct regulation and adds extra background and details not found in the Expected response."
         }
@@ -54,12 +67,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives all the main information from the Expected response, just with more detail. Both answers say which EU act includes pyriproxyfen and that the Netherlands was the Rapporteur Member State."
         }
@@ -75,12 +92,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the same regulation as the Expected response and adds extra details and background about the amendments."
         }
@@ -96,12 +117,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct regulation and adds a lot more details than the Expected response, which only names the regulation and its legal basis."
         }
@@ -117,12 +142,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the same regulation as the Expected response and adds extra details about its purpose and background."
         }
@@ -138,12 +167,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer includes all the main points from the Expected response and adds extra details about the changes and context."
         }
@@ -159,12 +192,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same information as the Expected response, just with more details and background."
         }
@@ -180,12 +217,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same directive and details as the Expected response, just with more explanation. All key information matches."
         }
@@ -201,12 +242,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct regulation and title, just like the Expected response, but adds extra details and explanations that aren't in the Expected response."
         }
@@ -222,12 +267,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct regulation and adds extra details about its scope and application that aren't in the Expected response."
         }
@@ -243,12 +292,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives all the main points from the Expected response and adds extra details like the actual amount carried over and deadlines."
         }
@@ -264,12 +317,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same regulation and periods as the Expected response, just with more details. The main information matches perfectly."
         }
@@ -285,12 +342,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same information as the Expected response, just with more detail and explanation."
         }
@@ -306,12 +367,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives all the same key details as the Expected response, just with more explanation and background."
         }
@@ -327,12 +392,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives all the key information from the Expected response and adds extra details about the directive, its rationale, and specific changes."
         }
@@ -348,12 +417,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer names the right document but leaves out Article 486, which is the key article about provisional application mentioned in the Expected response."
         }
@@ -369,12 +442,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same information as the Expected response, just with more details and formatting."
         }
@@ -390,12 +467,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives all the main information from the Expected response and adds extra details about the decision, its context, and changes."
         }
@@ -411,12 +492,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives all the main details found in the Expected response, just with extra explanation. The essential information matches perfectly."
         }
@@ -432,12 +517,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct Directive and lists the substances added, plus extra background and details not in the Expected response."
         }
@@ -453,12 +542,16 @@
         {
           "type": "GeneralQuality",
           "result": "",
+          "score": null,
+          "resultOriginal": "",
           "passingScore": "",
           "explanation": ""
         },
         {
           "type": "CompareMeaning",
           "result": "",
+          "score": null,
+          "resultOriginal": "",
           "passingScore": "50",
           "explanation": ""
         }
@@ -474,12 +567,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same directive and CELEX code as the Expected response, so they match perfectly."
         }
@@ -495,12 +592,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct directive and repeal information, plus extra details about scope, definitions, and labelling that aren't in the Expected response."
         }
@@ -516,12 +617,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct regulation and adds a lot more detail than the Expected response, which only names the regulation."
         }
@@ -537,12 +642,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct directive and main point, but adds extra background and details not found in the Expected response."
         }
@@ -558,12 +667,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct directive and all key details, plus extra background and explanations not found in the Expected response."
         }
@@ -579,12 +692,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same regulation and main points as the Expected response, just with more details and explanation."
         }
@@ -600,12 +717,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer names the correct directive like the Expected response, but adds a lot more details about its scope, methods, and requirements."
         }
@@ -621,12 +742,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives all the key details found in the Expected response, just with more explanation and context. The main information matches perfectly."
         }
@@ -642,12 +767,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the same regulation as the Expected response, but adds extra details and background information."
         }
@@ -663,12 +792,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer covers all the main points from the Expected response and adds extra details about the directive, its scope, and obligations."
         }
@@ -684,12 +817,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the same directive as the Expected response and adds extra details about formamide, the limit value, and background information."
         }
@@ -705,12 +842,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives all the main details from the Expected response and adds extra information about previous appointments, mandate duration, and finances."
         }
@@ -726,12 +867,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives all the main details from the Expected response, just with more background. The essential information matches perfectly."
         }
@@ -747,12 +892,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives all the same key details as the Expected response, just with more explanation and background."
         }
@@ -768,12 +917,16 @@
         {
           "type": "GeneralQuality",
           "result": "Fail",
+          "score": null,
+          "resultOriginal": "Fail",
           "passingScore": "",
           "explanation": "Not answered: The agent response says it could not find any document in the corpus that sets out the right to erasure and does not provide an alternative answer. It mentions the GDPR but states it is not included in the corpus, so it does not address the main question. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer and the Expected response both say that the corpus does not contain any document establishing the right to erasure. The Agent answer explains its search and confirms it did not invent any information."
         }
@@ -789,12 +942,16 @@
         {
           "type": "GeneralQuality",
           "result": "Fail",
+          "score": null,
+          "resultOriginal": "Fail",
           "passingScore": "",
           "explanation": "Not answered: The agent response says it could not find a 2015 Regulation that sets CO2 emission standards for new passenger cars or light commercial vehicles. It provides related Implementing Decisions but makes clear these do not answer the main question. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same information as the Expected response: there is no 2015 Regulation in the corpus setting CO2 standards, only Decisions approving eco-innovations under earlier Regulations."
         }
@@ -810,12 +967,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same information as the Expected response: there is no per-tonne CO2 price for flights to and from third countries, only a full exemption."
         }
@@ -831,12 +992,16 @@
         {
           "type": "GeneralQuality",
           "result": "Fail",
+          "score": null,
+          "resultOriginal": "Fail",
           "passingScore": "",
           "explanation": "Not answered: The agent response says it could not find any 2013 Directive that adds glyphosate to Directive 98/8/EC. It lists other substances added but makes clear glyphosate is not among them. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same information as the Expected response: no Directive in the corpus adds glyphosate, and other substances are listed instead."
         }
@@ -852,12 +1017,16 @@
         {
           "type": "GeneralQuality",
           "result": "Fail",
+          "score": null,
+          "resultOriginal": "Fail",
           "passingScore": "",
           "explanation": "Not answered: The agent response says it cannot provide euro budget allocations to Member States because the document does not contain this information. It explains that the document is a strategic framework and does not include financial figures. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same information as the Expected response, clearly stating that the Decision does not allocate any euro budget to Member States."
         }
@@ -873,12 +1042,16 @@
         {
           "type": "GeneralQuality",
           "result": "",
+          "score": null,
+          "resultOriginal": "",
           "passingScore": "",
           "explanation": ""
         },
         {
           "type": "CompareMeaning",
           "result": "",
+          "score": null,
+          "resultOriginal": "",
           "passingScore": "50",
           "explanation": ""
         }
@@ -894,12 +1067,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same directive as the Expected response, with extra details that don't change the main meaning."
         }
@@ -915,12 +1092,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same directive and clarification as the Expected response, just with more detail and explanation."
         }
@@ -936,12 +1117,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives all the same key details as the Expected response, just with more explanation and formatting."
         }
@@ -957,12 +1142,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same directive and details as the Expected response, just with more explanation and context."
         }
@@ -978,12 +1167,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 100,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "100/100 - Same meaning; The Agent answer gives the same directive and main details as the Expected response, just with more explanation and background."
         }
@@ -999,12 +1192,16 @@
         {
           "type": "GeneralQuality",
           "result": "",
+          "score": null,
+          "resultOriginal": "",
           "passingScore": "",
           "explanation": ""
         },
         {
           "type": "CompareMeaning",
           "result": "",
+          "score": null,
+          "resultOriginal": "",
           "passingScore": "50",
           "explanation": ""
         }
@@ -1020,12 +1217,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct directive and adds extra details about the chemical, its limits, and why it was regulated, which aren't in the Expected response."
         }
@@ -1041,12 +1242,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct directive and main purpose, but adds extra details about exemptions, deadlines, and technical limits that aren't in the Expected response."
         }
@@ -1062,12 +1267,16 @@
         {
           "type": "GeneralQuality",
           "result": "Pass",
+          "score": null,
+          "resultOriginal": "Pass",
           "passingScore": "",
           "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
         },
         {
           "type": "CompareMeaning",
           "result": "Pass",
+          "score": 75,
+          "resultOriginal": "Pass",
           "passingScore": "50",
           "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct regulation and adds a lot of extra details that aren't in the Expected response."
         }

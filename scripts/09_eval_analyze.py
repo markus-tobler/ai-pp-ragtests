@@ -15,15 +15,19 @@ Data layout consumed (one run = one sub-directory of the results root):
             <agent-slug>.json # per-agent rows (optional, not required here)
 
     summary.json:
-        { runLabel, generatedUtc,
+        { runLabel, generatedUtc, passingScore,
           agents: [ { agent, bot_id, source_files,
                       summary: { totalCases, scoredCases, passedCases, failedCases,
-                                 errorCases, passRate,
-                                 methods: { <Method>: { Pass, Fail, Error } } } } ],
+                                 errorCases, passRate, passingScore,
+                                 methods: { <Method>: { Pass, Fail, Error } },
+                                 methodScores: { <Method>: { n, mean, min, max } } } } ],
           missingAgents: [ ... ] }
 
-    Pass/fail is scored on one method only (default CompareMeaning). "Error" cases
-    are timeouts/empty answers the grader could not score: counted in the absolute
+    Pass/fail is scored on one method only (default CompareMeaning). For numeric
+    graders the Pass/Fail in `methods` was already derived in 08_eval_collect.py
+    from the achieved score against the PASSING_SCORE threshold (`passingScore`);
+    `methodScores` holds the achieved-score distribution. "Error" cases are
+    timeouts/empty answers the grader could not score: counted in the absolute
     totals but excluded from the pass-rate denominator.
 
 Output (default data/eval/analysis/):
@@ -148,6 +152,26 @@ def score_counts(agent_summary: dict, method: str) -> tuple[int, int, int, int, 
     return p, f, e, scored, scored + e
 
 
+def score_stats(agent_summary: dict, method: str) -> dict | None:
+    """Achieved-score distribution {n, mean, min, max} for `method`, or None.
+
+    Only numeric graders (e.g. CompareMeaning) carry this; binary graders don't.
+    """
+    st = agent_summary.get("methodScores", {}).get(method)
+    return st or None
+
+
+def run_passing_score(run: dict) -> int | None:
+    """The PASSING_SCORE threshold recorded for a run (run- or agent-level)."""
+    if run.get("passingScore") is not None:
+        return run["passingScore"]
+    for a in run.get("agents", []):
+        ps = (a.get("summary") or {}).get("passingScore")
+        if ps is not None:
+            return ps
+    return None
+
+
 def load_run_rows(run: dict) -> list[dict]:
     """Read the per-agent `<slug>.json` files sitting beside a run's summary.json.
 
@@ -257,6 +281,42 @@ def chart_passrate_by_agent(run: dict, out_dir: Path,
     ax.grid(axis="y", linestyle=":", alpha=0.5)
     fig.autofmt_xdate(rotation=20)
     return save(fig, out_dir, f"passrate_by_agent__{run.get('runLabel')}")
+
+
+def chart_score_by_agent(run: dict, out_dir: Path,
+                         score_method: str = DEFAULT_SCORE_METHOD) -> str | None:
+    """Bar: mean achieved score per agent (score_method), min-max whisker + threshold.
+
+    Returns None when this run's score_method carries no numeric scores.
+    """
+    agents = run.get("agents", [])
+    stats = [(a, score_stats(a["summary"], score_method)) for a in agents]
+    stats = [(a, s) for a, s in stats if s]
+    if not stats:
+        return None
+    labels = [short_label(a["agent"]) for a, _ in stats]
+    means = [s["mean"] for _, s in stats]
+    lo = [s["mean"] - s["min"] for _, s in stats]
+    hi = [s["max"] - s["mean"] for _, s in stats]
+
+    fig, ax = plt.subplots(figsize=(max(6, len(stats) * 1.6), 4.5))
+    bars = ax.bar(labels, means, color="#6a1b9a",
+                  yerr=[lo, hi], capsize=4, ecolor="#9e9e9e")
+    for bar, (_, s) in zip(bars, stats):
+        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 1,
+                f"{s['mean']:.0f}\n(n={s['n']})", ha="center", va="bottom", fontsize=8)
+    threshold = run_passing_score(run)
+    if threshold is not None:
+        ax.axhline(threshold, color=FAIL_COLOR, linestyle="--", linewidth=1)
+        ax.text(len(stats) - 0.5, threshold + 1, f"pass ≥ {threshold}",
+                ha="right", va="bottom", color=FAIL_COLOR, fontsize=8)
+    ax.set_ylim(0, 110)
+    ax.set_ylabel(f"{score_method} score (0–100)")
+    ax.set_title(f"Mean achieved {score_method} score by agent (min–max) — "
+                 f"run '{run.get('runLabel')}'")
+    ax.grid(axis="y", linestyle=":", alpha=0.5)
+    fig.autofmt_xdate(rotation=20)
+    return save(fig, out_dir, f"score_by_agent__{run.get('runLabel')}")
 
 
 def chart_passfail_stacked(run: dict, out_dir: Path,
@@ -459,6 +519,16 @@ def write_report(runs: list[dict], methods: list[str], agents: list[str],
       "headline pass rate, the passed/failed counts, or the failing-question "
       "analysis.")
     a("")
+    thresholds = sorted({t for t in (run_passing_score(r) for r in runs)
+                         if t is not None})
+    if thresholds:
+        ttxt = (str(thresholds[0]) if len(thresholds) == 1
+                else "/".join(str(t) for t in thresholds))
+        a(f"**Pass threshold (PASSING_SCORE).** A case passes when its achieved "
+          f"`{score_method}` score (0–100) is **≥ {ttxt}** (inclusive). Pass/fail "
+          "is derived from the achieved score, not the grader's own verdict; the "
+          "mean/min/max achieved score per agent is charted and tabled below.")
+        a("")
     a("**Errors (timeouts).** Cases where the agent returned nothing to grade "
       "(empty response) are counted as errors, shown in the absolute counts, but "
       "excluded from the pass-rate denominator — pass rate = passed / (passed + "
@@ -516,17 +586,23 @@ def write_report(runs: list[dict], methods: list[str], agents: list[str],
         a("")
         a(f"![Per-method pass rate](charts/{cn['method']}.png)")
         a("")
+        if cn.get("score"):
+            a(f"![Mean achieved {score_method} score by agent](charts/{cn['score']}.png)")
+            a("")
 
         # Per-agent fact table. Headline Passed/Failed/Error/Pass-rate use
-        # score_method; trailing columns give every method's own tally.
+        # score_method; the Score column gives the achieved-score distribution;
+        # trailing columns give every method's own tally.
         head = (f"| Agent | Cases | Passed ({score_method}) | Failed | Errors | "
-                "Pass rate | " + " | ".join(methods) + " |")
+                f"Pass rate | Score (mean/min) | " + " | ".join(methods) + " |")
         a(head)
-        a("|" + "---|" * (6 + len(methods)))
+        a("|" + "---|" * (7 + len(methods)))
         for ag in run.get("agents", []):
             s = ag["summary"]
             p, f, e, scored, total = score_counts(s, score_method)
             rate = p / scored if scored else None
+            st = score_stats(s, score_method)
+            score_cell = f"{st['mean']:.0f}/{st['min']}" if st else "—"
             mcells = []
             for m in methods:
                 mt = s.get("methods", {}).get(m, {})
@@ -539,7 +615,7 @@ def write_report(runs: list[dict], methods: list[str], agents: list[str],
                     mcells.append(f"{fmt_pct(r)} ({mt.get('Pass',0)}/"
                                   f"{mt.get('Pass',0)+mt.get('Fail',0)}){suffix}")
             a(f"| {ag['agent']} | {total} | {p} | {f} | {e} | "
-              f"{fmt_pct(rate)} | " + " | ".join(mcells) + " |")
+              f"{fmt_pct(rate)} | {score_cell} | " + " | ".join(mcells) + " |")
         a("")
 
         missing = run.get("missingAgents") or []
@@ -628,6 +704,7 @@ def main(argv: list[str] | None = None) -> int:
             "passrate": chart_passrate_by_agent(run, out_dir, score_method=sm),
             "passfail": chart_passfail_stacked(run, out_dir, score_method=sm),
             "method": chart_method_passrate(run, methods, out_dir),
+            "score": chart_score_by_agent(run, out_dir, score_method=sm),
         }
         ranked = aggregate_question_failures(run, score_method=sm)
         fail_chart = chart_top_failures(run, ranked, out_dir, top_n=args.top_n,

@@ -1,5 +1,5 @@
 {
-  "generatedUtc": "2026-06-30T06:47:30.474732+00:00",
+  "generatedUtc": "2026-06-30T15:36:19.762362+00:00",
   "runs": [
     "gpt-4-1",
     "gpt-5-chat",
@@ -10,18 +10,27 @@
       "gpt-4-1": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 33,
-        "failedCases": 17,
+        "passedCases": 31,
+        "failedCases": 19,
         "errorCases": 0,
-        "passRate": 0.66,
+        "passRate": 0.62,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 39,
             "Fail": 11
           },
           "CompareMeaning": {
-            "Pass": 38,
-            "Fail": 12
+            "Pass": 34,
+            "Fail": 16
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 65.5,
+            "min": 0,
+            "max": 100
           }
         }
       },
@@ -32,14 +41,23 @@
         "failedCases": 8,
         "errorCases": 0,
         "passRate": 0.84,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Fail": 8,
             "Pass": 42
           },
           "CompareMeaning": {
-            "Pass": 48,
-            "Fail": 2
+            "Fail": 3,
+            "Pass": 47
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 80.0,
+            "min": 0,
+            "max": 100
           }
         }
       },
@@ -50,6 +68,7 @@
         "failedCases": 4,
         "errorCases": 3,
         "passRate": 0.9149,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 43,
@@ -60,6 +79,14 @@
             "Pass": 47,
             "Error": 3
           }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 47,
+            "mean": 87.2,
+            "min": 75,
+            "max": 100
+          }
         }
       }
     },
@@ -67,54 +94,81 @@
       "gpt-4-1": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 33,
-        "failedCases": 17,
+        "passedCases": 32,
+        "failedCases": 18,
         "errorCases": 0,
-        "passRate": 0.66,
+        "passRate": 0.64,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 36,
             "Fail": 14
           },
           "CompareMeaning": {
-            "Pass": 37,
-            "Fail": 13
+            "Fail": 14,
+            "Pass": 36
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 65.5,
+            "min": 0,
+            "max": 100
           }
         }
       },
       "gpt-5-chat": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 32,
-        "failedCases": 18,
+        "passedCases": 30,
+        "failedCases": 20,
         "errorCases": 0,
-        "passRate": 0.64,
+        "passRate": 0.6,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Fail": 17,
             "Pass": 33
           },
           "CompareMeaning": {
-            "Pass": 38,
-            "Fail": 12
+            "Fail": 16,
+            "Pass": 34
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 64.5,
+            "min": 0,
+            "max": 100
           }
         }
       },
       "sonnet-4-6": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 41,
-        "failedCases": 9,
+        "passedCases": 40,
+        "failedCases": 10,
         "errorCases": 0,
-        "passRate": 0.82,
+        "passRate": 0.8,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 42,
             "Fail": 8
           },
           "CompareMeaning": {
-            "Pass": 45,
-            "Fail": 5
+            "Pass": 44,
+            "Fail": 6
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 79.0,
+            "min": 0,
+            "max": 100
           }
         }
       }
@@ -123,36 +177,54 @@
       "gpt-4-1": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 33,
-        "failedCases": 17,
+        "passedCases": 32,
+        "failedCases": 18,
         "errorCases": 0,
-        "passRate": 0.66,
+        "passRate": 0.64,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Fail": 13,
             "Pass": 37
           },
           "CompareMeaning": {
-            "Pass": 37,
-            "Fail": 13
+            "Fail": 15,
+            "Pass": 35
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 65.5,
+            "min": 0,
+            "max": 100
           }
         }
       },
       "gpt-5-chat": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 40,
-        "failedCases": 10,
+        "passedCases": 39,
+        "failedCases": 11,
         "errorCases": 0,
-        "passRate": 0.8,
+        "passRate": 0.78,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Fail": 10,
             "Pass": 40
           },
           "CompareMeaning": {
-            "Fail": 4,
-            "Pass": 46
+            "Fail": 7,
+            "Pass": 43
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 80.5,
+            "min": 0,
+            "max": 100
           }
         }
       },
@@ -163,6 +235,7 @@
         "failedCases": 3,
         "errorCases": 3,
         "passRate": 0.9362,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 44,
@@ -174,6 +247,14 @@
             "Error": 3,
             "Fail": 1
           }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 47,
+            "mean": 88.3,
+            "min": 0,
+            "max": 100
+          }
         }
       }
     },
@@ -181,46 +262,65 @@
       "gpt-4-1": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 37,
-        "failedCases": 13,
+        "passedCases": 29,
+        "failedCases": 21,
         "errorCases": 0,
-        "passRate": 0.74,
+        "passRate": 0.58,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 40,
             "Fail": 10
           },
           "CompareMeaning": {
-            "Pass": 42,
-            "Fail": 8
+            "Pass": 33,
+            "Fail": 17
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 42,
+            "mean": 79.8,
+            "min": 50,
+            "max": 100
           }
         }
       },
       "gpt-5-chat": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 30,
-        "failedCases": 20,
+        "passedCases": 28,
+        "failedCases": 22,
         "errorCases": 0,
-        "passRate": 0.6,
+        "passRate": 0.56,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 32,
             "Fail": 18
           },
           "CompareMeaning": {
-            "Pass": 34,
-            "Fail": 16
+            "Pass": 29,
+            "Fail": 21
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 34,
+            "mean": 80.1,
+            "min": 50,
+            "max": 100
           }
         }
       },
       "sonnet-4-6": {
         "totalCases": 50,
         "scoredCases": 47,
-        "passedCases": 43,
-        "failedCases": 4,
+        "passedCases": 42,
+        "failedCases": 5,
         "errorCases": 3,
-        "passRate": 0.9149,
+        "passRate": 0.8936,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 44,
@@ -228,9 +328,17 @@
             "Fail": 3
           },
           "CompareMeaning": {
-            "Pass": 46,
+            "Pass": 45,
             "Error": 3,
-            "Fail": 1
+            "Fail": 2
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 46,
+            "mean": 87.5,
+            "min": 50,
+            "max": 100
           }
         }
       }
@@ -239,18 +347,27 @@
       "gpt-4-1": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 46,
-        "failedCases": 4,
+        "passedCases": 45,
+        "failedCases": 5,
         "errorCases": 0,
-        "passRate": 0.92,
+        "passRate": 0.9,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 47,
             "Fail": 3
           },
           "CompareMeaning": {
-            "Pass": 48,
-            "Fail": 2
+            "Pass": 47,
+            "Fail": 3
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 48,
+            "mean": 88.5,
+            "min": 50,
+            "max": 100
           }
         }
       },
@@ -261,31 +378,50 @@
         "failedCases": 9,
         "errorCases": 0,
         "passRate": 0.82,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 42,
             "Fail": 8
           },
           "CompareMeaning": {
-            "Pass": 45,
-            "Fail": 5
+            "Pass": 44,
+            "Fail": 6
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 45,
+            "mean": 85.6,
+            "min": 50,
+            "max": 100
           }
         }
       },
       "sonnet-4-6": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 45,
-        "failedCases": 5,
+        "passedCases": 44,
+        "failedCases": 6,
         "errorCases": 0,
-        "passRate": 0.9,
+        "passRate": 0.88,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 45,
             "Fail": 5
           },
           "CompareMeaning": {
-            "Pass": 50
+            "Pass": 49,
+            "Fail": 1
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 86.0,
+            "min": 50,
+            "max": 100
           }
         }
       }
@@ -294,36 +430,54 @@
       "gpt-4-1": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 27,
-        "failedCases": 23,
+        "passedCases": 23,
+        "failedCases": 27,
         "errorCases": 0,
-        "passRate": 0.54,
+        "passRate": 0.46,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 27,
             "Fail": 23
           },
           "CompareMeaning": {
-            "Pass": 30,
-            "Fail": 20
+            "Pass": 26,
+            "Fail": 24
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 30,
+            "mean": 77.5,
+            "min": 50,
+            "max": 100
           }
         }
       },
       "gpt-5-chat": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 25,
-        "failedCases": 25,
+        "passedCases": 24,
+        "failedCases": 26,
         "errorCases": 0,
-        "passRate": 0.5,
+        "passRate": 0.48,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Fail": 24,
             "Pass": 26
           },
           "CompareMeaning": {
-            "Fail": 21,
-            "Pass": 29
+            "Fail": 22,
+            "Pass": 28
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 29,
+            "mean": 81.9,
+            "min": 50,
+            "max": 100
           }
         }
       },
@@ -334,6 +488,7 @@
         "failedCases": 12,
         "errorCases": 3,
         "passRate": 0.7447,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Fail": 11,
@@ -341,12 +496,25 @@
             "Error": 3
           },
           "CompareMeaning": {
-            "Pass": 44,
+            "Pass": 43,
             "Error": 3,
-            "Fail": 3
+            "Fail": 4
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 44,
+            "mean": 88.6,
+            "min": 50,
+            "max": 100
           }
         }
       }
+    },
+    "MultiEURLEX Classic SharePoint": {
+      "gpt-4-1": null,
+      "gpt-5-chat": null,
+      "sonnet-4-6": null
     }
   }
 }
