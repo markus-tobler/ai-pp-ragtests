@@ -1,6 +1,7 @@
 {
   "runLabel": "gpt-4-1",
-  "generatedUtc": "2026-06-30T06:47:30.428704+00:00",
+  "generatedUtc": "2026-06-30T16:21:35.704367+00:00",
+  "passingScore": 75,
   "agents": [
     {
       "agent": "MultiEURLEX Classic DV Knowledge",
@@ -12,18 +13,27 @@
       "summary": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 46,
-        "failedCases": 4,
+        "passedCases": 45,
+        "failedCases": 5,
         "errorCases": 0,
-        "passRate": 0.92,
+        "passRate": 0.9,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 47,
             "Fail": 3
           },
           "CompareMeaning": {
-            "Pass": 48,
-            "Fail": 2
+            "Pass": 47,
+            "Fail": 3
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 48,
+            "mean": 88.5,
+            "min": 50,
+            "max": 100
           }
         }
       }
@@ -38,18 +48,27 @@
       "summary": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 27,
-        "failedCases": 23,
+        "passedCases": 23,
+        "failedCases": 27,
         "errorCases": 0,
-        "passRate": 0.54,
+        "passRate": 0.46,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 27,
             "Fail": 23
           },
           "CompareMeaning": {
-            "Pass": 30,
-            "Fail": 20
+            "Pass": 26,
+            "Fail": 24
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 30,
+            "mean": 77.5,
+            "min": 50,
+            "max": 100
           }
         }
       }
@@ -64,18 +83,27 @@
       "summary": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 37,
-        "failedCases": 13,
+        "passedCases": 29,
+        "failedCases": 21,
         "errorCases": 0,
-        "passRate": 0.74,
+        "passRate": 0.58,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 40,
             "Fail": 10
           },
           "CompareMeaning": {
-            "Pass": 42,
-            "Fail": 8
+            "Pass": 33,
+            "Fail": 17
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 42,
+            "mean": 79.8,
+            "min": 50,
+            "max": 100
           }
         }
       }
@@ -90,18 +118,27 @@
       "summary": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 33,
-        "failedCases": 17,
+        "passedCases": 31,
+        "failedCases": 19,
         "errorCases": 0,
-        "passRate": 0.66,
+        "passRate": 0.62,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 39,
             "Fail": 11
           },
           "CompareMeaning": {
-            "Pass": 38,
-            "Fail": 12
+            "Pass": 34,
+            "Fail": 16
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 65.5,
+            "min": 0,
+            "max": 100
           }
         }
       }
@@ -116,18 +153,27 @@
       "summary": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 33,
-        "failedCases": 17,
+        "passedCases": 32,
+        "failedCases": 18,
         "errorCases": 0,
-        "passRate": 0.66,
+        "passRate": 0.64,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Fail": 13,
             "Pass": 37
           },
           "CompareMeaning": {
-            "Pass": 37,
-            "Fail": 13
+            "Fail": 15,
+            "Pass": 35
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 65.5,
+            "min": 0,
+            "max": 100
           }
         }
       }
@@ -142,22 +188,33 @@
       "summary": {
         "totalCases": 50,
         "scoredCases": 50,
-        "passedCases": 33,
-        "failedCases": 17,
+        "passedCases": 32,
+        "failedCases": 18,
         "errorCases": 0,
-        "passRate": 0.66,
+        "passRate": 0.64,
+        "passingScore": 75,
         "methods": {
           "GeneralQuality": {
             "Pass": 36,
             "Fail": 14
           },
           "CompareMeaning": {
-            "Pass": 37,
-            "Fail": 13
+            "Fail": 14,
+            "Pass": 36
+          }
+        },
+        "methodScores": {
+          "CompareMeaning": {
+            "n": 50,
+            "mean": 65.5,
+            "min": 0,
+            "max": 100
           }
         }
       }
     }
   ],
-  "missingAgents": []
+  "missingAgents": [
+    "MultiEURLEX Classic SharePoint"
+  ]
 }

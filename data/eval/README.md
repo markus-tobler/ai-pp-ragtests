@@ -12,9 +12,22 @@ AND'd WHERE clause. Each grounded expected answer **leads with the CELEX id**
 questions carry no filter block; tier D filter blocks deliberately match more
 than one document, so the disambiguator stays in the prose.
 
+## Folder layout
+
+Generated artifacts are kept in tidy sub-folders, not loose in `data/eval/`:
+
+| Folder | Contents |
+|--------|----------|
+| `test_sets/` | The generated eval-set CSVs (overall + per-tier). |
+| `documents/` | One lightly-formatted PDF per corpus document (`<celex_id>.pdf`). |
+| `templates/` | The two reference Copilot Studio import templates. |
+| `exports/` · `results/` · `analysis/` | Raw run exports, collected results, and charts. |
+
+All of `test_sets/` and `documents/` are produced by `scripts/build_eval_set.py`.
+
 ## Files
 
-### Overall set (all 50 questions)
+### Overall set (all 50 questions) — `test_sets/`
 
 | File | Purpose |
 |------|---------|
@@ -37,12 +50,21 @@ just filtered to one tier. Useful e.g. to run **only the semantic tier (S)**
 against the semantic agent, or **only the unanswerable tier (E)** to check
 abstention behaviour.
 
+### Document PDFs — `documents/`
+
+One PDF per corpus document, named `<celex_id>.pdf` (300 files). Each page shows a
+clear **title**, a formatted **metadata block** (CELEX id, document type, policy
+domain, year, legal actor type, applicable role, language), then the **full
+document text**. The metadata is printed on the page only — it is deliberately
+**not** written into the PDF's file/document properties (those are left blank).
+Useful for ingesting the corpus as real documents (e.g. into a knowledge source).
+
 ### Reference / generator
 
 | File | Purpose |
 |------|---------|
-| `EvalConversationTemplate.csv` / `EvaluationTemplate_classic.csv` | The two official Copilot Studio templates the import files are modelled on (reference). |
-| `../../scripts/build_eval_set.py` | Generator. All CSVs (overall + per-tier) are produced from one table in this script, so they never drift. Re-run after editing. |
+| `templates/EvalConversationTemplate.csv` / `templates/EvaluationTemplate_classic.csv` | The two official Copilot Studio templates the import files are modelled on (reference). |
+| `../../scripts/06_eval_build_set.py` | Generator. All CSVs (overall + per-tier) **and** the per-document PDFs are produced from one table / the corpus in this script, so they never drift. Re-run after editing. |
 
 Pick the import file that matches the evaluation type you start in Copilot
 Studio: the **conversation** file for multi-turn / *Import conversations*, or the
@@ -52,7 +74,7 @@ graded.
 Regenerate:
 
 ```bash
-python3 scripts/build_eval_set.py
+python3 scripts/06_eval_build_set.py
 ```
 
 ## Difficulty / capability tiers
