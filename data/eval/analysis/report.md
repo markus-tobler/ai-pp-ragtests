@@ -1,6 +1,6 @@
 # Evaluation Results — Static Analysis
 
-_Generated 2026-06-30T17:36:30 from `data/eval/results`._
+_Generated 2026-06-30T18:21:41 from `data/eval/results`._
 
 Runs analyzed: **3** · agents seen: **6** · eval methods: `CompareMeaning`, `GeneralQuality`.
 
@@ -27,7 +27,7 @@ This report restates the numbers in the result files; it draws no conclusions. N
 
 ## Run: gpt-4-1
 
-_generated `2026-06-30T15:36:19.714703+00:00` · source `data/eval/results/gpt-4-1/summary.json`_
+_generated `2026-06-30T16:21:35.704367+00:00` · source `data/eval/results/gpt-4-1/summary.json`_
 
 ![Pass rate by agent](charts/passrate_by_agent__gpt-4-1.png)
 
@@ -69,7 +69,7 @@ Ranked by number of agents whose `CompareMeaning` check failed (then by errors).
 
 ## Run: gpt-5-chat
 
-_generated `2026-06-30T15:36:19.735173+00:00` · source `data/eval/results/gpt-5-chat/summary.json`_
+_generated `2026-06-30T16:21:35.726706+00:00` · source `data/eval/results/gpt-5-chat/summary.json`_
 
 ![Pass rate by agent](charts/passrate_by_agent__gpt-5-chat.png)
 
@@ -111,7 +111,7 @@ Ranked by number of agents whose `CompareMeaning` check failed (then by errors).
 
 ## Run: sonnet-4-6
 
-_generated `2026-06-30T15:36:19.761463+00:00` · source `data/eval/results/sonnet-4-6/summary.json`_
+_generated `2026-06-30T16:21:35.765182+00:00` · source `data/eval/results/sonnet-4-6/summary.json`_
 
 ![Pass rate by agent](charts/passrate_by_agent__sonnet-4-6.png)
 
