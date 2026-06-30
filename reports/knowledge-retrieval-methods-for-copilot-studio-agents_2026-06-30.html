@@ -413,7 +413,12 @@ table.data-table { width: 100%; border-collapse: collapse; background: #fff; fon
 .footer-right p { color: var(--muted); font-size: 0.82rem; }
 .footer-right p + p { margin-top: 6px; }
 @media (max-width: 680px) { .footer-right { text-align: left; } }
-</style>
+.footer-disclaimer {
+  max-width: 1100px; margin: 28px auto 0; padding: 18px 32px 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+.footer-disclaimer p { color: var(--muted); font-size: 0.78rem; line-height: 1.6; }
+.footer-disclaimer strong { color: #fff; }</style>
 
 <!--[if gte mso 9]><xml>
 <mso:CustomDocumentProperties>
@@ -814,7 +819,7 @@ table.data-table { width: 100%; border-collapse: collapse; background: #fff; fon
       </table>
     </div>
     <div class="callout reveal">
-      <p><strong>DV Table dominates the failures.</strong> The native Dataverse table appears in eight of the ten
+      <p><strong>DV Table dominates the failures.</strong> The native Dataverse table appears in nine of the ten
         top failing-question rows for this run. Knowledge-source failures concentrate on the same precise legal
         questions &mdash; pyriproxyfen, the 2013 employment regulation, the 2015 anti-abuse Finance directive, and
         the right-to-erasure act.</p>
@@ -1001,7 +1006,14 @@ table.data-table { width: 100%; border-collapse: collapse; background: #fff; fon
     <div class="footer-right">
       <p>Erstellt von Markus Tobler, Business Consultant &amp; Solution Architect &middot; 2026-06-30</p>
       <p>Source: Evaluation results generated 30 June 2026 &middot; CompareMeaning is the headline pass/fail metric.</p>
+      <p>Public repository &middot; <a href="https://github.com/markus-tobler/ai-pp-ragtests/blob/main/reports/evaluation_report.md" style="color:#fff; text-decoration:underline;">ai-pp-ragtests/reports/evaluation_report.md</a></p>
     </div>
+  </div>
+  <div class="footer-disclaimer">
+    <p><strong>Disclaimer.</strong> The underlying data in this report were produced through solid, reproducible
+      evaluations (identical corpus, question set, instructions, and CompareMeaning grading across all three model
+      runs). The visual representation &mdash; layout, charts, and styling of this page &mdash; was generated using
+      generative AI.</p>
   </div>
 </footer>
 
