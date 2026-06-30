@@ -46,3 +46,4 @@ Edit the instruction file, commit, then paste into the agent's instructions box 
 | MultiEURLEX Classic Knowledge | `1c6a788a-6a77-4586-b528-d8b3c1d272e8` | [multieurlex-search-agent-knowledge.md](multieurlex-search-agent-knowledge.md) | your-env |
 | MultiEURLEX Classic DV Knowledge | `b6a6468d-632d-49df-93a1-aa1a9afbf4d6` | [multieurlex-search-agent-knowledge.md](multieurlex-search-agent-knowledge.md) | your-env |
 | MultiEURLEX Classic DV Table | `aec67584-420c-4aea-8c12-abab5e372cbb` | [multieurlex-search-agent-knowledge.md](multieurlex-search-agent-knowledge.md) | your-env |
+| MultiEURLEX Classic SharePoint | `09a26f05-325a-4bc7-a4ec-8caa92b69e80` | [multieurlex-search-agent-knowledge.md](multieurlex-search-agent-knowledge.md) | your-env |
