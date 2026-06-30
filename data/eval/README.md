@@ -1,26 +1,48 @@
-# MultiEURLEX Search Agent — Evaluation Test Set (20 questions)
+# MultiEURLEX Search Agent — Evaluation Test Set (50 questions)
 
 Question/answer evaluation set derived from the actual corpus
-`data/processed/multieurlex_selected_300.csv`. Every expected answer is grounded
-in a real document in that corpus (traceable by `celex_id`).
+`data/processed/multieurlex_selected_300.csv`. Every grounded answer traces to a
+real document in that corpus (by `celex_id`).
 
 Each question carries a human-readable **metadata filter block** listing only the
 metadata the question actually constrains (e.g. `Year: 2014`, `Document type:
 Regulation`, `Policy domain: Finance`), so the agent can turn it straight into an
-AND'd WHERE clause. Each expected answer **leads with the CELEX id** (`CELEX
-<id> - ...`), matching the agent's required output. Tier A questions carry no
-filter block (few metadata cues); Tier D filter blocks deliberately match more
+AND'd WHERE clause. Each grounded expected answer **leads with the CELEX id**
+(`CELEX <id> - ...`), matching the agent's required output. Tier A and tier S
+questions carry no filter block; tier D filter blocks deliberately match more
 than one document, so the disambiguator stays in the prose.
 
 ## Files
 
+### Overall set (all 50 questions)
+
 | File | Purpose |
 |------|---------|
 | `multieurlex_eval_set_source.csv` | **Source of truth** for humans. Full record: question (with filter block), the `filters` applied, precise expected answer (CELEX-prefixed), behavioral rubric, grounding doc (`celex_id` + title), the metadata dimensions used, the difficulty tier, and (for tricky cases) the distractor doc ids that look like answers but are ruled out. |
-| `multieurlex_eval_set_copilot_import_conversation.csv` | **Import file** — *Import conversations* template (`EvalConversationTemplate.csv`). `#` comment block, then `conversationNumber`, `question`, `response`. Each of the 20 questions is its own conversation (one Q&A pair) so the tricky cases never share context. `response` is reference-only (not compared). |
+| `multieurlex_eval_set_copilot_import_conversation.csv` | **Import file** — *Import conversations* template (`EvalConversationTemplate.csv`). `#` comment block, then `conversationNumber`, `question`, `response`. Each question is its own conversation (one Q&A pair) so the tricky cases never share context. `response` is reference-only (not compared). |
 | `multieurlex_eval_set_copilot_import_classic.csv` | **Import file** — *classic* single-response template (`EvaluationTemplate_classic.csv`). `#` comment block, then `question`, `expectedResponse`. Here `expectedResponse` **is** used by the match / similarity / compare-meaning test methods. |
+
+### Per-tier sets (run one question type in isolation)
+
+Each tier is also emitted as its own standalone, independently-runnable pair, so
+a single question type can be imported and evaluated on its own:
+
+| File pattern | Tiers |
+|---|---|
+| `multieurlex_eval_set_tier<X>_copilot_import_classic.csv` | A, B, C, D, E, S |
+| `multieurlex_eval_set_tier<X>_copilot_import_conversation.csv` | A, B, C, D, E, S |
+
+Same two formats and the same `#` comment blocks / limits as the overall files —
+just filtered to one tier. Useful e.g. to run **only the semantic tier (S)**
+against the semantic agent, or **only the unanswerable tier (E)** to check
+abstention behaviour.
+
+### Reference / generator
+
+| File | Purpose |
+|------|---------|
 | `EvalConversationTemplate.csv` / `EvaluationTemplate_classic.csv` | The two official Copilot Studio templates the import files are modelled on (reference). |
-| `../../scripts/build_eval_set.py` | Generator. All CSVs are produced from one table in this script, so they never drift. Re-run after editing. |
+| `../../scripts/build_eval_set.py` | Generator. All CSVs (overall + per-tier) are produced from one table in this script, so they never drift. Re-run after editing. |
 
 Pick the import file that matches the evaluation type you start in Copilot
 Studio: the **conversation** file for multi-turn / *Import conversations*, or the
@@ -33,17 +55,40 @@ Regenerate:
 python3 scripts/build_eval_set.py
 ```
 
-## Difficulty tiers (metadata richness)
+## Difficulty / capability tiers
 
-The set deliberately spans how much metadata context the question carries, per
-the request:
+The set deliberately spans how much metadata context the question carries, plus a
+dedicated semantic-search tier:
 
 | Tier | Count | What it tests |
 |------|-------|---------------|
-| **A** | 5 | Few metadata cues — broad topical question, one obvious matching document. |
-| **B** | 5 | Medium — ~2 metadata constraints (e.g. year + domain). |
-| **C** | 5 | Precise — 3+ constraints (year + type + domain + topic) pinpoint a single doc, answer includes an exact fact/figure. |
-| **D** | 5 | **Tricky** — several documents are plausible candidate answers; metadata stated in the question (country, date, subject, document type) rules all but one out. |
+| **A** | 9 | Few metadata cues — broad topical question, one obvious matching document. |
+| **B** | 11 | Medium — ~2 metadata constraints (e.g. year + domain). |
+| **C** | 8 | Precise — 3+ constraints (year + type + domain + topic) pinpoint a single doc, answer includes an exact fact/figure. |
+| **D** | 7 | **Tricky** — several documents are plausible candidate answers; metadata stated in the question (country, date, subject, document type) rules all but one out. |
+| **E** | 5 | **Unanswerable** — no corpus document answers; the agent must say the documents do not precisely answer and invent no CELEX id. |
+| **S** | 10 | **Semantic** — the question is worded entirely in synonyms / paraphrases that share no literal term with the grounding document, so a keyword/literal match fails and only a semantic (embedding) match retrieves the right act. |
+
+### The semantic (Tier S) cases
+
+Tier S exists to isolate whether the retrieval path actually does **semantic**
+matching rather than literal keyword overlap. Each question describes a real
+corpus document using only everyday synonyms for its subject — never the
+document's own terminology — and carries **no** metadata filter block, so meaning
+alone has to carry the retrieval. Examples:
+
+- *"flimsy throwaway shopping sacks"* → lightweight plastic carrier bags
+  (`2015/720`).
+- *"the sweet substance produced by bees … the floral material the insects
+  gather"* → honey / pollen (`2014/63/EU`).
+- *"portable power cells … small round cells containing mercury"* → batteries /
+  button cells (`2013/56/EU`).
+- *"carbon-allowance trading scheme for airline flights"* → Emissions Trading
+  System for aviation (`421/2014`).
+
+Run the tier-S file against each retrieval variant (mcp / semantic / hybrid /
+knowledge) to compare how well each recovers the right document with no lexical
+overlap.
 
 ### The tricky (Tier D) cases
 
@@ -67,10 +112,11 @@ distractors in the source CSV:
 1. Open the agent in Copilot Studio.
 2. Go to the **Evaluate** tab.
 3. **New evaluation** → choose the type, then drag/browse the matching file:
-   - *Import conversations* → `multieurlex_eval_set_copilot_import_conversation.csv`
-   - single-response / classic → `multieurlex_eval_set_copilot_import_classic.csv`
-4. Review the imported cases — 20 in either file. All import with the default
-   **General quality** grader.
+   - *Import conversations* → a `..._copilot_import_conversation.csv`
+   - single-response / classic → a `..._copilot_import_classic.csv`
+   - to test one question type only, pick the matching `..._tier<X>_...` file.
+4. Review the imported cases. All import with the default **General quality**
+   grader.
 5. For the precise/tricky cases, switch the test method in the UI to **Compare
    meaning** or **Keyword match** (e.g. the regulation number, "Article 486",
    "10 basis points", "90 ... 2019"). In the **classic** file the
@@ -83,7 +129,8 @@ distractors in the source CSV:
 
 - **Conversation** template: max **8** Q&A pairs per conversation, max **50**
   conversations, max **500** chars per question. Each question is a standalone
-  conversation so the tricky cases cannot leak context to one another.
+  conversation so the tricky cases cannot leak context to one another. (The
+  overall set has exactly 50 conversations — at the cap.)
 - **Classic** template: max **100** questions, max **500** chars per question.
   `expectedResponse` is used by match / similarity / compare-meaning methods.
 - The generator enforces all of the above. Set test methods (and their
@@ -91,6 +138,7 @@ distractors in the source CSV:
 
 ## Grounding
 
-Each answer traces to one corpus document via `source_celex_id` in the source
-CSV. The corpus is English-only (`language=en`), 300 documents, document types
-Regulation / Decision / Directive, years 2012–2015.
+Each grounded answer traces to one corpus document via `source_celex_id` in the
+source CSV (tier-E rows carry none by design). The corpus is English-only
+(`language=en`), 300 documents, document types Regulation / Decision / Directive,
+years 2012–2015.

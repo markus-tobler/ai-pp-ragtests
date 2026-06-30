@@ -7,22 +7,28 @@ agent's test set in the Copilot Studio **Evaluate** tab, export the result CSV,
 drop the files in one folder, then run this script to produce the same kind of
 roll-up `run_agent_evals.py` would have written.
 
-Input: a directory of CSV files exported from the Evaluate tab. Each file is one
-agent's run and is typically named like `Evaluate <agent name> <date>.csv`.
-Export CSV columns (the `_N` block repeats per eval method):
+Input: a directory of CSV files exported from the Evaluate tab. Each file is
+typically named like `Evaluate <agent name> <date>.csv`. Export CSV columns (the
+`_N` block repeats per eval method):
 
     question, expectedResponse, actualResponse,
     testMethodType_1, result_1, passingScore_1, explanation_1,
     testMethodType_2, result_2, ...
 
 Output: data/eval/results/run_<UTC-ts>/
-    <agent-slug>.json   - normalized rows + per-file summary
+    <agent-slug>.json   - merged rows + summary for that agent
     summary.csv         - one row per agent: totals, pass rate, per-method tally
     summary.json        - machine-readable, includes per-method tallies
 
 Agent attribution: each CSV is matched to an agent in agent-instructions/README.md
 by finding the agent whose name appears in the file name (longest match wins).
 Unmatched files still get collected, keyed by their file stem.
+
+Multiple files per agent: if several CSVs in one run (folder) map to the same
+agent, their rows are merged into that agent's single record. Rows are
+de-duplicated by question text, with the later file winning (so dropping a fresh
+re-export of one agent overrides its older rows). Files are ordered by name, and
+exports are timestamped, so the newest export wins.
 
 Usage:
     python3 scripts/collect_eval_results.py                       # reads data/eval/exports/
@@ -69,23 +75,17 @@ def method_indices(fieldnames: list[str]) -> list[str]:
     return sorted(idx, key=int)
 
 
-def parse_csv(path: Path) -> dict:
-    """Parse one export CSV into normalized rows + a summary."""
+def parse_rows(path: Path) -> list[dict]:
+    """Parse one export CSV into normalized per-case rows."""
     with path.open(newline="", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         indices = method_indices(reader.fieldnames or [])
         rows = []
-        method_tally: dict[str, dict[str, int]] = {}
-        cases_total = 0
-        cases_passed = 0
-
-        cases_error = 0
         for raw in reader:
             # skip the leading '#' comment/blank lines some exports carry
             q = (raw.get("question") or "").strip()
             if not q or q.startswith("#"):
                 continue
-            cases_total += 1
             methods = []
             case_pass = True
             saw_verdict = False  # any method produced a non-empty Pass/Fail result
@@ -101,47 +101,68 @@ def parse_csv(path: Path) -> dict:
                     "passingScore": (raw.get(f"passingScore_{n}") or "").strip(),
                     "explanation": (raw.get(f"explanation_{n}") or "").strip(),
                 })
-                tally = method_tally.setdefault(name, {})
                 if result:
                     saw_verdict = True
-                    tally[result] = tally.get(result, 0) + 1
                     if result.lower() != PASS:
                         case_pass = False
-                else:
-                    # empty result = the grader never ran (e.g. empty answer);
-                    # bucket as Error, kept out of the method's pass/fail denominator
-                    tally["Error"] = tally.get("Error", 0) + 1
             # A case with no Pass/Fail verdict at all is an error/timeout, not a
-            # fail: the agent produced nothing to grade. Errors count in the total
-            # but are excluded from the pass-rate denominator.
-            case_error = not saw_verdict
-            if case_error:
-                cases_error += 1
-            elif case_pass:
-                cases_passed += 1
+            # fail: the agent produced nothing to grade.
             rows.append({
                 "question": q,
                 "expectedResponse": (raw.get("expectedResponse") or "").strip(),
                 "actualResponse": (raw.get("actualResponse") or "").strip(),
                 "methods": methods,
                 "casePass": bool(saw_verdict and case_pass),
-                "caseError": case_error,
+                "caseError": not saw_verdict,
             })
+    return rows
 
+
+def summarize(rows: list[dict]) -> dict:
+    """Roll a list of normalized rows up into a summary + per-method tally."""
+    method_tally: dict[str, dict[str, int]] = {}
+    cases_passed = 0
+    cases_error = 0
+    for r in rows:
+        if r["caseError"]:
+            cases_error += 1
+        elif r["casePass"]:
+            cases_passed += 1
+        for m in r["methods"]:
+            tally = method_tally.setdefault(m["type"], {})
+            if m["result"]:
+                tally[m["result"]] = tally.get(m["result"], 0) + 1
+            else:
+                # empty result = the grader never ran (e.g. empty answer);
+                # bucket as Error, kept out of the method's pass/fail denominator
+                tally["Error"] = tally.get("Error", 0) + 1
+    cases_total = len(rows)
+    # Errors count in the total but are excluded from the pass-rate denominator.
     scored = cases_total - cases_error
     pass_rate = round(cases_passed / scored, 4) if scored else None
     return {
-        "rows": rows,
-        "summary": {
-            "totalCases": cases_total,
-            "scoredCases": scored,
-            "passedCases": cases_passed,
-            "failedCases": scored - cases_passed,
-            "errorCases": cases_error,
-            "passRate": pass_rate,
-            "methods": method_tally,
-        },
+        "totalCases": cases_total,
+        "scoredCases": scored,
+        "passedCases": cases_passed,
+        "failedCases": scored - cases_passed,
+        "errorCases": cases_error,
+        "passRate": pass_rate,
+        "methods": method_tally,
     }
+
+
+def merge_rows(file_rows: list[list[dict]]) -> list[dict]:
+    """Merge several files' rows for one agent, dedup by question text.
+
+    Files are processed in order; a later file's row for a given question wins,
+    so re-running an agent and dropping the newer export overrides the older.
+    First-seen order is preserved.
+    """
+    merged: dict[str, dict] = {}
+    for rows in file_rows:
+        for r in rows:
+            merged[r["question"]] = r  # last write wins
+    return list(merged.values())
 
 
 def match_agent(file_stem: str, agents: list[dict]) -> dict | None:
@@ -157,23 +178,35 @@ def match_agent(file_stem: str, agents: list[dict]) -> dict | None:
 
 def collect(files: list[Path], agents: list[dict], out_dir: Path) -> list[dict]:
     out_dir.mkdir(parents=True, exist_ok=True)
-    collected = []
+
+    # Group files by agent (or by file stem when unmatched). Several CSVs can map
+    # to the same agent in one run; their rows are merged into one record.
+    groups: dict[str, dict] = {}
     for path in files:
         agent = match_agent(path.stem, agents)
         slug = slugify(agent["name"]) if agent else slugify(path.stem)
-        parsed = parse_csv(path)
+        g = groups.setdefault(slug, {"agent": agent, "files": []})
+        g["files"].append(path)
+
+    collected = []
+    for slug, g in groups.items():
+        agent = g["agent"]
+        paths = g["files"]
+        rows = merge_rows([parse_rows(p) for p in paths])
+        summary = summarize(rows)
         record = {
             "agent": agent["name"] if agent else None,
             "bot_id": agent["bot_id"] if agent else None,
-            "source_file": path.name,
-            "summary": parsed["summary"],
-            "rows": parsed["rows"],
+            "source_files": [p.name for p in paths],
+            "summary": summary,
+            "rows": rows,
         }
         (out_dir / f"{slug}.json").write_text(json.dumps(record, indent=2), encoding="utf-8")
         collected.append(record)
-        tag = agent["name"] if agent else f"(unmatched: {path.name})"
-        print(f"  {tag}: {parsed['summary']['passedCases']}/{parsed['summary']['totalCases']} "
-              f"passed  (passRate={parsed['summary']['passRate']})", file=sys.stderr)
+        tag = agent["name"] if agent else f"(unmatched: {slug})"
+        merged = f"  [merged {len(paths)} files]" if len(paths) > 1 else ""
+        print(f"  {tag}: {summary['passedCases']}/{summary['totalCases']} "
+              f"passed  (passRate={summary['passRate']}){merged}", file=sys.stderr)
     return collected
 
 
@@ -182,7 +215,7 @@ def write_summaries(collected: list[dict], agents: list[dict], out_dir: Path,
     # union of all method names for stable columns
     methods = sorted({m for r in collected for m in r["summary"]["methods"]})
 
-    fields = ["agent", "bot_id", "source_file", "total", "scored", "passed",
+    fields = ["agent", "bot_id", "source_files", "total", "scored", "passed",
               "failed", "errors", "pass_rate"]
     fields += [f"{m}" for m in methods]
     with (out_dir / "summary.csv").open("w", newline="", encoding="utf-8") as f:
@@ -193,7 +226,7 @@ def write_summaries(collected: list[dict], agents: list[dict], out_dir: Path,
             row = {
                 "agent": r["agent"] or "",
                 "bot_id": r["bot_id"] or "",
-                "source_file": r["source_file"],
+                "source_files": "; ".join(r["source_files"]),
                 "total": s["totalCases"],
                 "scored": s.get("scoredCases", s["totalCases"]),
                 "passed": s["passedCases"],
@@ -216,7 +249,7 @@ def write_summaries(collected: list[dict], agents: list[dict], out_dir: Path,
         "agents": [{
             "agent": r["agent"],
             "bot_id": r["bot_id"],
-            "source_file": r["source_file"],
+            "source_files": r["source_files"],
             "summary": r["summary"],
         } for r in collected],
         "missingAgents": missing,
@@ -328,7 +361,7 @@ def main() -> None:
         print(f"[{label}]  -> {rel(results_root / slugify(label))}")
         for r in collected:
             s = r["summary"]
-            name = r["agent"] or f"(unmatched: {r['source_file']})"
+            name = r["agent"] or f"(unmatched: {'; '.join(r['source_files'])})"
             rate = f"{s['passRate']*100:.0f}%" if s["passRate"] is not None else "n/a"
             print(f"   {name:<40} {s['passedCases']:>3}/{s['totalCases']:<3} pass  ({rate})")
 

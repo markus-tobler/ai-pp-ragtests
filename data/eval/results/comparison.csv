@@ -1,7 +1,7 @@
-agent,gpt-5-chat,sonnet-4-6
-MultiEURLEX Classic MCP,32/40 (80%),35/40 (90%)
-MultiEURLEX Classic Semantic,26/40 (65%),33/40 (82%)
-MultiEURLEX Classic MCP plus Semantic,33/40 (82%),36/40 (95%)
-MultiEURLEX Classic Knowledge,23/40 (57%),35/40 (90%)
-MultiEURLEX Classic DV Knowledge,31/40 (78%),35/40 (88%)
-MultiEURLEX Classic DV Table,16/40 (40%),26/40 (70%)
+agent,gpt-4-1,gpt-5-chat,sonnet-4-6
+MultiEURLEX Classic MCP,33/50 (66%),42/50 (84%),43/50 (91%)
+MultiEURLEX Classic Semantic,33/50 (66%),32/50 (64%),41/50 (82%)
+MultiEURLEX Classic MCP plus Semantic,33/50 (66%),40/50 (80%),44/50 (94%)
+MultiEURLEX Classic Knowledge,37/50 (74%),30/50 (60%),43/50 (91%)
+MultiEURLEX Classic DV Knowledge,46/50 (92%),41/50 (82%),45/50 (90%)
+MultiEURLEX Classic DV Table,27/50 (54%),25/50 (50%),35/50 (74%)

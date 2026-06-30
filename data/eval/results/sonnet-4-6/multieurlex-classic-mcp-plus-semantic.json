@@ -1,23 +1,27 @@
 {
   "agent": "MultiEURLEX Classic MCP plus Semantic",
   "bot_id": "8e544f18-eb71-f111-ab0d-000d3a340a6f",
-  "source_file": "Evaluate MultiEURLEX Classic MCP plus Semantic 260629_1050 sonet-4-6.csv",
+  "source_files": [
+    "Evaluate MultiEURLEX Classic MCP plus Semantic 260629_1050 sonet-4-6.csv",
+    "Evaluate MultiEURLEX Classic MCP plus Semantic S 260630_0833 sonet-4-6.csv"
+  ],
   "summary": {
-    "totalCases": 40,
-    "scoredCases": 38,
-    "passedCases": 36,
-    "failedCases": 2,
-    "errorCases": 2,
-    "passRate": 0.9474,
+    "totalCases": 50,
+    "scoredCases": 47,
+    "passedCases": 44,
+    "failedCases": 3,
+    "errorCases": 3,
+    "passRate": 0.9362,
     "methods": {
       "GeneralQuality": {
-        "Pass": 36,
-        "Fail": 2,
-        "Error": 2
+        "Pass": 44,
+        "Fail": 3,
+        "Error": 3
       },
       "CompareMeaning": {
-        "Pass": 38,
-        "Error": 2
+        "Pass": 46,
+        "Error": 3,
+        "Fail": 1
       }
     }
   },
@@ -860,6 +864,216 @@
         }
       ],
       "casePass": false,
+      "caseError": false
+    },
+    {
+      "question": "Which EU act sets the permitted upper limits for traces of crop-treatment chemicals left on or in food and animal-feed products such as fruit and cereals?",
+      "expectedResponse": "CELEX 32015R0401 - Commission Regulation (EU) 2015/401 of 25 February 2015, which amends Annexes II and III to Regulation (EC) No 396/2005 on maximum residue levels of pesticides.",
+      "actualResponse": "",
+      "methods": [
+        {
+          "type": "GeneralQuality",
+          "result": "",
+          "passingScore": "",
+          "explanation": ""
+        },
+        {
+          "type": "CompareMeaning",
+          "result": "",
+          "passingScore": "50",
+          "explanation": ""
+        }
+      ],
+      "casePass": false,
+      "caseError": true
+    },
+    {
+      "question": "Which EU directive aims to cut down how many flimsy throwaway shopping sacks each person gets through in a year?",
+      "expectedResponse": "CELEX 32015L0720 - Directive (EU) 2015/720 of the European Parliament and of the Council of 29 April 2015, amending Directive 94/62/EC to reduce the consumption of lightweight plastic carrier bags.",
+      "actualResponse": "Sorry, something went wrong. Error code: SystemError. Conversation ID: d061eeb0-a94d-4000-bdac-c5ef591d89bc. Time (UTC): 6/30/2026 6:36:25 AM.",
+      "methods": [
+        {
+          "type": "GeneralQuality",
+          "result": "Fail",
+          "passingScore": "",
+          "explanation": "Not answered: The agent response says it cannot provide the requested information due to a system error. It does not offer any alternative or partial answer. Because the agent didn't answer the question, the response wasn't evaluated for relevance, completeness, or use of knowledge sources."
+        },
+        {
+          "type": "CompareMeaning",
+          "result": "Fail",
+          "passingScore": "50",
+          "explanation": "0/100 - Different meaning; The Agent answer just shows an error message and doesn't answer the question, while the Expected response gives the correct directive."
+        }
+      ],
+      "casePass": false,
+      "caseError": false
+    },
+    {
+      "question": "Which EU directive updates the rules on the sweet substance produced by bees, in particular clarifying the status of the floral material the insects gather?",
+      "expectedResponse": "CELEX 32014L0063 - Directive 2014/63/EU of the European Parliament and of the Council of 15 May 2014, amending Council Directive 2001/110/EC relating to honey (clarifying the status of pollen).",
+      "actualResponse": "Both retrieval paths converge on a single, definitive answer. The document returned by **both** paths \u2014 and by far the most relevant \u2014 is **CELEX 32014L0063**.\n\n---\n\n## \ud83c\udf6f Directive 2014/63/EU \u2014 The EU Honey Directive Amendment\n\nThe EU act you are looking for is **Directive 2014/63/EU of the European Parliament and of the Council of 15 May 2014**, which amends Council Directive 2001/110/EC relating to honey.\n\n---\n\n### What Does It Cover?\n\n#### 1. Definition of Honey and Composition Rules\n\nCouncil Directive 2001/110/EC defines honey as the natural sweet substance produced by *Apis mellifera* bees. Honey consists essentially of different sugars, predominantly fructose and glucose, as well as other substances such as organic acids, enzymes and solid particles derived from honey collection. Directive 2001/110/EC limits human intervention that could alter the composition of honey and thereby allows for the preservation of the natural character of honey.[1]\n\n#### 2. The Key Question: Is Pollen an \"Ingredient\" of Honey?\n\nThe central innovation of Directive 2014/63/EU is the clarification of **pollen's legal status**. Pollen is the \"floral material\" bees gather:\n\nAvailable evidence, including empiric and scientific data, confirms that bees are the origin of the presence of pollen in honey. Pollen grains fall into nectar which is collected by bees. In the hive, collected nectar containing pollen grains is transformed into honey by bees. According to the available data, additional pollen in honey can come from pollen on bees' hair, from pollen in the air inside the hive and from pollen that was packed in cells by bees and released as a result of the accidental opening of those cells during the extraction of honey by food business operators. Pollen can therefore be said to enter the hive as a result of the activity of bees and is naturally present in honey regardless of whether or not food business operators extract that honey.[1]\n\n#### 3. The Legal Clarification on Pollen as a \"Natural Constituent\"\n\nTaking into account the natural character of honey, and in particular the natural origin of the presence of constituents particular to honey, pollen, being a natural constituent particular to honey, should not be considered to be an 'ingredient' of honey within the meaning of Regulation (EU) No 1169/2011.[1]\n\nThis was formally enacted as a new point in Article 2 of Directive 2001/110/EC: *\"Pollen, being a natural constituent particular to honey, shall not be considered to be an ingredient\u2026 of the products defined in Annex I to this Directive.\"*\n\n#### 4. GMO Pollen \u2014 An Important Carve-Out\n\nThis Directive is without prejudice to the application of Regulation (EC) No 1829/2003 of the European Parliament and of the Council to honey containing genetically modified pollen, since such honey constitutes food produced from genetically modified organisms within the meaning of that Regulation. Honey containing genetically modified pollen should therefore be regarded as being 'food (partially) produced from a GMO'.[1]\n\n#### 5. Prohibition on Removing Pollen\n\nNeither pollen nor any other constituent particular to honey may be removed except where this is unavoidable in the removal of foreign inorganic or organic matter.[1]\n\n#### 6. Labelling Update \u2014 EC \u2192 EU\n\nFollowing the entry into force of the Treaty of Lisbon, the European Union replaced and succeeded the European Community. It is therefore appropriate to clarify the relevant labelling requirements by replacing the reference to 'EC' by a reference to 'EU'.[1] Labels now read *\"blend of EU honeys,\" \"blend of non-EU honeys,\"* or *\"blend of EU and non-EU honeys.\"*\n\n#### 7. Transposition Deadline\n\nMember States shall apply the measures referred to in paragraph 1 from 24 June 2015.[1]\n\n---\n\n## \ud83d\udccb Sources\n\n| CELEX ID | Title | Relevance |\n|---|---|---|\n| **32014L0063** | Directive 2014/63/EU of the European Parliament and of the Council (amending Directive 2001/110/EC relating to honey) | Directly amends EU honey rules; clarifies that pollen \u2014 the floral material gathered by bees \u2014 is a **natural constituent**, not an \"ingredient,\" of honey |\n\n[1]: cite:1 \"Citation-1\"",
+      "methods": [
+        {
+          "type": "GeneralQuality",
+          "result": "Pass",
+          "passingScore": "",
+          "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
+        },
+        {
+          "type": "CompareMeaning",
+          "result": "Pass",
+          "passingScore": "50",
+          "explanation": "75/100 - Mostly same meaning; The Agent answer gives the same directive as the Expected response and adds extra details about honey rules, pollen, and labelling that aren't in the Expected response."
+        }
+      ],
+      "casePass": true,
+      "caseError": false
+    },
+    {
+      "question": "Which 2014 EU regulation lifts the entry-permit requirement for short stays for citizens of a particular eastern European country who hold biometric passports?",
+      "expectedResponse": "CELEX 32014R0259 - Regulation (EU) No 259/2014 of the European Parliament and of the Council of 3 April 2014, amending Regulation (EC) No 539/2001 by transferring the Republic of Moldova to the visa-exempt list.",
+      "actualResponse": "The document is confirmed. Here is the full answer:\n\n---\n\n## \ud83c\uddea\ud83c\uddfa 2014 EU Regulation Lifting the Visa Requirement for Moldova\n\nThe regulation you are looking for is:\n\n> **REGULATION (EU) No 259/2014 of the European Parliament and of the Council**\n> **CELEX ID: 32014R0259**\n> Adopted: **3 April 2014**\n\n---\n\n### What It Does\n\nThis regulation amends Council Regulation (EC) No 539/2001, which lists the third countries whose nationals must be in possession of visas when crossing the EU's external borders and those whose nationals are exempt from that requirement.[1]\n\nThe eastern European country in question is **the Republic of Moldova**. In line with the Joint Declaration approved at the Prague Eastern Partnership Summit on 7 May 2009, and the completion by the Republic of Moldova of its Visa Liberalisation Action Plan, the Commission considered that the Republic of Moldova meets all the benchmarks set out in the Visa Liberalisation Action Plan. Meeting all the benchmarks, the Republic of Moldova was transferred to Annex II to Regulation (EC) No 539/2001[2] \u2014 meaning Moldovan nationals were moved from the **visa-required** list (Annex I) to the **visa-exempt** list (Annex II).\n\n### The Biometric Passport Condition\n\nThe visa waiver applies to holders of **biometric passports** issued by the Republic of Moldova in line with standards of the **International Civil Aviation Organisation (ICAO)**.[3]\n\nThis is operationalised in the regulation's operative article: In Article 1, the reference to Moldova is deleted from Annex I, Part 1 (visa required), and the following is inserted in Annex II, Part 1: *\"Moldova, Republic of \u2014 The visa waiver will be limited to the holders of biometric passports issued in line with standards of the International Civil Aviation Organisation (ICAO).\"*[3]\n\n---\n\n### \ud83d\udcda Sources\n\n| CELEX ID | Title | Relevance |\n|---|---|---|\n| **32014R0259** | REGULATION (EU) No 259/2014 of the European Parliament and of the Council | Directly amends the EU visa list regulation to exempt Moldovan nationals holding ICAO-compliant biometric passports from the short-stay visa requirement when crossing EU external borders. |\n\n[1]: cite:1 \"Citation-1\"\n[2]: cite:2 \"Citation-2\"\n[3]: cite:3 \"Citation-3\"",
+      "methods": [
+        {
+          "type": "GeneralQuality",
+          "result": "Pass",
+          "passingScore": "",
+          "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
+        },
+        {
+          "type": "CompareMeaning",
+          "result": "Pass",
+          "passingScore": "50",
+          "explanation": "75/100 - Mostly same meaning; The Agent answer gives the regulation and its effect, like the Expected response, but adds extra details about Moldova, biometric passports, and the regulation's context."
+        }
+      ],
+      "casePass": true,
+      "caseError": false
+    },
+    {
+      "question": "Which 2015 EU directive updates the rules on the dockside facilities that take in rubbish and leftover cargo from boats arriving at harbours?",
+      "expectedResponse": "CELEX 32015L2087 - Commission Directive (EU) 2015/2087 of 18 November 2015, amending Annex II to Directive 2000/59/EC on port reception facilities for ship-generated waste and cargo residues.",
+      "actualResponse": "Both retrieval paths converge on a single, highly relevant document. Here is the full answer.\n\n---\n\n## \ud83d\udea2 2015 EU Directive on Port Reception Facilities for Ship Waste and Cargo Residues\n\n### **COMMISSION DIRECTIVE (EU) 2015/2087**\n**CELEX ID:** `32015L2087` | **Policy Domain:** Transport | **Adopted:** 18 November 2015\n\n---\n\n### What it does\n\nThis is **Commission Directive (EU) 2015/2087**, classified under the Transport policy domain, issued in 2015.[1]\n\nThe directive amends the rules on dockside/port facilities that receive rubbish and leftover cargo from vessels. Specifically:\n\n- It amends **Annex II to Directive 2000/59/EC** of the European Parliament and the Council on **port reception facilities for ship-generated waste and cargo residues**.[1]\n\n### Why was it needed?\n\nThe update was driven by international maritime rules:\n\n- On 15 July 2011, the International Maritime Organisation (IMO) adopted **Resolution MEPC.201(62)** amending Annex V to the **MARPOL Convention** on the prevention of pollution by garbage from ships, by introducing a new and more detailed categorisation of garbage. The amended Annex V to the MARPOL Convention entered into force on 1 January 2013.[1]\n\n- In the interest of consistency with IMO measures and in order to avoid uncertainty amongst port users and authorities, the table included in Annex II to Directive 2000/59/EC \u2014 which contains the different types and amounts of waste and cargo residues to be delivered or retained on board \u2014 was adapted to the new categorisation of garbage of the amended MARPOL Annex V.[1]\n\n### Additional improvements\n\n- In order to improve the regime established under Directive 2000/59/EC, which aims at reducing discharges of ship-generated waste and cargo residues into the sea, information on the types and quantities of ship-generated waste **actually delivered** to port reception facilities in the last port of delivery was required to be included in the table of Annex II.[1]\n\n- The exact data on the types and amounts of ship-generated waste and cargo residues delivered by a ship in the last port is essential for an accurate calculation of **sufficient dedicated storage capacity** on that ship \u2014 a prerequisite for allowing the ship to proceed to the next port of call without having delivered its waste, and for a proper selection of vessels for inspection.[1]\n\n- A systematic collection of accurate data on waste delivery would also allow a better statistical analysis of **waste flow patterns in ports** and facilitate the establishment of the information and monitoring system foreseen in Article 12(3) of Directive 2000/59/EC.[1]\n\n### Implementation deadline\n\n- Member States were required to adopt and publish the laws, regulations and administrative provisions necessary to comply with this Directive **by 9 December 2016** at the latest.[1]\n\n---\n\n## \ud83d\udccb Sources\n\n| CELEX ID | Title | Relevance |\n|---|---|---|\n| `32015L2087` | Commission Directive (EU) 2015/2087 | Directly amends Annex II of Directive 2000/59/EC on port reception facilities for ship-generated waste and cargo residues, updating waste categorisation in line with MARPOL Convention Annex V |\n\n[1]: cite:1 \"Citation-1\"",
+      "methods": [
+        {
+          "type": "GeneralQuality",
+          "result": "Pass",
+          "passingScore": "",
+          "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
+        },
+        {
+          "type": "CompareMeaning",
+          "result": "Pass",
+          "passingScore": "50",
+          "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct directive and amendment, just like the Expected response, but adds extra details about why the rules were updated and how they work."
+        }
+      ],
+      "casePass": true,
+      "caseError": false
+    },
+    {
+      "question": "Which EU directive revises the safeguards that keep underground water sources from becoming polluted, by updating the table of pollutant threshold values?",
+      "expectedResponse": "CELEX 32014L0080 - Commission Directive 2014/80/EU of 20 June 2014, which amends Annex II to Directive 2006/118/EC on the protection of groundwater against pollution and deterioration.",
+      "actualResponse": "The answer is conclusively identified. Here is my full response.\n\n---\n\n## EU Directive Revising Groundwater Pollution Safeguards & Pollutant Threshold Values\n\nThe directive you are looking for is **COMMISSION DIRECTIVE 2014/80/EU (CELEX 32014L0080)**.\n\n---\n\n### What Does It Do?\n\n**Commission Directive 2014/80/EU**, of 20 June 2014, **amends Annex II to Directive 2006/118/EC** of the European Parliament and of the Council on the **protection of groundwater against pollution and deterioration**.[1]\n\n---\n\n### Why Was the Amendment Needed?\n\nBased on the first review under Article 10 of Directive 2006/118/EC, not enough information was available to set new groundwater quality standards in Annex I to that Directive for any pollutants, but **technical adaptations in accordance with Article 8 of that Directive were necessary in its Annex II**. Common principles for the determination of background levels need to be applied in order to **improve the comparability of threshold values**.[1]\n\n---\n\n### Key Updates to Pollutant Threshold Values\n\n1. **New pollutants to be considered:** There is considerable potential for nitrogen and phosphorus in groundwater to present a eutrophication risk to associated surface waters and to directly dependent terrestrial ecosystems. Besides nitrates, already included in Annex I to Directive 2006/118/EC, and ammonium, included in Annex II, **nitrites** (as a contributor to total nitrogen) and **total phosphorus** (either as such or as phosphates) should also be considered by Member States when establishing threshold values.[2]\n\n2. **A watch list for emerging pollutants:** A **watch list for pollutants of groundwater** should be established under the Common Implementation Strategy for Directive 2000/60/EC to increase the availability of monitoring data on substances posing a risk or potential risk to bodies of groundwater, and thereby facilitate the identification of substances, including **emerging pollutants**, for which groundwater quality standards or threshold values should be set.[3]\n\n3. **Improved transparency:** The information provided by Member States on the pollutants and indicators for which threshold values had been established proved insufficient in the first river basin management plans. The relevant requirements were clarified and complemented to ensure the transparency of that assessment, and the information provided would also facilitate comparison of the chemical status assessment results across Member States and contribute to a **potential future harmonisation of methodologies** for establishing groundwater threshold values.[4]\n\n---\n\n### Legal Mechanism\n\nArticle 1 of the Directive amends **Annex II to Directive 2006/118/EC** in accordance with the Annex to this Directive.[5]Member States were required to bring into force the necessary laws, regulations and administrative provisions to comply with this Directive within **24 months** from the date of entry into force.[6]\n\n---\n\n## Sources\n\n| CELEX ID | Title | Relevance |\n|---|---|---|\n| **32014L0080** | COMMISSION DIRECTIVE 2014/80/EU | Directly revises Annex II of the Groundwater Directive 2006/118/EC, updating pollutant threshold values, adding new pollutants (nitrites, total phosphorus), establishing a watch list, and improving comparability of threshold values across Member States. |\n\n[1]: cite:1 \"Citation-1\"\n[2]: cite:2 \"Citation-2\"\n[3]: cite:3 \"Citation-3\"\n[4]: cite:4 \"Citation-4\"\n[5]: cite:5 \"Citation-5\"\n[6]: cite:6 \"Citation-6\"",
+      "methods": [
+        {
+          "type": "GeneralQuality",
+          "result": "Pass",
+          "passingScore": "",
+          "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
+        },
+        {
+          "type": "CompareMeaning",
+          "result": "Pass",
+          "passingScore": "50",
+          "explanation": "75/100 - Mostly same meaning; The Agent answer gives the correct directive and adds extra details about what it changes and why, which aren't in the Expected response."
+        }
+      ],
+      "casePass": true,
+      "caseError": false
+    },
+    {
+      "question": "Which EU directive harmonises national laws on the milk-protein ingredients used in food for people, replacing an older 1983 measure?",
+      "expectedResponse": "CELEX 32015L2203 - Directive (EU) 2015/2203 of the European Parliament and of the Council of 25 November 2015 on caseins and caseinates intended for human consumption, repealing Council Directive 83/417/EEC.",
+      "actualResponse": "Both retrieval paths converge perfectly on a single document. Here is the full answer, drawn directly from the document text.\n\n---\n\n## The Directive on Caseins and Caseinates for Human Consumption\n\n**CELEX: 32015L2203 \u2014 Directive (EU) 2015/2203 of the European Parliament and of the Council**\n\n### What it is\n\nThis is a **Directive** adopted in **2015**, classified under the policy domain of *Social questions*.[1]\n\nMore precisely, it is **DIRECTIVE (EU) 2015/2203 OF THE EUROPEAN PARLIAMENT AND OF THE COUNCIL**.[1]\n\n---\n\n### What it does\n\nThe document text confirms that this is the Directive \"on the approximation of the laws of the Member States relating to **caseins and caseinates** intended for **human consumption** and repealing Council Directive **83/417/EEC**.\"[2]\u200b[1]\n\nIn other words, this is the EU directive that **harmonises national laws** on milk-protein ingredients (specifically lactoproteins \u2014 caseins and caseinates) used in food for people, replacing the older 1983 measure.\n\n---\n\n### Why the 1983 Directive was replaced\n\nThe full document text explains three key drivers:\n\n1. **New EU food law framework** \u2014 Since the entry into force of Directive 83/417/EEC, \"the development of a comprehensive legal framework in the area of food law\" had taken place, which needed to be taken into account.[1]\n\n2. **International standard update** \u2014 The \"adoption of an international standard for edible casein products by the Codex Alimentarius Commission ('Codex standard for edible casein products')\" also had to be reflected in the updated rules.[1]\n\n3. **Alignment with the Lisbon Treaty** \u2014 Directive 83/417/EEC \"confers powers on the Commission in order to implement some of its provisions. As a consequence of the entry into force of the Lisbon Treaty, those powers need to be aligned to Article 290 of the Treaty on the Functioning of the European Union (TFEU).\"[1]\n\n4. **Clarity** \u2014 \"For the sake of clarity, Directive 83/417/EEC should therefore be repealed and replaced with a new Directive.\"[1]\n\n---\n\n### Key provisions\n\n- **Scope**: The Directive \"applies to caseins and caseinates which are intended for human consumption and mixtures thereof.\"[1]\n\n- **Definitions of covered products**:\n  - *Edible acid casein* \u2014 \"a milk product obtained by separating, washing and drying the acid-precipitated coagulum of skimmed milk and/or of other products obtained from milk.\"[1]\n  - *Edible rennet casein* \u2014 \"a milk product obtained by separating, washing and drying the coagulum of skimmed milk and/or of other products obtained from milk the coagulum is obtained through the reaction of rennet or other coagulating enzymes.\"[1]\n  - *Edible caseinate* \u2014 \"a milk product obtained by action of edible casein or edible casein curd coagulum with neutralizing agents, followed by drying.\"[1]\n\n- **Technical updates**: Annex I to Directive 83/417/EEC fixed the maximum moisture content for edible caseins at 10% and the maximum milk fat content for edible acid casein at 2.25%. \"Taking into consideration that the Codex standard for edible casein products fixes those parameters at 12% and 2% respectively, the corresponding parameters should be set in line with that standard so as to avoid trade distortions.\"[1]\n\n- **Repeal date**: \"Directive 83/417/EEC is repealed with effect from **22 December 2016**.\"[1]\n\n---\n\n## Sources\n\n| CELEX ID | Title | Relevance |\n|---|---|---|\n| **32015L2203** | Directive (EU) 2015/2203 of the European Parliament and of the Council | Directly addresses harmonisation of Member States' laws on caseins/caseinates (milk proteins) for human consumption, explicitly repealing Council Directive 83/417/EEC of 1983. Found by **both** retrieval paths. |\n\n[1]: cite:1 \"Citation-1\"\n[2]: cite:2 \"Citation-2\"",
+      "methods": [
+        {
+          "type": "GeneralQuality",
+          "result": "Pass",
+          "passingScore": "",
+          "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
+        },
+        {
+          "type": "CompareMeaning",
+          "result": "Pass",
+          "passingScore": "50",
+          "explanation": "100/100 - Same meaning; The Agent answer gives the same main information as the Expected response, just with more details and background."
+        }
+      ],
+      "casePass": true,
+      "caseError": false
+    },
+    {
+      "question": "Which 2015 EU directive sets a maximum permitted level for a foam-forming chemical in the materials used to make children's playthings?",
+      "expectedResponse": "CELEX 32015L2115 - Commission Directive (EU) 2015/2115 of 23 November 2015, amending Appendix C to Annex II to Directive 2009/48/EC on the safety of toys to adopt a specific limit value for formamide.",
+      "actualResponse": "The answer is clearly **Commission Directive (EU) 2015/2115** (CELEX **32015L2115**). Here is a full explanation:\n\n---\n\n## Commission Directive (EU) 2015/2115 \u2014 Formamide in Foam Toy Materials\n\n**CELEX ID:** 32015L2115\n**Adopted:** 23 November 2015\n\n### What is the \"foam-forming chemical\"?\n\n**Formamide** (CAS number 75-12-7) is used, among others, in the plastics and polymers industry, particularly as a solvent, plasticiser or as **a substance associated with a blowing agent used in the production of foam**.[1] This makes it the \"foam-forming chemical\" referred to in your question.\n\nIn 2010, several Member States identified formamide in a range of **foam toys**, such as puzzle mats, which gave rise to concerns for the **health of children** through inhalation.[2]\n\n---\n\n### What limit does the Directive set?\n\nThe subgroup 'Chemicals' recommended, at its meeting of 18 February 2015, that **emission testing is not necessary when the formamide content is 200 mg/kg or less** (cut-off value derived in a worst-case exposure scenario).[3]\n\nVia Article 1, the Directive adds the following entry to Appendix C to Annex II to Directive 2009/48/EC (the EU Toys Safety Directive):\n\n> **Formamide \u2014 CAS No 75-12-7 \u2014 Limit value: 20 \u03bcg/m\u00b3 (emission limit) after a maximum of 28 days from commencement of the emission testing of foam toy materials containing more than 200 mg/kg (cut-off limit based on content).**[3]\n\n---\n\n### Legal basis and scope\n\nThe Directive amends Appendix C to Annex II to **Directive 2009/48/EC** (the Toys Safety Directive) for the purpose of adopting specific limit values for chemicals used in toys. Directive 2009/48/EC empowers the Commission to adopt specific limit values for chemicals used in toys which are **intended for children under 36 months** and in other toys intended to be placed in the mouth, in order to ensure adequate protection.[4]Formamide is classified under Regulation (EC) No 1272/2008 as **toxic to reproduction category 1B**. Substances toxic to reproduction of category 1B such as formamide may be present in toys in concentrations equal to or smaller than 0,3 %, which equals 3,000 mg/kg (content limit).[5] The new Directive supplements this with a specific **emission limit** for foam toy materials.\n\nMember States were required to adopt and publish the necessary transposing laws and provisions **by 24 May 2017 at the latest**, applying them from that same date.[6]\n\n---\n\n## Sources\n\n| CELEX ID | Title | Relevance |\n|---|---|---|\n| **32015L2115** | COMMISSION DIRECTIVE (EU) 2015/2115 | Directly sets a maximum permitted emission level (20 \u03bcg/m\u00b3) for **formamide** \u2014 a blowing agent / foam-forming chemical \u2014 in **foam toy materials** used to make children's playthings, amending the EU Toys Safety Directive 2009/48/EC. |\n\n[1]: cite:1 \"Citation-1\"\n[2]: cite:2 \"Citation-2\"\n[3]: cite:3 \"Citation-3\"\n[4]: cite:4 \"Citation-4\"\n[5]: cite:5 \"Citation-5\"\n[6]: cite:6 \"Citation-6\"",
+      "methods": [
+        {
+          "type": "GeneralQuality",
+          "result": "Pass",
+          "passingScore": "",
+          "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
+        },
+        {
+          "type": "CompareMeaning",
+          "result": "Pass",
+          "passingScore": "50",
+          "explanation": "100/100 - Same meaning; The Agent answer gives the same directive and key details as the Expected response, just with more explanation and background."
+        }
+      ],
+      "casePass": true,
+      "caseError": false
+    },
+    {
+      "question": "Which 2013 EU directive tightens the rules on selling portable power cells that contain cadmium and the small round cells that contain mercury?",
+      "expectedResponse": "CELEX 32013L0056 - Directive 2013/56/EU of the European Parliament and of the Council of 20 November 2013, amending Directive 2006/66/EC on batteries and accumulators as regards portable batteries containing cadmium and button cells with mercury.",
+      "actualResponse": "The semantic search has already returned a direct and highly relevant match. The answer is clear and fully supported by the retrieved document. Here is the complete answer:\n\n---\n\n## \ud83d\udd0b Directive 2013/56/EU \u2014 Batteries, Cadmium & Mercury Rules\n\nThe directive you are looking for is **Directive 2013/56/EU of the European Parliament and of the Council** (CELEX: **32013L0056**), adopted on **20 November 2013**.\n\n---\n\n### What It Does\n\nDirective 2013/56/EU amends Directive 2006/66/EC on batteries and accumulators and waste batteries and accumulators, specifically **as regards the placing on the market of portable batteries and accumulators containing cadmium intended for use in cordless power tools, and of button cells with low mercury content**, and repealing Commission Decision 2009/603/EC.[1]\n\n---\n\n### \ud83d\udd29 Cadmium \u2014 Cordless Power Tool Batteries\n\nThe pre-existing Directive 2006/66/EC prohibited the placing on the market of portable batteries and accumulators containing more than **0.002% of cadmium by weight**, but **portable batteries and accumulators intended for use in cordless power tools were exempted** from that ban. The Commission reviewed this exemption and concluded that, in order to gradually diminish the amount of cadmium released into the environment, **the prohibition should be extended to portable batteries for cordless power tools**, because suitable cadmium-free substitutes (nickel-metal hydride and lithium-ion technologies) are now available.[2]The existing exemption for cordless power tools was allowed to **continue until 31 December 2016** in order to enable the recycling industry and consumers along the whole value chain to further adapt to the relevant substitute technologies across all regions of the Union in a uniform manner.[3]\n\n---\n\n### \u26aa Mercury \u2014 Button Cells\n\nDirective 2006/66/EC prohibited the placing on the market of all batteries or accumulators containing more than **0.0005% of mercury by weight**, but **button cells with a mercury content of no more than 2% by weight were exempted**. Since the Union button cell market was already experiencing a shift towards mercury-free button cells, the new directive found it appropriate to **prohibit the marketing of button cells with a mercury content exceeding 0.0005% by weight**.[4]The prohibition on button cells with a mercury content of more than 2% by weight was set to apply **until 1 October 2015**, after which the tighter 0.0005% threshold would apply.\n\n---\n\n### \ud83d\udccb Transposition Deadline\n\nMember States were required to bring into force the laws, regulations, and administrative provisions necessary to comply with Article 1 of this Directive **by 1 July 2015**.\n\n---\n\n## \ud83d\udcda Sources\n\n| CELEX ID | Title | Relevance |\n|---|---|---|\n| **32013L0056** | Directive 2013/56/EU of the European Parliament and of the Council (20 November 2013) | Directly addresses tightened rules on placing on the market of portable batteries containing cadmium (for cordless power tools) and button cells with low mercury content, amending Directive 2006/66/EC. |\n\n[1]: cite:1 \"Citation-1\"\n[2]: cite:2 \"Citation-2\"\n[3]: cite:3 \"Citation-3\"\n[4]: cite:4 \"Citation-4\"",
+      "methods": [
+        {
+          "type": "GeneralQuality",
+          "result": "Pass",
+          "passingScore": "",
+          "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
+        },
+        {
+          "type": "CompareMeaning",
+          "result": "Pass",
+          "passingScore": "50",
+          "explanation": "75/100 - Mostly same meaning; The Agent answer gives the same directive as the Expected response and adds extra details about the rules, deadlines, and technical limits."
+        }
+      ],
+      "casePass": true,
+      "caseError": false
+    },
+    {
+      "question": "Which 2014 EU regulation narrows the carbon-allowance trading scheme for airline flights so that it only covers journeys within the European Economic Area?",
+      "expectedResponse": "CELEX 32014R0421 - Regulation (EU) No 421/2014 of the European Parliament and of the Council of 16 April 2014, amending Directive 2003/87/EC and limiting the EU Emissions Trading System for aviation to flights within the EEA.",
+      "actualResponse": "The document is confirmed. Here is the full answer.\n\n---\n\n## **Regulation (EU) No 421/2014 \u2014 The \"Intra-EEA Only\" Aviation ETS Regulation**\n\n**CELEX ID:** `32014R0421`\n**Full Title:** *Regulation (EU) No 421/2014 of the European Parliament and of the Council of 16 April 2014*\n**Policy Domain:** Transport | **Document Type:** Regulation | **Year:** 2014\n\n---\n\n### \ud83d\udd0d What the Regulation Does\n\nThis Regulation amends Directive 2003/87/EC establishing a scheme for greenhouse gas emission allowance trading within the Community, **in view of the implementation by 2020 of an international agreement applying a single global market-based measure to international aviation emissions**.[1]\n\nIn practical terms, it **narrows the EU Emissions Trading System (EU ETS) for aviation** so that, for a defined period, it effectively **only applies to flights within the European Economic Area (EEA)** \u2014 exempting (by derogation) flights to and from countries outside the EEA.\n\n---\n\n### \ud83c\udf0d Why the Scope Was Narrowed\n\nIn order to sustain the momentum reached at the 38th Session of the ICAO Assembly in 2013 and facilitate progress at the upcoming 39th Session in 2016, it is desirable to **temporarily consider the requirements set out in Directive 2003/87/EC to be satisfied for the period until 31 December 2016 in respect of flights to and from aerodromes in countries outside the European Economic Area (EEA)**.[2]The Union is endeavouring to secure a future international agreement to control greenhouse gas emissions from aviation and, in the meantime, is **limiting climate change impacts from aviation activities to and from aerodromes in the Union**, by autonomous action.[3]\n\n---\n\n### \u2696\ufe0f The Core Legal Derogation (Article 28a)\n\nThe Regulation inserts a new Article 28a into Directive 2003/87/EC, which creates the derogations:\n\nBy way of derogation from Articles 12(2a), 14(3) and Article 16, **Member States shall consider the requirements set out in those provisions to be satisfied and shall take no action against aircraft operators in respect of:\n(a) all emissions from flights to and from aerodromes located in countries outside the European Economic Area (EEA) in each calendar year from 1 January 2013 to 31 December 2016;\n(b) all emissions from flights between an aerodrome located in an outermost region within the meaning of Article 349 TFEU and an aerodrome located in another region of the EEA in each calendar year from 1 January 2013 to 31 December 2016.**[4]\n\nThis means the **full ETS monitoring, reporting, and surrender obligations** effectively apply **only to intra-EEA flights** during that period.\n\n---\n\n### \ud83e\uddfe Procedural Flexibility & Equal Treatment\n\nIn doing so, the Union emphasises that **legal requirements can be applied in respect of flights to and from aerodromes located in States of the EEA**, in the same manner as legal requirements can be applied in respect of the emissions from flights between such aerodromes.[5]To further avoid a disproportionate administrative burden for the smallest aircraft operators, a temporary exemption should be added to Annex I to Directive 2003/87/EC. **Non-commercial aircraft operators emitting less than 1,000 tonnes CO\u2082 per annum should, therefore, be exempt from the scope of that Directive, from 1 January 2013 to 31 December 2020.**[6]\n\n---\n\n### \ud83d\udd01 Croatia / 2013 Accession Countries\n\nIn order to ensure legal certainty, for the purposes of this derogation, **flights between aerodromes located in States of the EEA and aerodromes located in countries that acceded to the Union in 2013 should be considered to be flights between States of the EEA**.[7]\n\n---\n\n### \ud83d\udccb Post-2016 Review Obligation\n\nFollowing the 2016 ICAO Assembly, the Commission shall report to the European Parliament and to the Council on actions to implement an international agreement on a global market-based measure from 2020 that will reduce greenhouse gas emissions from aviation in a non-discriminatory manner. In its report, the Commission shall consider the appropriate scope for coverage of emissions from activity **to and from aerodromes located in countries outside the EEA from 1 January 2017 onwards**.[8]\n\n---\n\n## \ud83d\udcda Sources\n\n| CELEX ID | Title | Relevance |\n|---|---|---|\n| **32014R0421** | Regulation (EU) No 421/2014 of the European Parliament and of the Council | Directly amends Directive 2003/87/EC to limit the EU ETS aviation scope to intra-EEA flights only (via derogation for extra-EEA flights), for the period 2013\u20132016, pending a global ICAO agreement. |\n\n[1]: cite:1 \"Citation-1\"\n[2]: cite:2 \"Citation-2\"\n[3]: cite:3 \"Citation-3\"\n[4]: cite:4 \"Citation-4\"\n[5]: cite:5 \"Citation-5\"\n[6]: cite:6 \"Citation-6\"\n[7]: cite:7 \"Citation-7\"\n[8]: cite:8 \"Citation-8\"",
+      "methods": [
+        {
+          "type": "GeneralQuality",
+          "result": "Pass",
+          "passingScore": "",
+          "explanation": "All quality checks passed: The response is on topic, provides useful information, and is well supported by the available documents."
+        },
+        {
+          "type": "CompareMeaning",
+          "result": "Pass",
+          "passingScore": "50",
+          "explanation": "75/100 - Mostly same meaning; The Agent answer gives the regulation and its effect, just like the Expected response, but adds a lot more detail about what the regulation does and its background."
+        }
+      ],
+      "casePass": true,
       "caseError": false
     }
   ]

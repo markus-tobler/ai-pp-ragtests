@@ -1,0 +1,40 @@
+"# Import the test cases you want to use to test your agent"
+"#"
+"# Limitations"
+"# - maximum of 100 questions"
+"# - maximum 500 characters per question including spaces"
+"#"
+"# Imported columns"
+"# question - User question that the agent will answer."
+"# expectedResponse - Expected responses to run match, similarity and compare meaning test cases."
+"#"
+"# Test methods"
+"# - Test methods are not included in this template. You can configure test methods after importing the test cases."
+"# - Initially, the default test method will be added to the imported test set."
+"#"
+"# For more information, see the documentation."
+"#"
+"question","expectedResponse"
+"Which act in the corpus sets out the data subject's right to erasure (the 'right to be forgotten') of personal data?","The corpus contains no data-protection instrument; no document establishes a right to erasure / 'right to be forgotten'. The agent should state that the available documents do not precisely answer this question and should not invent a CELEX id."
+"Which 2015 Regulation sets the CO2 emission performance standards for new passenger cars or light commercial vehicles?
+
+Metadata filters (apply with AND):
+- Year: 2015
+- Document type: Regulation","No Regulation in the corpus sets CO2 emission performance standards for cars or vans (the standard-setting Regulations 443/2009 and 510/2011 are not present; only a few Decisions approve eco-innovations under that regime). The agent should state that the available documents do not precisely answer this question."
+"In Regulation (EU) No 421/2014 amending the EU Emissions Trading System for aviation, what per-tonne CO2 price applies to flights to and from third countries?
+
+Metadata filters (apply with AND):
+- Year: 2014
+- Document type: Regulation
+- Policy domain: Transport","Regulation (EU) No 421/2014 sets no per-tonne CO2 price; it limits the aviation ETS to flights within the EEA and exempts (defers) extra-EEA flights, rather than fixing a price. The agent should state that the document does not precisely answer this question."
+"Among the Directives that add active substances to the biocidal products Directive 98/8/EC, which one adds glyphosate, and for which product-type?
+
+Metadata filters (apply with AND):
+- Year: 2013
+- Document type: Directive","No corpus Directive adds glyphosate to Directive 98/8/EC; the 98/8/EC amending Directives in the corpus add other substances (e.g. pyriproxyfen, Alkyl (C12-16) dimethylbenzyl ammonium chloride). The agent should state that the available documents do not precisely answer this question."
+"What total euro budget does Decision No 1386/2013/EU (the General Union Environment Action Programme to 2020) allocate to each Member State?
+
+Metadata filters (apply with AND):
+- Year: 2013
+- Document type: Decision
+- Policy domain: Finance","Decision No 1386/2013/EU sets out priority objectives for the 7th Environment Action Programme; it allocates no euro budget to Member States. The agent should state that the document does not precisely answer this question."

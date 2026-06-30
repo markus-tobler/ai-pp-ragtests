@@ -1,7 +1,7 @@
-agent,bot_id,source_file,total,scored,passed,failed,errors,pass_rate,CompareMeaning,GeneralQuality
-MultiEURLEX Classic DV Knowledge,b6a6468d-632d-49df-93a1-aa1a9afbf4d6,Evaluate MultiEURLEX Classic DV Knowledge 260629_1130 sonet-4-6.csv,40,40,35,5,0,0.875,Pass=40,"Fail=5,Pass=35"
-MultiEURLEX Classic DV Table,aec67584-420c-4aea-8c12-abab5e372cbb,Evaluate MultiEURLEX Classic DV Table 260629_1324 sonet-4-6.csv,40,37,26,11,3,0.7027,"Error=3,Fail=3,Pass=34","Error=3,Fail=10,Pass=27"
-MultiEURLEX Classic Knowledge,1c6a788a-6a77-4586-b528-d8b3c1d272e8,Evaluate MultiEURLEX Classic Knowledge 260629_1008 sonet-4-6.csv,40,39,35,4,1,0.8974,"Error=1,Fail=1,Pass=38","Error=1,Fail=3,Pass=36"
-MultiEURLEX Classic MCP,3178427b-3b5b-48f5-ae8b-8815c8e009dd,Evaluate MultiEURLEX Classic MCP 260629_1321 sonet-4-6.csv,40,39,35,4,1,0.8974,"Error=1,Pass=39","Error=1,Fail=4,Pass=35"
-MultiEURLEX Classic MCP plus Semantic,8e544f18-eb71-f111-ab0d-000d3a340a6f,Evaluate MultiEURLEX Classic MCP plus Semantic 260629_1050 sonet-4-6.csv,40,38,36,2,2,0.9474,"Error=2,Pass=38","Error=2,Fail=2,Pass=36"
-MultiEURLEX Classic Semantic,7dc480d4-4c8a-433d-ad19-215599a24dc5,Evaluate MultiEURLEX Classic Semantic 260629_1129 sonet-4-6.csv,40,40,33,7,0,0.825,"Fail=3,Pass=37","Fail=6,Pass=34"
+agent,bot_id,source_files,total,scored,passed,failed,errors,pass_rate,CompareMeaning,GeneralQuality
+MultiEURLEX Classic DV Knowledge,b6a6468d-632d-49df-93a1-aa1a9afbf4d6,Evaluate MultiEURLEX Classic DV Knowledge 260629_1130 sonet-4-6.csv; Evaluate MultiEURLEX Classic DV Knowledge S 260630_0833 sonet-4-6.csv,50,50,45,5,0,0.9,Pass=50,"Fail=5,Pass=45"
+MultiEURLEX Classic DV Table,aec67584-420c-4aea-8c12-abab5e372cbb,Evaluate MultiEURLEX Classic DV Table 260629_1324 sonet-4-6.csv; Evaluate MultiEURLEX Classic DV Table S 260630_0833 sonet-4-6.csv,50,47,35,12,3,0.7447,"Error=3,Fail=3,Pass=44","Error=3,Fail=11,Pass=36"
+MultiEURLEX Classic Knowledge,1c6a788a-6a77-4586-b528-d8b3c1d272e8,Evaluate MultiEURLEX Classic Knowledge 260629_1008 sonet-4-6.csv; Evaluate MultiEURLEX Classic Knowledge S 260630_0833 sonet-4-6.csv,50,47,43,4,3,0.9149,"Error=3,Fail=1,Pass=46","Error=3,Fail=3,Pass=44"
+MultiEURLEX Classic MCP,3178427b-3b5b-48f5-ae8b-8815c8e009dd,Evaluate MultiEURLEX Classic MCP 260629_1321 sonet-4-6.csv; Evaluate MultiEURLEX Classic MCP S 260630_0833 sonet-4-6.csv,50,47,43,4,3,0.9149,"Error=3,Pass=47","Error=3,Fail=4,Pass=43"
+MultiEURLEX Classic MCP plus Semantic,8e544f18-eb71-f111-ab0d-000d3a340a6f,Evaluate MultiEURLEX Classic MCP plus Semantic 260629_1050 sonet-4-6.csv; Evaluate MultiEURLEX Classic MCP plus Semantic S 260630_0833 sonet-4-6.csv,50,47,44,3,3,0.9362,"Error=3,Fail=1,Pass=46","Error=3,Fail=3,Pass=44"
+MultiEURLEX Classic Semantic,7dc480d4-4c8a-433d-ad19-215599a24dc5,Evaluate MultiEURLEX Classic Semantic 260629_1129 sonet-4-6.csv; Evaluate MultiEURLEX Classic Semantic S 260630_0833 sonet-4-6.csv,50,50,41,9,0,0.82,"Fail=5,Pass=45","Fail=8,Pass=42"
